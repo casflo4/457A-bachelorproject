@@ -72,11 +72,11 @@ states = L.layerGroup().addTo(map);
   data3.forEach(function(d,i){
     if (d.LatLng!=null){
     var marker = L.marker(d.LatLng).addTo(map);
-    var popupContent = "Name: "+d.Name+" "+d["Last Name"];
-    popupContent+= "<br/>From: "+d.City+", "+d.State;
-    popupContent+= "<br/>Aired on: Season "+d.Season;
-    popupContent+= "<br/>Eliminated on: Week "+d.Elimination_Week;
-    popupContent+= "<br/>Occupation: "+d.Occupation;
+    var popupContent = "<strong>Name: </strong>"+d.Name+" "+d["Last Name"];
+    popupContent+= "<br/><strong>From: </strong>"+d.City+", "+d.State;
+    popupContent+= "<br/><strong>Aired on: </strong>Season "+d.Season;
+    popupContent+= "<br/><strong>Eliminated on: </strong>Week "+d.Elimination_Week;
+    popupContent+= "<br/><strong>Occupation: </strong>"+d.Occupation;
     var marker = L.marker(d.LatLng)
        .bindPopup(popupContent)
 
