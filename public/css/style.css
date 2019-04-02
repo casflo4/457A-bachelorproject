@@ -12,6 +12,13 @@ h1 {
     padding: 0px;
     margin-left: 20px;
 }
+
+#map {
+  width: 960px;
+  height: 960px;
+}
+
+
 .info{
     margin-left: 20px;
 }
