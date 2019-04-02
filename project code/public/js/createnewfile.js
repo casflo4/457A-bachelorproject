@@ -1,3 +1,5 @@
+//used some help from stackoverflow so I could write data to a file rather than repeated api calls
+
 /*d3.json("data/updatedcontestantdata.json",function(data1){
   var newdata = [];
   data2 = data1.filter(function(d){
