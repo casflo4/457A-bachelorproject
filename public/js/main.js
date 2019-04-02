@@ -13,20 +13,20 @@
         //load the data
         queue()
           .defer(d3.csv, "data/bachelor contestants for data.world.csv")
-          //.defer(d3.csv, "any other sources we use")
+          .defer(d3.csv, "data/occupations.csv")
           .await(createVisualization);
 
           function createVisualization(error, source1, source2) {
-            console.log("gets here");
+            // console.log("gets here");
             //console.log(error);
-            console.log(source1);
-            //console.log(source2);
+            // console.log(source1);
+            // console.log(source2);
 
             //Creating instances for each visualization here
+            var occupations = new Occupations(source1, source2);
 
-
-            //call uptate on charts here
-
+            //call update on charts here
+            occupations.update();
           }
     }
 
