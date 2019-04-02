@@ -4,6 +4,16 @@ body {
     font-family: Lato;
 }
 
+#map-container{
+    float: left;
+    width: 50%;
+}
+
+#occupations-container{
+    float: left;
+    width: 50%;
+}
+
 h1 {
     font-family: "Arvo";
     font-size:35px;
@@ -14,8 +24,8 @@ h1 {
 }
 
 #map {
-  width: 960px;
-  height: 960px;
+  width: 500px;
+  height: 500px;
 }
 
 
