@@ -60,17 +60,58 @@ LocMap.prototype.init = function(){
  * @param newbystory sentimnent data for each story
  **/
 
-LocMap.prototype.update = function(data1,data2,data3){
+LocMap.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
   var self = this;
   map = L.map('map').setView([37.8, -96.9], 4.375);
   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+ var geoJson1 = L.geoJson(data6, {
+   style: {color: "blue", opacity: ".1"},
+   weight: 5,
+   fillOpacity: 0.7,
+   onEachFeature: onEachLine
+ }).addTo(map).on('click',function(e){
+   map.setView(e.latlng,6);
+   console.log(e);
+ });
 
-console.log(data3);
+ var geojson2 = L.geoJson(data7, {
+   style: {color: "yellow", opacity: ".1"},
+   weight: 5,
+   fillOpacity: 0.7,
+   onEachFeature: onEachLine
+ }).addTo(map).on('click',function(e){
+   map.setView(e.latlng,6);
+ });
+
+ var geoJson3 = L.geoJson(data8, {
+   style: {color: "red", opacity: ".1"},
+   weight: 5,
+   fillOpacity: 0.7,
+   onEachFeature: onEachLine
+ }).addTo(map).on('click',function(e){
+   map.setView(e.latlng,6);
+
+ });
+
+ var geoJson4 = L.geoJson(data9, {
+   style: {color: "green", opacity: ".1"},
+   weight: 5,
+   fillOpacity: 0.7,
+   onEachFeature: onEachLine
+ }).addTo(map).on('click',function(e){
+   map.setView(e.latlng,6);
+ });
+
+
+ function onEachLine(feature, layer) {
+ layer.bindPopup(feature.properties.STATE);
+}
+
 
 states = L.layerGroup().addTo(map);
- var count=0;
+ /*var count=0;
   data3.forEach(function(d,i){
     if (d.LatLng!=null){
     var marker = L.marker(d.LatLng).addTo(map);
@@ -88,6 +129,6 @@ states = L.layerGroup().addTo(map);
     //console.log(d);
     count++;
   }
-  });
- //console.log(count);
+});*/
+
 };

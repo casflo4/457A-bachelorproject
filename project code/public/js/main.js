@@ -17,9 +17,13 @@
             .defer(d3.csv, "data/historical_bachelor_contestants.csv")
             .defer(d3.json, "data/updatedcontestantdata.json")
             .defer(d3.json, "data/updatedcontestantdata (1).json")
+            .defer(d3.json, "data/geojson1.json")
+            .defer(d3.json, "data/geojson2.json")
+            .defer(d3.json, "data/geojson3.json")
+            .defer(d3.json, "data/geojson4.json")
             .await(createVisualization);
 
-          function createVisualization(error, source1, source2, source3, source4, source5) {
+          function createVisualization(error, source1, source2, source3, source4, source5, source6, source7, source8, source9) {
             //console.log("gets here");
             console.log(error);
             console.log(source1);
@@ -43,7 +47,7 @@
             var tree = new SeasonTree(source1);
             //call update on charts here
             occupations.update();
-            map.update(source1,source3,source4);
+            map.update(source1,source3,source4,source6,source7,source8,source9);
             tree.update();
           }
     }
