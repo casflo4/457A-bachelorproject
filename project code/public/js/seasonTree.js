@@ -3,7 +3,7 @@ function SeasonTree(_allData) {
 
     this.data = _allData;
 
-    vis.displayData;
+    vis.displayData = [];
 
     vis.init();
 };
@@ -21,19 +21,36 @@ SeasonTree.prototype.init = function(){
     vis.svg = div.append("svg")
         .attr("width",vis.svgWidth)
         .attr("height",vis.svgHeight)
-    vis.loadData();
-
-};
-
-SeasonTree.prototype.loadData = function() {
-    var vis = this;
-    console.log(vis.data);
 
 };
 
 
 SeasonTree.prototype.update = function(){
     var vis = this;
+    var finalWeek = 0;
+    var occupation = 1;
+    console.log(Array.from(vis.data));
+    vis.data.forEach(function(a){
+        if (parseInt(a.Season) == season){
+            if(a.Outcome == "Winner"){
+                finalWeek = a.Elimination_Week;
+                vis.displayData[0] = [{first_name:a.Name, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place}];
+            }
+        }
+    });
+    for (var i=finalWeek; i>0; --i){
+        var row = [];
+        vis.data.forEach(function(a){
+            if (parseInt(a.Season) == season){
+                if(a.Elimination_Week == i && a.Outcome != "Winner"){
+                    row.push({first_name:a.Name, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place});
+                }
+            }
+        });
+        vis.displayData.push(row);
+    }
+    console.log(vis.displayData);
+    console.log(vis.displayData[0].first_name);
     vis.svg.append("image")
     .attr("xlink:href", "public/css/images/rose.png")
     .attr("height", 750)
@@ -47,4 +64,9 @@ SeasonTree.prototype.update = function(){
     .attr("stroke", "white")
     .attr("cx", vis.svgWidth/2-20)
     .attr("cy", 100);
+    vis.svg.append("text")
+    .attr("text", vis.displayData[0].first_name)
+    .attr("x", vis.svgWidth/2-20)
+    .attr("y", 100)
+    .style("color", "white");
 }
