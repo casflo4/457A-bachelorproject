@@ -40,9 +40,11 @@
             //Creating instances for each visualization here
             var occupations = new Occupations(source1, source2);
             var map = new LocMap();
+            var tree = new SeasonTree(source1);
             //call update on charts here
             occupations.update();
             map.update(source1,source3,source4);
+            tree.update();
           }
     }
 
