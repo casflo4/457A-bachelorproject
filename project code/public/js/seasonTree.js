@@ -24,11 +24,9 @@ SeasonTree.prototype.init = function(){
 
 };
 
-
-SeasonTree.prototype.update = function(){
+SeasonTree.prototype.loadData = function(season) {
     var vis = this;
     var finalWeek = 0;
-    var occupation = 1;
     console.log(Array.from(vis.data));
     vis.data.forEach(function(a){
         if (parseInt(a.Season) == season){
@@ -50,6 +48,13 @@ SeasonTree.prototype.update = function(){
         vis.displayData.push(row);
     }
     console.log(vis.displayData);
+    vis.update();
+
+};
+
+
+SeasonTree.prototype.update = function(){
+    var vis = this;
     console.log(vis.displayData[0].first_name);
     vis.svg.append("image")
     .attr("xlink:href", "public/css/images/rose.png")
