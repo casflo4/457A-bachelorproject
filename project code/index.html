@@ -6,11 +6,17 @@
     <title>CSE457: Final Project</title>
     <link rel="stylesheet" href="public/css/style.css"/>
     <link rel="stylesheet" href="public/css/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
     <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
     <script type="text/javascript" src="bower_components/d3/d3.js"></script>
     <script type="text/javascript" src="bower_components/d3-tip/index.js"></script>
     <script type="text/javascript" src="bower_components/d3/queue.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.js"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+   crossorigin=""></script>
     <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
@@ -24,11 +30,12 @@
 
 <div id = "map-container">
 <h2>Contestant Hometowns</h2>
-    <p>This visualization depicts the hometowns of Bachelor contestants in all of the seasons. 
+    <p>This visualization depicts the hometowns of Bachelor contestants in all of the seasons.
             Click on a map marker for more information about the contestant.</p>
-<div id = "map" width = "500" height = "500" class = "view">
+<br />
+<div id = "map" class = "view">
     </div>
-    
+
 </div>
 
 <br>
@@ -43,7 +50,7 @@
 <div id = "occupations-container">
 <div id = "occupations" class = "view">
     <h2>Contestant Occupations</h2>
-    <p>This visualization depicts the job categories of Bachelor contestants in all of the seasons. 
+    <p>This visualization depicts the job categories of Bachelor contestants in all of the seasons.
         The size of the bubble indicates frequency, while the color indicates the Average Elimination Week.</p>
 </div>
 </div>

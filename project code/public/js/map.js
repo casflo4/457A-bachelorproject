@@ -19,9 +19,42 @@ LocMap.prototype.init = function(){
 
     //Gets access to the div element created for this chart from HTML
     var divelectoralVotes = d3.select("#map").classed("content", true);
-    self.svgBounds = 500;//divelectoralVotes.node().getBoundingClientRect();
+    self.svgBounds = 1000;//divelectoralVotes.node().getBoundingClientRect();
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
-    self.svgHeight = 500;
+    self.svgHeight = 1000;
+
+    self.greenIcon = L.icon({
+    iconUrl: 'public/css/images/leaf-green.png',
+    shadowUrl: 'public/css/images/leaf-shadow.png',
+
+    iconSize:     [38, 95], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+self.redIcon = L.icon({
+iconUrl: 'public/css/images/leaf-red.png',
+shadowUrl: 'public/css/images/leaf-shadow.png',
+
+iconSize:     [38, 95], // size of the icon
+shadowSize:   [50, 64], // size of the shadow
+iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+shadowAnchor: [4, 62],  // the same for the shadow
+popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+self.orangeIcon = L.icon({
+iconUrl: 'public/css/images/leaf-orange.png',
+shadowUrl: 'public/css/images/leaf-shadow.png',
+
+iconSize:     [38, 95], // size of the icon
+shadowSize:   [50, 64], // size of the shadow
+iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+shadowAnchor: [4, 62],  // the same for the shadow
+popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 
     //creates svg element within the div
     self.svg = divelectoralVotes.append("svg")
@@ -62,73 +95,111 @@ LocMap.prototype.init = function(){
 
 LocMap.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
   var self = this;
-  map = L.map('map').setView([37.8, -96.9], 4.375);
-  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
- var geoJson1 = L.geoJson(data6, {
-   style: {color: "blue", opacity: ".1"},
-   weight: 5,
-   fillOpacity: 0.7,
-   onEachFeature: onEachLine
- }).addTo(map).on('click',function(e){
-   map.setView(e.latlng,6);
-   console.log(e);
- });
+  self.zoom = 4.375;
 
- var geojson2 = L.geoJson(data7, {
-   style: {color: "yellow", opacity: ".1"},
-   weight: 5,
-   fillOpacity: 0.7,
-   onEachFeature: onEachLine
- }).addTo(map).on('click',function(e){
-   map.setView(e.latlng,6);
- });
-
- var geoJson3 = L.geoJson(data8, {
-   style: {color: "red", opacity: ".1"},
-   weight: 5,
-   fillOpacity: 0.7,
-   onEachFeature: onEachLine
- }).addTo(map).on('click',function(e){
-   map.setView(e.latlng,6);
-
- });
-
- var geoJson4 = L.geoJson(data9, {
-   style: {color: "green", opacity: ".1"},
-   weight: 5,
-   fillOpacity: 0.7,
-   onEachFeature: onEachLine
- }).addTo(map).on('click',function(e){
-   map.setView(e.latlng,6);
- });
-
-
- function onEachLine(feature, layer) {
- layer.bindPopup(feature.properties.STATE);
-}
-
-
-states = L.layerGroup().addTo(map);
- /*var count=0;
+  winners = [];
+  seasonlength = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   data3.forEach(function(d,i){
-    if (d.LatLng!=null){
-    var marker = L.marker(d.LatLng).addTo(map);
-    var popupContent = "<strong>Name: </strong>"+d.Name+" "+d["Last Name"];
-    popupContent+= "<br/><strong>From: </strong>"+d.City+", "+d.State;
-    popupContent+= "<br/><strong>Aired on: </strong>Season "+d.Season;
-    popupContent+= "<br/><strong>Eliminated on: </strong>Week "+d.Elimination_Week;
-    popupContent+= "<br/><strong>Occupation: </strong>"+d.Occupation;
-    var marker = L.marker(d.LatLng)
-       .bindPopup(popupContent)
+    console.log(parseInt(d.Elimination_Week));
+      console.log(seasonlength[parseInt(d.Season)-1]);
+    if (parseInt(d.Elimination_Week)>seasonlength[parseInt(d.Season)-1]){
+      seasonlength[parseInt(d.Season)-1] = parseInt(d.Elimination_Week);
+    }
+    if (parseInt(d.Place)==1 || d.Outcome=="Winner"){
+      var popupContent = "<strong>Name: </strong>"+d.Name+" "+d["Last Name"];
+      popupContent+= "<br/><strong>From: </strong>"+d.City+", "+d.State;
+      popupContent+= "<br/><strong>Aired on: </strong>Season "+d.Season;
+      popupContent+= "<br/><strong>Eliminated on: </strong>Week "+d.Elimination_Week;
+      popupContent+= "<br/><strong>Occupation: </strong>"+d.Occupation;
+      var marker = L.marker(d.LatLng,{icon: self.greenIcon})
+         .bindPopup(popupContent)
+      winners.push(marker);
+    }
+  });
+winners = L.layerGroup(winners);
+console.log(seasonlength);
+  var cities = [];
+  var regions = [];
 
-    states.addLayer(marker);
-  }
-  else{
-    //console.log(d);
-    count++;
-  }
-});*/
+  console.log(data3);
+    data3.forEach(function(d,i){
+        if (parseInt(d.Place)!=1 & !d.Outcome!="Winner"){
+      var popupContent = "<strong>Name: </strong>"+d.Name+" "+d["Last Name"];
+      popupContent+= "<br/><strong>From: </strong>"+d.City+", "+d.State;
+      popupContent+= "<br/><strong>Aired on: </strong>Season "+d.Season;
+      popupContent+= "<br/><strong>Eliminated on: </strong>Week "+d.Elimination_Week;
+      popupContent+= "<br/><strong>Occupation: </strong>"+d.Occupation;
+      if(parseInt(d.Elimination_Week)>(seasonlength[parseInt(d.Season)-1]/2)){
+        var marker = L.marker(d.LatLng,{icon: self.orangeIcon})
+           .bindPopup(popupContent)
+      }
+      else{
+        var marker = L.marker(d.LatLng,{icon: self.redIcon})
+           .bindPopup(popupContent)
+      }
+      cities.push(marker);
+    }
+  });
 
+  cities = L.layerGroup(cities);
+
+  var geoJson1 = L.geoJson(data6, {
+    style: {color: "#4281A4", opacity: 0.5},
+    weight: 5,
+    fillOpacity: 0.5,
+    //onEachFeature: onEachLine
+  });
+
+  regions.push(geoJson1);
+
+  var geoJson2 = L.geoJson(data7, {
+    style: {color: "#9CAFB7", opacity: 0.5},
+    weight: 5,
+    fillOpacity: 0.5,
+    //onEachFeature: onEachLine
+  });
+
+  regions.push(geoJson2);
+
+  var geoJson3 = L.geoJson(data8, {
+    style: {color: "#63ADF2", opacity: 0.5},
+    weight: 5,
+    fillOpacity: 0.5,
+    //onEachFeature: onEachLine
+  });
+
+  regions.push(geoJson3);
+
+  var geoJson4 = L.geoJson(data9, {
+    style: {color: "#545E75", opacity: 0.5},
+    weight: 5,
+    fillOpacity: 0.5,
+  });
+
+  regions.push(geoJson4);
+
+  regions = L.layerGroup(regions);
+  mapboxUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  mapboxAttribution =  '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
+  var streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
+
+console.log(cities);
+console.log(winners);
+  var map = L.map('map', {
+      center: [37.8, -96.9],
+      zoom: 4.375,
+      layers: [streets, cities, regions, winners]
+  });
+
+  var baseMaps = {
+    "<span style='color: gray, opacity: .5'>Streets</span>": streets
+  };
+
+  var overlayMaps = {
+      "Regions": regions,
+      "Contestants": cities,
+      "Winners": winners
+  };
+
+  L.control.layers(baseMaps, overlayMaps).addTo(map);
 };

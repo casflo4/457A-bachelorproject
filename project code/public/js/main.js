@@ -25,12 +25,12 @@
 
           function createVisualization(error, source1, source2, source3, source4, source5, source6, source7, source8, source9) {
             //console.log("gets here");
-            console.log(error);
+            /*console.log(error);
             console.log(source1);
             console.log(source2);
             console.log(source3);
             console.log(source4);
-            console.log(source5);
+            console.log(source5);*/
             source4.forEach(function(d,i){
               source5.forEach(function(d1,i1){
                 if (d1.Name == d.Name && d["Last Name"] == d1["Last Name"] && d.Season == d1.Season){
