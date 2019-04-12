@@ -15,24 +15,28 @@ SeasonTree.prototype.init = function(){
 
     var div = d3.select("#tree").classed("view", true);
     vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right;
-    vis.svgHeight = 750;
+    vis.svgHeight = 800;
     vis.imgWidth = 229.5;
 
     vis.svg = div.append("svg")
         .attr("width",vis.svgWidth)
-        .attr("height",vis.svgHeight)
+        .attr("height",vis.svgHeight);
 
+    vis.loadData(21);
 };
 
 SeasonTree.prototype.loadData = function(season) {
     var vis = this;
     var finalWeek = 0;
+    vis.displayData[0] = [];
     console.log(Array.from(vis.data));
     vis.data.forEach(function(a){
         if (parseInt(a.Season) == season){
             if(a.Outcome == "Winner"){
-                finalWeek = a.Elimination_Week;
                 vis.displayData[0] = [{first_name:a.Name, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place}];
+            }
+            if(a.Elimination_Week>finalWeek){
+                finalWeek = a.Elimination_Week;
             }
         }
     });
@@ -45,9 +49,12 @@ SeasonTree.prototype.loadData = function(season) {
                 }
             }
         });
-        vis.displayData.push(row);
+        if(row.length!=0){
+            vis.displayData.push(row);
+        }
+        console.log(i);
+        console.log(vis.displayData);
     }
-    console.log(vis.displayData);
     vis.update();
 
 };
@@ -55,7 +62,6 @@ SeasonTree.prototype.loadData = function(season) {
 
 SeasonTree.prototype.update = function(){
     var vis = this;
-    console.log(vis.displayData[0].first_name);
     vis.svg.append("image")
     .attr("xlink:href", "public/css/images/rose.png")
     .attr("height", 750)
@@ -64,14 +70,103 @@ SeasonTree.prototype.update = function(){
         console.log(vis.svg.node().firstChild);
         return (vis.svgWidth-vis.imgWidth)/2;
     });
-    vis.svg.append("circle")
-    .attr("r", 45)
-    .attr("stroke", "white")
-    .attr("cx", vis.svgWidth/2-20)
-    .attr("cy", 100);
-    vis.svg.append("text")
-    .attr("text", vis.displayData[0].first_name)
-    .attr("x", vis.svgWidth/2-20)
-    .attr("y", 100)
-    .style("color", "white");
+    if(vis.displayData[0].length != 0){
+        vis.svg.append("circle")
+        .attr("r", 50)
+        //.attr("stroke", "white")
+        .attr("cx", vis.svgWidth/2-20)
+        .attr("cy", 100);
+        vis.svg.append("text")
+        .text(vis.displayData[0][0].first_name)
+        .attr("x", vis.svgWidth/2-20)
+        .attr("y", 100)
+        .style("fill", "white")
+        .style("text-anchor", "middle")
+        .style("font-size", 20);
+        // vis.svg.append("text")
+        // .text(vis.displayData[0][0].last_name)
+        // .attr("x", vis.svgWidth/2-20)
+        // .attr("y", 110)
+        // .style("fill", "white")
+        // .style("text-anchor", "middle");
+    }
+    var row = 0;
+    for(var i=1; i<vis.displayData.length; ++i){
+        row +=1;
+        for(var j=0; j<vis.displayData[i].length; ++j){
+            if (j==6 || j==12){
+                row +=1;
+            }
+            vis.svg.append("circle")
+            .attr("r", 31)
+            //.attr("stroke", "white")
+            .attr("cx", function(){
+                if (j>11 && i%2 == 0){
+
+                    return vis.svgWidth/2-40-63*(j-12);
+                }
+                else if (j>11){
+                    return vis.svgWidth/2+60+63*(j-12);
+                }
+                else if (j>5 && i%2 == 0){
+
+                    return vis.svgWidth/2-40-63*(j-6);
+                }
+                else if (j>5){
+                    return vis.svgWidth/2+60+63*(j-6);
+                }
+                if (i%2==0){
+                    return vis.svgWidth/2-40-63*j;
+                }
+                else{
+                    return vis.svgWidth/2+60+63*j;
+                }
+            })
+            .attr("cy", function(){
+                return 135+63*(row);
+            });
+            vis.svg.append("text")
+            .text(vis.displayData[i][j].first_name)
+            .attr("x", function(){
+                if (j>11 && i%2 == 0){
+
+                    return vis.svgWidth/2-40-63*(j-12);
+                }
+                else if (j>11){
+                    return vis.svgWidth/2+60+63*(j-12);
+                }
+                else if (j>5 && i%2 == 0){
+                    return vis.svgWidth/2-40-63*(j-6);
+                }
+                else if (j>5){
+                    return vis.svgWidth/2+60+63*(j-6);
+                }
+                else if (i%2==0){
+                    return vis.svgWidth/2-40-63*j;
+                }
+                else{
+                    return vis.svgWidth/2+60+63*j;
+                }
+            })
+            .attr("y", function(){
+                return 135+63*(row);
+            })
+            .style("fill", "white")
+            .style("text-anchor", "middle")
+            .style("font-size", 9);
+            // vis.svg.append("text")
+            // .text(vis.displayData[i][j].last_name)
+            // .attr("x", function(){
+            //     if (i%2==0){
+            //         return vis.svgWidth/2-70-50*j;
+            //     }
+            //     else{
+            //         return vis.svgWidth/2+70+50*j;
+            //     }
+            // })
+            // .attr("y", 110+65*i)
+            // .style("fill", "white")
+            // .style("text-anchor", "middle");
+        }
+    }
 }
