@@ -189,7 +189,6 @@ winners = L.layerGroup(winners);
   regions.push(geoJson4);
 
   regions = L.layerGroup(regions);
-  //var streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
   mapboxUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   mapboxAttribution =  '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
   var streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
