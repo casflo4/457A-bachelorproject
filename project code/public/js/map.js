@@ -85,17 +85,6 @@ popupAnchor:  [-3, -76] // point from which the popup should open relative to th
             self.votestoWin = self.svg.append("text")
               .attr("x",self.svgWidth/2)
               .attr("y",40);
-
-
-              /*var cities = [];
-              cities = L.layerGroup(cities);
-              var regions = [];
-              regions = L.layerGroup(regions);
-              winners = [];
-              winners = L.layerGroup(winners);*/
-
-
-
 };
 
 /**
@@ -130,34 +119,54 @@ LocMap.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
     }
   });
 winners = L.layerGroup(winners);
-  var cities = [];
+  var better = [];
+  var worse = [];
   var regions = [];
-    data3.forEach(function(d,i){
+  betterthanhalf = data3.filter(function(d,i){
+    if (parseInt(d.Elimination_Week)>=(seasonlength[parseInt(d.Season)-1]/2)){
+      return d;
+    }
+  });
+
+  worsethanhalf = data3.filter(function(d,i){
+    if (parseInt(d.Elimination_Week)<(seasonlength[parseInt(d.Season)-1]/2)){
+      return d;
+    }
+  });
+
+    betterthanhalf.forEach(function(d,i){
         if (parseInt(d.Place)!=1 & !d.Outcome!="Winner"){
       var popupContent = "<strong>Name: </strong>"+d.Name+" "+d["Last Name"];
       popupContent+= "<br/><strong>From: </strong>"+d.City+", "+d.State;
       popupContent+= "<br/><strong>Aired on: </strong>Season "+d.Season;
       popupContent+= "<br/><strong>Eliminated on: </strong>Week "+d.Elimination_Week;
       popupContent+= "<br/><strong>Occupation: </strong>"+d.Occupation;
-      if(parseInt(d.Elimination_Week)>(seasonlength[parseInt(d.Season)-1]/2)){
         var marker = L.marker(d.LatLng,{icon: self.orangeIcon})
            .bindPopup(popupContent)
-      }
-      else{
-        var marker = L.marker(d.LatLng,{icon: self.redIcon})
-           .bindPopup(popupContent)
-      }
-      cities.push(marker);
+      better.push(marker);
     }
   });
 
-  cities = L.layerGroup(cities);
+  worsethanhalf.forEach(function(d,i){
+      if (parseInt(d.Place)!=1 & !d.Outcome!="Winner"){
+    var popupContent = "<strong>Name: </strong>"+d.Name+" "+d["Last Name"];
+    popupContent+= "<br/><strong>From: </strong>"+d.City+", "+d.State;
+    popupContent+= "<br/><strong>Aired on: </strong>Season "+d.Season;
+    popupContent+= "<br/><strong>Eliminated on: </strong>Week "+d.Elimination_Week;
+    popupContent+= "<br/><strong>Occupation: </strong>"+d.Occupation;
+      var marker = L.marker(d.LatLng,{icon: self.redIcon})
+         .bindPopup(popupContent)
+    worse.push(marker);
+  }
+});
+
+  better = L.layerGroup(better);
+  worse = L.layerGroup(worse);
 
   var geoJson1 = L.geoJson(data6, {
     style: {color: "#4281A4", opacity: 0.5},
     weight: 5,
     fillOpacity: 0.5,
-    //onEachFeature: onEachLine
   });
 
   regions.push(geoJson1);
@@ -166,7 +175,6 @@ winners = L.layerGroup(winners);
     style: {color: "#9CAFB7", opacity: 0.5},
     weight: 5,
     fillOpacity: 0.5,
-    //onEachFeature: onEachLine
   });
 
   regions.push(geoJson2);
@@ -175,7 +183,6 @@ winners = L.layerGroup(winners);
     style: {color: "#63ADF2", opacity: 0.5},
     weight: 5,
     fillOpacity: 0.5,
-    //onEachFeature: onEachLine
   });
 
   regions.push(geoJson3);
@@ -195,7 +202,7 @@ winners = L.layerGroup(winners);
   self.map = L.map('map', {
       center: [37.8, -96.9],
       zoom: 4.375,
-      layers: [streets, cities, regions, winners]
+      layers: [streets, better, worse, regions, winners]
   });
   var baseMaps = {
     "<span style='color: gray, opacity: .5'>Streets</span>": streets
@@ -203,7 +210,8 @@ winners = L.layerGroup(winners);
 
   var overlayMaps = {
       "Regions": regions,
-      "Contestants": cities,
+      "Contestants (eliminated after halfway point)": better,
+      "Contestants (eliminated before halfway point)": worse,
       "Winners": winners
   };
 
