@@ -24,13 +24,17 @@
             .await(createVisualization);
 
           function createVisualization(error, source1, source2, source3, source4, source5, source6, source7, source8, source9) {
-            //console.log("gets here");
-            /*console.log(error);
             console.log(source1);
             console.log(source2);
             console.log(source3);
             console.log(source4);
-            console.log(source5);*/
+            console.log(source5);
+            console.log(source6);
+            console.log(source7);
+            console.log(source8);
+            console.log(source9);
+            console.log(d3.select("#ranking-type").property("value"));
+            //if ()
             source4.forEach(function(d,i){
               source5.forEach(function(d1,i1){
                 if (d1.Name == d.Name && d["Last Name"] == d1["Last Name"] && d.Season == d1.Season){
@@ -39,8 +43,8 @@
 
               });
             });
-            console.log(source3);
-
+            d3.select("#ranking-type").on("change",updateVisualization);
+            updateVisualization(source1, source2, source3, source4, source5, source6, source7, source8, source9)
             //Creating instances for each visualization here
             var occupations = new Occupations(source1, source2);
             var map = new LocMap();
@@ -48,8 +52,48 @@
             //call update on charts here
             occupations.update();
             map.update(source1,source3,source4,source6,source7,source8,source9);
+
+            function updateVisualization() {
+              if (d3.select("#ranking-type").property("value")!="all"){
+                source1a = source1.filter(function(d,i){
+                  if (parseInt(d.Season)==parseInt(d3.select("#ranking-type").property("value"))){
+                    return d;
+                  }
+                });
+                source2a = source2.filter(function(d,i){
+                  if (parseInt(d.Season)==parseInt(d3.select("#ranking-type").property("value"))){
+                    return d;
+                  }
+                });
+
+                source3a = source3.filter(function(d,i){
+                  if (parseInt(d.Season)==parseInt(d3.select("#ranking-type").property("value"))){
+                    return d;
+                  }
+                });
+
+                source4a = source4.filter(function(d,i){
+                  if (parseInt(d.Season)==parseInt(d3.select("#ranking-type").property("value"))){
+                    return d;
+                  }
+                });
+
+                source5a = source5.filter(function(d,i){
+                  if (parseInt(d.Season)==parseInt(d3.select("#ranking-type").property("value"))){
+                    return d;
+                  }
+                });
+                map.update(source1a,source3a,source4a,source6,source7,source8,source9);
+            }
           }
+        }
     }
+
+
+
+
+      //parseInt(d3.select("#ranking-type").property("value"))
+    //matrix.updateVis();
 
     /**
      *

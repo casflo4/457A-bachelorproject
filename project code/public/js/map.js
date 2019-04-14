@@ -85,6 +85,17 @@ popupAnchor:  [-3, -76] // point from which the popup should open relative to th
             self.votestoWin = self.svg.append("text")
               .attr("x",self.svgWidth/2)
               .attr("y",40);
+
+
+              /*var cities = [];
+              cities = L.layerGroup(cities);
+              var regions = [];
+              regions = L.layerGroup(regions);
+              winners = [];
+              winners = L.layerGroup(winners);*/
+
+
+
 };
 
 /**
@@ -96,12 +107,14 @@ popupAnchor:  [-3, -76] // point from which the popup should open relative to th
 LocMap.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
   var self = this;
   self.zoom = 4.375;
+  if (self.map && self.map.remove) {
+  self.map.off();
+  self.map.remove();
+}
 
   winners = [];
   seasonlength = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   data3.forEach(function(d,i){
-    console.log(parseInt(d.Elimination_Week));
-      console.log(seasonlength[parseInt(d.Season)-1]);
     if (parseInt(d.Elimination_Week)>seasonlength[parseInt(d.Season)-1]){
       seasonlength[parseInt(d.Season)-1] = parseInt(d.Elimination_Week);
     }
@@ -117,11 +130,8 @@ LocMap.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
     }
   });
 winners = L.layerGroup(winners);
-console.log(seasonlength);
   var cities = [];
   var regions = [];
-
-  console.log(data3);
     data3.forEach(function(d,i){
         if (parseInt(d.Place)!=1 & !d.Outcome!="Winner"){
       var popupContent = "<strong>Name: </strong>"+d.Name+" "+d["Last Name"];
@@ -179,18 +189,15 @@ console.log(seasonlength);
   regions.push(geoJson4);
 
   regions = L.layerGroup(regions);
+  //var streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
   mapboxUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   mapboxAttribution =  '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
   var streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
-
-console.log(cities);
-console.log(winners);
-  var map = L.map('map', {
+  self.map = L.map('map', {
       center: [37.8, -96.9],
       zoom: 4.375,
       layers: [streets, cities, regions, winners]
   });
-
   var baseMaps = {
     "<span style='color: gray, opacity: .5'>Streets</span>": streets
   };
@@ -201,5 +208,5 @@ console.log(winners);
       "Winners": winners
   };
 
-  L.control.layers(baseMaps, overlayMaps).addTo(map);
+  L.control.layers(baseMaps, overlayMaps).addTo(self.map);
 };

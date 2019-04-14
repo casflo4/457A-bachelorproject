@@ -213,11 +213,7 @@ h3{
   margin: 0;
 }
 
-h2{
-    margin-left: 1%;
-    margin-right: 1%;
+h2,p,form{
+  margin-left: 20px;
+  /*margin-right: 1%;*/
   }
-p {
-      margin-left: 1%;
-      margin-right: 1%;
-    }
