@@ -58,9 +58,20 @@ LocChart.prototype.init = function(){
 
     // Axis title
     self.svg.append("text")
-        .attr("x", -50)
-        .attr("y", -8)
-        .text("Votes");
+        .attr("x", self.svgWidth/2 - 100)
+        .attr("y", self.svgHeight)
+        .text("Bachelor Candidate Home Locations");
+
+  self.svg.append("text")
+            .attr("x", self.svgWidth/2-100)
+            .attr("y", 15)
+            .text("Bachelor Candidate Success By State");
+
+  self.svg.append("text")
+      .attr("x", -390)
+      .attr("y", 20)
+      .text("# of Candidates")
+      .attr("transform", "rotate(270)");
 };
 
 LocChart.prototype.chooseloc = function (d) {
