@@ -33,7 +33,6 @@
             console.log(source7);
             console.log(source8);
             console.log(source9);
-            console.log(d3.select("#ranking-type").property("value"));
             source4.forEach(function(d,i){
               source5.forEach(function(d1,i1){
                 if (d1.Name == d.Name && d["Last Name"] == d1["Last Name"] && d.Season == d1.Season){
@@ -46,9 +45,11 @@
             //Creating instances for each visualization here
             var occupations = new Occupations(source1, source2);
             var map = new LocMap();
+            var locchart = new LocChart();
             var tree = new SeasonTree(source1);
             //call update on charts here
             occupations.update();
+            locchart.update(source1,source3,source4,source6,source7,source8,source9);
             map.update(source1,source3,source4,source6,source7,source8,source9);
 
             function updateVisualization() {
@@ -82,8 +83,10 @@
                   }
                 });
                 map.update(source1a,source3a,source4a,source6,source7,source8,source9);
+                locchart.update(source1a,source3a,source4a,source6,source7,source8,source9);
             } else{
               map.update(source1,source3,source4,source6,source7,source8,source9);
+              locchart.update(source1,source3,source4,source6,source7,source8,source9);
             }
           }
         }
