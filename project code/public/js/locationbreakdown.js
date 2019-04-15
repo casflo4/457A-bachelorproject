@@ -21,7 +21,7 @@ LocChart.prototype.init = function(){
     var divelectoralVotes = d3.select("#map3").classed("content", true);
     self.svgBounds = 1440;//divelectoralVotes.node().getBoundingClientRect();
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
-    self.svgHeight = 1000;
+    self.svgHeight = 750;
 
     //creates svg element within the div
     self.svg = divelectoralVotes.append("svg")
@@ -232,19 +232,26 @@ LocChart.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
 
   d3.selectAll(".axis").remove().exit();
   d3.selectAll("rect").remove().exit();
-  //d3.select("axis y-axis").remove();
-  var self = this;
 
-var contestantsnested = d3.nest()
-    .key(function(d){
-      if (d.State=="D.C"){
-        return "D.C.";
-      }
-      else{
-      return d.State;
+  var self = this;
+self.worseCount = 0;
+  seasonlength = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  data3.forEach(function(d,i){
+    if (parseInt(d.Elimination_Week)>seasonlength[parseInt(d.Season)-1]){
+      seasonlength[parseInt(d.Season)-1] = parseInt(d.Elimination_Week);
     }
-    })
-    .entries(data3);
+  });
+
+  var og = d3.nest()
+      .key(function(d){
+        if (d.State=="D.C"){
+          return "D.C.";
+        }
+        else{
+        return d.State;
+      }
+      })
+      .entries(data3);
 
 var winners = data3.filter(function(d,i){
       if (parseInt(d.Place)==1 || d.Outcome=="Winner"){
@@ -262,21 +269,24 @@ var winnersnested = d3.nest()
     }
     })
     .entries(winners);
-    contestantsnested.sort(function(x,y){
+
+    og.sort(function(x,y){
       return d3.descending(x.values.length,y.values.length);
     });
-    self.x.domain(contestantsnested.map(function(d) {
+
+    self.x.domain(og.map(function(d) {
         return d.key;
     }))
 
-    self.newwidth = (self.svgWidth-144)/contestantsnested.length;
-    console.log(self.newwidth);
-    self.y.domain([0,d3.max(contestantsnested, function(d) { return d.values.length; })]);
-    //self.svg.attr("transform","rotate(180)")
+    self.newwidth = (self.svgWidth-144)/ og.length;
+
+    self.y.domain([0,d3.max(og, function(d) { return d.values.length; })]);
+
     var rect = self.svg.selectAll("rect")
-         .data(contestantsnested);
+         .data(og);
     rect.enter().append("rect")
           .attr("fill",function(d,i){
+            /*
             if (LocChart.prototype.chooseloc(d)=="Northeast"){
               return 'rgba(99,173,242,.5)';//"#63ADF2";
             }
@@ -287,14 +297,46 @@ var winnersnested = d3.nest()
                 return 'rgba(156,175,183,.5)';//"#9CAFB7";
             }
             else if (LocChart.prototype.chooseloc(d)=="West"){
-                return 'rgba(66,129,164,.5)';//"#4281A4";
+                return 'rgba(66,1-29,164,.5)';//"#4281A4";
             }
             else{
               return "black";
-            }
+            }*/
+            return "rgb(225,75,108)";
           })
-          .attr("y", function(d) {
-            return self.svgHeight-(d.values.length*13.5)-80;
+          .attr("y", function(d,i) {
+            self.worseCount = 0;
+            self.betterCount = 0;
+            self.winner = 0;
+            d.values.forEach(function(d1,i){
+              if (parseInt(d1.Place)==1 || d1.Outcome=="Winner"){
+                self.winner++;
+              }
+              else{
+              if (parseInt(d1.Elimination_Week)>=(seasonlength[parseInt(d1.Season)-1]/2)){
+                self.betterCount++;
+              }
+              else{
+                self.worseCount++;
+              }
+            }
+            });
+
+            self.svg.append("rect")
+                    .attr("fill",function(){
+                      return "rgb(243,188,65)";
+                    })
+                    .attr("y", function() {
+                      return self.svgHeight-self.winner*9.6969-self.betterCount*9.6969-80;
+                    })
+                    .attr("x", function() {
+                        return (self.newwidth*i)+50;
+                    })
+                    .attr("width", self.newwidth-5)
+                    .attr("height", function(){
+                      return self.betterCount*9.6969;
+                    });
+            return self.svgHeight-self.winner*9.6969-self.worseCount*9.6969-self.betterCount*9.6969-80;
           })
           .attr("x", function(d,i) {
             return (self.newwidth*i)+50;
@@ -305,26 +347,40 @@ var winnersnested = d3.nest()
               if (d1.key==d.key){
                 self.svg.append("rect")
                     .attr("fill",function(){
-                      return "green";
+                      return "rgb(174,221,92)";
                     })
                     .attr("y", function() {
-                      return self.svgHeight-(d1.values.length*13.5)-80;
+                      return self.svgHeight-(d1.values.length*9.6969)-80;
                     })
                     .attr("x", function() {
                         return (self.newwidth*i)+50;
                     })
                     .attr("width", self.newwidth-5)
                     .attr("height", function(){
-                      return d1.values.length*13.5;
+                      return d1.values.length*9.6969;
                     });
               }
             })
-            return d.values.length*13.5;
+
+            self.worseCount = 0;
+            self.betterCount = 0;
+            self.winner = 0;
+            d.values.forEach(function(d1,i){
+              if (parseInt(d1.Place)==1 || d1.Outcome=="Winner"){
+                self.winner++;
+              }
+              else{
+              if (parseInt(d1.Elimination_Week)>=(seasonlength[parseInt(d1.Season)-1]/2)){
+                self.betterCount++;
+              }
+              else{
+                self.worseCount++;
+              }
+            }
+            });
+
+            return self.worseCount*9.6969;
           })
-        //  .attr("transform","translate(-500,50)rotate(180)")
-
-    //  rect.exit().transition().remove();
-
 
       var groupx = self.svg.append("g")
     		.attr("class", "axis x-axis")
