@@ -280,7 +280,7 @@ var winnersnested = d3.nest()
 
     self.newwidth = (self.svgWidth-144)/ og.length;
 
-    self.y.domain([0,d3.max(og, function(d) { return d.values.length; })]);
+    self.y.domain([0,66]);
 
     var rect = self.svg.selectAll("rect")
          .data(og);
