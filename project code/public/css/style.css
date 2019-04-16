@@ -13,6 +13,8 @@ ul.tabs li{
 
 ul.tabs li.current{
     background: white;
+    border: solid black 1px;
+    border-bottom-color: white;
 }
 
 .tab-content{
