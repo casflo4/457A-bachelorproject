@@ -274,9 +274,12 @@ var winnersnested = d3.nest()
     })
     .entries(winners);
 
+
     og.sort(function(x,y){
       return d3.descending(x.values.length,y.values.length);
     });
+
+console.log(og);
 
     self.x.domain(og.map(function(d) {
         return d.key;
@@ -337,16 +340,16 @@ var winnersnested = d3.nest()
                       return "rgb(243,188,65)";
                     })
                     .attr("y", function() {
-                      return self.svgHeight-self.winner*9.6969-self.betterCount*9.6969-80;
+                      return self.svgHeight-self.winner*7.5757575758-self.betterCount*7.5757575758-80;
                     })
                     .attr("x", function() {
                         return (self.newwidth*i)+50;
                     })
                     .attr("width", self.newwidth-5)
                     .attr("height", function(){
-                      return self.betterCount*9.6969;
+                      return self.betterCount*7.5757575758;
                     });
-            return self.svgHeight-self.winner*9.6969-self.worseCount*9.6969-self.betterCount*9.6969-80;
+            return self.svgHeight-self.winner*7.5757575758-self.worseCount*7.5757575758-self.betterCount*7.5757575758-80;
           })
           .attr("x", function(d,i) {
             return (self.newwidth*i)+50;
@@ -363,14 +366,14 @@ var winnersnested = d3.nest()
                       return "rgb(174,221,92)";
                     })
                     .attr("y", function() {
-                      return self.svgHeight-(d1.values.length*9.6969)-80;
+                      return self.svgHeight-(d1.values.length*7.5757575758)-80;
                     })
                     .attr("x", function() {
                         return (self.newwidth*i)+50;
                     })
                     .attr("width", self.newwidth-5)
                     .attr("height", function(){
-                      return d1.values.length*9.6969;
+                      return d1.values.length*7.5757575758;
                     });
               }
             })
@@ -392,7 +395,7 @@ var winnersnested = d3.nest()
             }
             });
 
-            return self.worseCount*9.6969;
+            return self.worseCount*7.5757575758;
           })
 
       var groupx = self.svg.append("g")
