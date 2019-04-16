@@ -42,6 +42,7 @@
             occupations.update();
             locchart.update(source1,source3,source4,source6,source7,source8,source9);
             map.update(source1,source3,source4,source6,source7,source8,source9);
+            map.update(source1,source3,source4,source6,source7,source8,source9);
 
             function updateVisualization() {
               if (d3.select("#ranking-type").property("value")!="all"){
@@ -120,7 +121,7 @@
 
 //Tabbed Content tutorial https://codepen.io/cssjockey/pen/jGzuK
 $(document).ready(function(){
-	
+
 	$('ul.tabs li').click(function(){
 		var tab_id = $(this).attr('data-tab');
 
