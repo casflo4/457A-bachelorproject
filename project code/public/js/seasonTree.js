@@ -23,24 +23,20 @@ SeasonTree.prototype.init = function(){
     vis.svg = div.append("svg")
         .attr("width",vis.svgWidth)
         .attr("height",vis.svgHeight);
-    var season = document.getElementById('ranking-type').value;
+    var season = document.getElementById('ranking-type-tree').value;
     console.log(season);
-    if (season == 'all'){
-        vis.loadData(1);
-    }
-    else{
         vis.loadData(season);
-    } 
 };
 
 SeasonTree.prototype.loadData = function(season) {
     var vis = this;
+    vis.displayData = [];    
     var finalWeek = 0;
     vis.displayData[0] = [];
     vis.data.forEach(function(a){
         if (parseInt(a.Season) == season){
             if(a.Outcome == "Winner"){
-                vis.displayData[0] = [{first_name:a.Name, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place}];
+                vis.displayData[0] = [{first_name:a.Name, elimination_week:a.Elimination_Week, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place}];
             }
             if(a.Elimination_Week>finalWeek){
                 finalWeek = a.Elimination_Week;
@@ -52,7 +48,7 @@ SeasonTree.prototype.loadData = function(season) {
         vis.data.forEach(function(a){
             if (parseInt(a.Season) == season){
                 if(a.Elimination_Week == i && a.Outcome != "Winner"){
-                    row.push({first_name:a.Name, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place});
+                    row.push({first_name:a.Name, elimination_week:a.Elimination_Week, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place});
                 }
             }
         });
@@ -60,6 +56,7 @@ SeasonTree.prototype.loadData = function(season) {
             vis.displayData.push(row);
         }
     }
+    console.log(vis.displayData);
     vis.update();
 
 };
@@ -78,6 +75,8 @@ SeasonTree.prototype.update = function(){
     .attr("x", function(){
         return (vis.svgWidth-vis.imgWidth)/2;
     });
+    vis.svg.selectAll("circle").remove();
+    vis.svg.selectAll("text").remove();
     if(vis.displayData[0].length != 0){
         vis.svg.append("circle")
         .attr("r", 50)
@@ -89,7 +88,7 @@ SeasonTree.prototype.update = function(){
         {
             vis.div.transition().duration(200).style("opacity",.9);
             vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
-                +d.city+", "+d.state+","+d.country+"<br>"
+                +d.city+", "+d.state+", "+d.country+"<br>"
                 +d.occupation+"</p>")
             .attr("class", "d3-tip");
             vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
@@ -114,7 +113,7 @@ SeasonTree.prototype.update = function(){
         {
             vis.div.transition().duration(200).style("opacity",.9);
             vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
-                +d.city+", "+d.state+","+d.country+"<br>"
+                +d.city+", "+d.state+", "+d.country+"<br>"
                 +d.occupation+"</p>")
             .attr("class", "d3-tip");
             vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
@@ -160,18 +159,18 @@ SeasonTree.prototype.update = function(){
                 }
             })
             .attr("cy", function(){
-                return 135+63*(row);
+                return 130+63*(row);
             })
-            .data(vis.displayData[i])
+            .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
-            {
-                console.log(d);
+            {   
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
-                    +d.city+", "+d.state+","+d.country+"<br>"
+                    +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
                 .attr("class", "d3-tip");
-                vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
+                vis.div
+                .attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; })
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY ) + "px");
 
@@ -204,22 +203,23 @@ SeasonTree.prototype.update = function(){
                 }
             })
             .attr("y", function(){
-                return 135+63*(row);
+                return 130+63*(row);
             })
             .style("fill", "white")
             .style("text-anchor", "middle")
             .style("font-size", 9)
-            .data(vis.displayData[i])
+            .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
             {
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
-                    +d.city+", "+d.state+","+d.country+"<br>"
+                    +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
                 .attr("class", "d3-tip");
-                vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY ) + "px");
+                vis.div
+                .attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; })
+                // .style("left", (d3.event.pageX) + "px")
+                // .style("top", (d3.event.pageY ) + "px");
 
             })
             .on("mouseout",function(d)
