@@ -33,22 +33,21 @@ Occupations.prototype.init = function(){
 Occupations.prototype.wrangleData = function(){
     var vis = this;
 
-    var categories = []
+    
     vis.categoriesData.forEach(function(d){
         d.Elimination_Week = +d.Elimination_Week;
-
-        if(!categories.includes(d.Category)){
-            categories.push(d.Category);
-        }
+        // if(!categories.includes(d.Category)){
+        //     categories.push(d.Category);
+        // }
     });
 
     var nest = d3.nest()
         .key(function(d){
             return d.Category;
         })
-        // .key(function(d){
-        //     return d.Occupation;
-        // })
+        .key(function(d){
+            return d.Occupation;
+        })
         .rollup(function(leaves){
             var sum = d3.sum(leaves, function(d) {
                 return (d.Elimination_Week)
@@ -64,105 +63,189 @@ Occupations.prototype.wrangleData = function(){
                 return d.value.count;
             }
         })
+    
+    console.log(vis.displayData);
 
 }
 
 Occupations.prototype.update = function(){
     var vis = this;
 
-    console.log(vis.displayData)
+    var abbreviations = {
+        "Business Management & Administration": "Business",
+        "Finance":"Fin.",
+        "Law & Public Safety":"Law",
+        "Transportation, Distribution, & Logistics":"Trans.",
+        "Health Science":"Health",
+        "Education":"Ed.",
+        "Human Services":"Hum.",
+        "Sports & Training":"Sports",
+        "Architecture & Construction":"Arch.",
+        "Miscellaneous":"Misc.",
+        "Arts & Communications":"Art & Comm.",
+        "Hospitality & Tourism":"Hosp.",
+        "Sales & Marketing":"Sales & Mkt."
+    }
 
     var colorScale = d3.scaleQuantile()
-        .domain([
-            d3.min(vis.displayData.descendants().slice(1), function(d){
-                return d.data.value.avg_elim_week;
-            }),
-            d3.max(vis.displayData.descendants().slice(1), function(d){
-                return d.data.value.avg_elim_week;
-            })
-        ])
-        .range(['#fff0f5','#fcdfea','#f8cee0','#f4bdd5','#f0abcb','#eb9bc1','#e689b6','#e077ac','#db64a2','#d55099','#ce398f','#c71585']);
+        // .domain([
+        //     d3.min(vis.displayData.descendants().slice(1), function(d){
+        //         return d.data.value.avg_elim_week;
+        //     }),
+        //     d3.max(vis.displayData.descendants().slice(1), function(d){
+        //         return d.data.value.avg_elim_week;
+        //     })
+        // ])
+        .domain([2.32,3.97])
+        // .range(['#ffd6e1','#fdbbc8','#faa1b0','#f48698','#ee6981','#e5486b','#dc1456']);
+        // .range([rgb(255, 214, 225), rgb(249,181,201), rgb(243,149,178), rgb(237,117,155), 
+        //     rgb(231,84,132), rgb(225,52,109), rgb(220, 20, 86)])
+        .range([d3.rgb("#ffd6e1"),d3.rgb('#fdbbc8'),d3.rgb('#faa1b0'),d3.rgb('#f48698'),
+        d3.rgb('#ee6981'),d3.rgb('#e5486b'),d3.rgb('#dc1456')]);
+
 
     var bubbleChart = d3.pack(vis.categoriesData)
         .size([vis.svgWidth, vis.svgHeight])
-        .padding(1.5)
+        .padding(3)
+    
+    var focus;
+    var view;
 
-    var bubble = vis.svg.selectAll(".bubble")
-        .data(bubbleChart(vis.displayData).descendants().slice(1))
-        .enter()
-        .append("g")
-            .attr("class", "bubble")
-            .attr("transform", function(d){
-                return "translate(" + d.x + "," + d.y + ")";
-            })
+    vis.svg
+        .attr("viewBox", " -" + vis.svgWidth/2 + " -" + vis.svgHeight/2 + " " 
+            + vis.svgWidth + " " + vis.svgHeight + "")
+        .on("click", function(){ zoom(root) });
+
+    // var bubble = vis.svg.selectAll(".bubble")
+    //     .data(bubbleChart(vis.displayData).descendants().slice(1))
+    //     .enter()
+    //     .append("g")
+    //         .attr("class", "bubble")
+    //         .attr("transform", function(d){
+    //             return "translate(" + d.x + "," + d.y + ")";
+    //         })
         
+    var root = bubbleChart(vis.displayData);
 
-    bubble.append("circle")
-        .attr("r", function(d) {
-            return d.r;
-        })
-        .style("fill", function(d) {
-            return colorScale(d.value);
-        });
+    var avg = {}
 
-    bubble.append("text")
-        .attr("dy", ".2em")
+    var bubble = vis.svg.append("g")
+        .selectAll("circle")
+        .data(root.descendants().slice(1))
+        .enter()
+        .append("circle")
+            .style("fill", function(d) {
+                if(d.children){
+                    var sum = d3.sum(d.data.values, function(i) {
+                        return (i.value.avg_elim_week * i.value.count);
+                    });
+                    var count = d3.sum(d.data.values, function(i) {
+                        return i.value.count;
+                    });
+                    var average = sum / count;
+                    avg[d.data.key] = average;
+                    return colorScale(average);
+                }
+                else{
+                    var i = d3.interpolate(colorScale(avg[d.parent.data.key]),"white");
+                    return i(0.25);
+                }
+            })
+            .attr("pointer-events", d => !d.children ? "none" : null)
+            .on("mouseover", function(d){ 
+                d3.select(this).attr("stroke", "#000"); 
+                updateTooltip(d);
+            })
+            .on("mouseout", function() { d3.select(this).attr("stroke", null); })
+            .on("click", d => focus !== d && (zoom(d), d3.event.stopPropagation()));
+            //^^^^
+            /* Zooming functionality (the zoomTo and zoom functions) from Mike Bostock tutorial
+            https://observablehq.com/@d3/zoomable-circle-packing */
+
+
+    var text = vis.svg.append("g")
+        .selectAll("text")
+        .data(root.descendants().slice(1))
+        .enter()
+        .append("text")
         .style("text-anchor", "middle")
+        .attr("pointer-events", "none")
         .text(function(d) {
-            return d.data.key + "\n" + d.value;
+            if(d.children){
+                return abbreviations[d.data.key];
+            }
+            else{
+                return d.data.key;
+            }
         })
         .attr("font-size", function(d){
-            return d.r/5;
+            if(d.children){
+                size = d.r/3;
+                if(size > 26){ return 25; }
+                else{ return size; }
+            }
+            else{
+                size = d.r/1.5;
+                return size;
+            }
         })
         .attr("class", "label")
-        .attr("fill", "white")
-        .attr("width", function(d){
-            return d.r;
+        .attr("fill", "black")
+        // .attr("width", function(d){
+        //     return d.r;
+        // })
+        .style("display", function(d){
+            if(d.parent===root){
+                return "inline"
+            }
+            else{ return "none" };
         });
 
-    vis.svg.selectAll(".label")
-        .data(vis.displayData)
-        .enter()
-        .call(wrap, function(d){
-            console.log("here");
-            return d.r;
-        })
-    
-}
+        zoomTo([root.x, root.y, root.r * 2]);
 
-//Wrap long text labels on x axis:  https://gist.github.com/guypursey/f47d8cd11a8ff24854305505dbbd8c07
-function wrap(text, width){
-    text.each(function(){
-        var text = d3.select(this)
-            words = text.text().split(" ").reverse();
-            line = [];
-            lineNumber = 0;
-            lineHeight = 1.1;
-            dy = parseFloat(text.attr("dy"));
-            text.text(null)
-                .append("tspan")
-                .attr("x", 0)
-                .attr("y", function(){
-                    return text.attr("y");
-                })
-                .attr("dy", function(){
-                    return  dy + "em";
-                });
-        while (word1 = words.pop()) {
-            line.push(word1);
-            text.text(line.join(" "))
-            if (text.node().getComputedTextLength() > width) {
-                line.pop();
-                text.text(line.join(" "));
-                line = [word1];
-                text = text.append("tspan")
-                    .attr("x", 0)
-                    .attr("y", function(){
-                        return text.attr("y");
-                    })
-                    .attr("dy", `${++lineNumber * lineHeight + dy}em`)
-                    .text(word1)
-            }
+        function zoomTo(v) {
+            const k = vis.svgWidth / v[2];
+
+            view = v;
+
+            text.attr("transform", function(d){
+                return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"
+            })
+            bubble.attr("transform", function(d){
+                return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"
+            })
+            bubble.attr("r", function(d){
+                return d.r * k;
+            })
         }
-    });
+
+
+        function zoom(d) {
+            focus = d;
+        
+            const transition = vis.svg.transition()
+                .duration(750)
+                .tween("zoom", function(){
+                  const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
+                  return t => zoomTo(i(t));
+                });
+        
+            text
+              .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
+              .transition(transition)
+                .style("fill-opacity", d => d.parent === focus ? 1 : 0)
+                .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
+                .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
+          }
+
+        var tooltip = d3.select("#tooltip")
+          .append("text")
+
+        function updateTooltip(d){
+            tooltip
+                .text("Job Category:  " + d.data.key)
+            
+
+        }
+    
 }

@@ -1,4 +1,7 @@
-
+#tooltip{
+    width: 500px;
+    height: 100px;
+}
 
 body {
     font-family: Lato;
