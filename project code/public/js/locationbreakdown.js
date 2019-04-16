@@ -29,7 +29,7 @@ LocChart.prototype.init = function(){
         .attr("height",self.svgHeight)
 
     self.x = d3.scaleBand()
-          .range([0,self.svgWidth-106])
+          .range([0,self.svgWidth-51])
           .paddingInner(0.2)
           .domain(d3.range(0,50));
 
@@ -282,7 +282,7 @@ var winnersnested = d3.nest()
         return d.key;
     }))
 
-    self.newwidth = (self.svgWidth-100)/ og.length;
+    self.newwidth = (self.svgWidth-79)/ og.length;
 
     self.y.domain([0,66]);
 
