@@ -16,7 +16,8 @@ SeasonTree.prototype.init = function(){
     self.margin = {top: 10, right: 20, bottom: 30, left: 50};
 
     var div = d3.select("#tree").classed("view", true);
-    vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right;
+    // vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right;
+    vis.svgWidth = 1200;
     vis.svgHeight = 800;
     vis.imgWidth = 229.5;
 

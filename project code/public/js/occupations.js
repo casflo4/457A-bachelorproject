@@ -75,7 +75,7 @@ Occupations.prototype.update = function(){
         "Business Management & Administration": "Business",
         "Finance":"Fin.",
         "Law & Public Safety":"Law",
-        "Transportation, Distribution, & Logistics":"Trans.",
+        "Transportation & Logistics":"Trans.",
         "Health Science":"Health",
         "Education":"Ed.",
         "Human Services":"Hum.",
@@ -172,6 +172,7 @@ Occupations.prototype.update = function(){
         .attr("pointer-events", "none")
         .text(function(d) {
             if(d.children){
+                console.log(d + "   " + d.data.key);
                 return abbreviations[d.data.key];
             }
             else{

@@ -19,7 +19,7 @@ LocChart.prototype.init = function(){
 
     //Gets access to the div element created for this chart from HTML
     var divelectoralVotes = d3.select("#map3").classed("content", true);
-    self.svgBounds = 750;//divelectoralVotes.node().getBoundingClientRect();
+    self.svgBounds = divelectoralVotes.node().getBoundingClientRect().width;
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
     self.svgHeight = 500;
 
@@ -28,67 +28,8 @@ LocChart.prototype.init = function(){
         .attr("width",self.svgWidth)
         .attr("height",self.svgHeight)
 
-      /*  self.y = d3.scaleBand()
-          .rangeRound([0, 50])
-         .paddingInner(0.1);
-
-        self.x = d3.scaleLinear()
-            .range([0, self.svgWidth]);*/
-          self.legend = d3.select("#legend").classed("content",true);
-          var domain = ["Winner","Contestants (eliminated after halfway point)","Contestants (eliminated before halfway point)"];
-
-          //Color range for global color scale
-          var range = ["rgb(174,221,92)","rgb(243,188,65)","rgb(225,75,108)"];
-
-    /*self.colorScale = d3.scaleOrdinal()
-      .domain(domain).range(range);
-
-    var legendQuantile = d3.legendColor()
-            .shapeWidth(120)
-            .cells(3)
-            .orient('horizontal')
-            .scale(self.colorScale);
-
-    self.legendSvg = legend.append("svg")
-          //.attr("class","deletable")
-          .attr("width",self.svgWidth)
-          //.attr("height",200)
-          .attr("transform", "translate(" + 50 + ",50)")
-          .append("g")
-          .attr("class", "legendQuantile")
-          .call(legendQuantile);*/
-
-          var domain = [-100,-50,-40,-30,-20,-10,0,10,20,30,40,50,100];
-
-              //Color range for global color scale
-          var range = ["#0066CC", "#0080FF", "#3399FF", "#66B2FF", "#99ccff", "#CCE5FF", "#ffcccc", "#ff9999", "#ff6666", "#ff3333", "#FF0000", "#CC0000"];
-
-              //Global colorScale to be used consistently by all the charts
-              self.colorScale = d3.scaleQuantize()
-                  .domain(domain).range(range);
-
-                  console.log(self.colorScale);
-
-        self.legendSvg = self.legend.append("svg")
-        .attr("width",self.svgWidth)
-        .attr("height",250)
-        .attr("transform", "translate(" + 27.5 + ",50)")
-
-          self.legendSvg.append("g")
-            .attr("class", "legendQuantile");
-
-        var legendQuantile = d3.legendColor()
-            .shapeWidth(120)
-            .cells(10)
-            .orient('horizontal')
-            .scale(self.colorScale);
-
-        self.legendSvg.select(".legendQuantile")
-        .attr("transform", "scale(.615)translate(0,0)")
-        .call(legendQuantile);
-
     self.x = d3.scaleBand()
-          .range([0,self.svgWidth-106])
+          .range([0,self.svgWidth-51])
           .paddingInner(0.2)
           .domain(d3.range(0,50));
 
@@ -341,7 +282,7 @@ var winnersnested = d3.nest()
         return d.key;
     }))
 
-    self.newwidth = (self.svgWidth-100)/ og.length;
+    self.newwidth = (self.svgWidth-79)/ og.length;
 
     self.y.domain([0,66]);
 
