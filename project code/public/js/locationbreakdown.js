@@ -34,7 +34,7 @@ LocChart.prototype.init = function(){
           .domain(d3.range(0,50));
 
     self.y = d3.scaleLinear()
-        .range([self.svgHeight,80]);
+        .range([self.svgHeight-25,80]);
 
     self.xAxis = d3.axisBottom()
         .scale(self.x);
@@ -58,7 +58,7 @@ LocChart.prototype.init = function(){
   self.svg.append("text")
             .attr("x", self.svgWidth/2-100)
             .attr("y", 15)
-            .text("Bachelor Candidate Success By State");
+            .text("Bachelor Candidate Success By Hometown");
 
   self.svg.append("text")
       .attr("x", -390)
@@ -279,15 +279,13 @@ var winnersnested = d3.nest()
       return d3.descending(x.values.length,y.values.length);
     });
 
-console.log(og);
-
     self.x.domain(og.map(function(d) {
         return d.key;
     }))
 
     self.newwidth = (self.svgWidth-45)/ og.length;
 
-    self.y.domain([0,66]);
+    self.y.domain([0,og[0].values.length]);
 
     var rect = self.svg.selectAll("rect")
          .data(og);
@@ -331,7 +329,7 @@ console.log(og);
               }
             }
             });
-
+            lengthofsegment = (self.svgHeight-25-80)/og[0].values.length;
             self.svg.append("rect")
             .transition()
             .duration(250)
@@ -340,16 +338,16 @@ console.log(og);
                       return "rgb(243,188,65)";
                     })
                     .attr("y", function() {
-                      return self.svgHeight-self.winner*7.5757575758-self.betterCount*7.5757575758-80;
+                      return self.svgHeight-self.winner*lengthofsegment-self.betterCount*lengthofsegment-80;
                     })
                     .attr("x", function() {
                         return (self.newwidth*i)+50;
                     })
                     .attr("width", self.newwidth-5)
                     .attr("height", function(){
-                      return self.betterCount*7.5757575758;
+                      return self.betterCount*lengthofsegment;
                     });
-            return self.svgHeight-self.winner*7.5757575758-self.worseCount*7.5757575758-self.betterCount*7.5757575758-80;
+            return self.svgHeight-self.winner*lengthofsegment-self.worseCount*lengthofsegment-self.betterCount*lengthofsegment-80;
           })
           .attr("x", function(d,i) {
             return (self.newwidth*i)+50;
@@ -366,14 +364,14 @@ console.log(og);
                       return "rgb(174,221,92)";
                     })
                     .attr("y", function() {
-                      return self.svgHeight-(d1.values.length*7.5757575758)-80;
+                      return self.svgHeight-(d1.values.length*lengthofsegment)-80;
                     })
                     .attr("x", function() {
                         return (self.newwidth*i)+50;
                     })
                     .attr("width", self.newwidth-5)
                     .attr("height", function(){
-                      return d1.values.length*7.5757575758;
+                      return d1.values.length*lengthofsegment;
                     });
               }
             })
@@ -395,7 +393,7 @@ console.log(og);
             }
             });
 
-            return self.worseCount*7.5757575758;
+            return self.worseCount*lengthofsegment;
           })
 
       var groupx = self.svg.append("g")
@@ -419,6 +417,6 @@ console.log(og);
 
     	var groupy = self.svg.append("g")
     			.attr("class", "axis y-axis")
-    			.attr("transform", "translate("+self.margin.left+","+(self.margin.top-110)+")")
+    			.attr("transform", "translate("+self.margin.left+","+(self.margin.top-85)+")")
     			.call(self.yAxis);
 };

@@ -144,6 +144,8 @@ LocMap.prototype.update = function(data1,data2,data3){
   winners = [];
   seasonlength = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   data3.forEach(function(d,i){
+      d.LatLng.lat = d.LatLng.lat+Math.random()*.5;
+      d.LatLng.lng = d.LatLng.lng+Math.random()*.5;
     if (parseInt(d.Elimination_Week)>seasonlength[parseInt(d.Season)-1]){
       seasonlength[parseInt(d.Season)-1] = parseInt(d.Elimination_Week);
     }
@@ -173,7 +175,6 @@ winners = L.layerGroup(winners);
       return d;
     }
   });
-
     betterthanhalf.forEach(function(d,i){
         if (parseInt(d.Place)!=1 & !d.Outcome!="Winner"){
       var popupContent = "<strong>Name: </strong>"+d.Name+" "+d["Last Name"];
