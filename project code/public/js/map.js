@@ -4,8 +4,11 @@
  *
  * @param brushSelection an instance of the BrushSelection class
  */
-function LocMap(){
-
+function LocMap(_data1, _data2, _data3, _data4){
+    this.data1 = _data1;
+    this.data2 = _data2;
+    this.data3 = _data3;
+    this.data4 = _data4;
     var self = this;
     self.init();
 };
@@ -88,6 +91,40 @@ popupAnchor:  [-3, -76] // point from which the popup should open relative to th
               mapboxUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
               mapboxAttribution =  '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
               self.streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
+  var regions = [];
+              var geoJson1 = L.geoJson(this.data1, {
+                style: {color: "#4281A4", opacity: 0.5},
+                weight: 5,
+                fillOpacity: 0.5,
+              });
+
+              regions.push(geoJson1);
+
+              var geoJson2 = L.geoJson(this.data2, {
+                style: {color: "#9CAFB7", opacity: 0.5},
+                weight: 5,
+                fillOpacity: 0.5,
+              });
+
+              regions.push(geoJson2);
+
+              var geoJson3 = L.geoJson(this.data3, {
+                style: {color: "#63ADF2", opacity: 0.5},
+                weight: 5,
+                fillOpacity: 0.5,
+              });
+
+              regions.push(geoJson3);
+
+              var geoJson4 = L.geoJson(this.data4, {
+                style: {color: "#545E75", opacity: 0.5},
+                weight: 5,
+                fillOpacity: 0.5,
+              });
+
+              regions.push(geoJson4);
+
+              self.regions = L.layerGroup(regions);
 };
 
 /**
@@ -96,7 +133,7 @@ popupAnchor:  [-3, -76] // point from which the popup should open relative to th
  * @param newbystory sentimnent data for each story
  **/
 
-LocMap.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
+LocMap.prototype.update = function(data1,data2,data3){
   var self = this;
   self.zoom = 4.375;
   if (self.map && self.map.remove) {
@@ -124,7 +161,7 @@ LocMap.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
 winners = L.layerGroup(winners);
   var better = [];
   var worse = [];
-  var regions = [];
+
   betterthanhalf = data3.filter(function(d,i){
     if (parseInt(d.Elimination_Week)>=(seasonlength[parseInt(d.Season)-1]/2)){
       return d;
@@ -166,53 +203,21 @@ winners = L.layerGroup(winners);
   better = L.layerGroup(better);
   worse = L.layerGroup(worse);
 
-  var geoJson1 = L.geoJson(data6, {
-    style: {color: "#4281A4", opacity: 0.5},
-    weight: 5,
-    fillOpacity: 0.5,
-  });
 
-  regions.push(geoJson1);
-
-  var geoJson2 = L.geoJson(data7, {
-    style: {color: "#9CAFB7", opacity: 0.5},
-    weight: 5,
-    fillOpacity: 0.5,
-  });
-
-  regions.push(geoJson2);
-
-  var geoJson3 = L.geoJson(data8, {
-    style: {color: "#63ADF2", opacity: 0.5},
-    weight: 5,
-    fillOpacity: 0.5,
-  });
-
-  regions.push(geoJson3);
-
-  var geoJson4 = L.geoJson(data9, {
-    style: {color: "#545E75", opacity: 0.5},
-    weight: 5,
-    fillOpacity: 0.5,
-  });
-
-  regions.push(geoJson4);
-
-  regions = L.layerGroup(regions);
 
 
   self.map = L.map('map', {
       center: [37.8, -96.9],
       zoom: 3,
       //removeOutsideVisibleBounds: true,
-      layers: [self.streets, better, worse,regions, winners]
+      layers: [self.streets, better, worse,self.regions, winners]
   });
   var baseMaps = {
     "<span style='color: gray, opacity: .5'>Streets</span>": self.streets
   };
 
   var overlayMaps = {
-      "Regions": regions,
+      "Regions": self.regions,
       "Contestants (eliminated after halfway point)": better,
       "Contestants (eliminated before halfway point)": worse,
       "Winners": winners

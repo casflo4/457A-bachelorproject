@@ -232,7 +232,7 @@ LocChart.prototype.chooseloc = function (d) {
  * @param newbystory sentimnent data for each story
  **/
 
-LocChart.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
+LocChart.prototype.update = function(data1,data2,data3){
 
   d3.selectAll(".axis").remove().exit();
   d3.selectAll("rect").remove().exit();

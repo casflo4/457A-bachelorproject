@@ -36,12 +36,12 @@
             d3.select("#ranking-type-tree").on("change",updateTree);
             //Creating instances for each visualization here
             var occupations = new Occupations(source1, source2);
-            var map = new LocMap();
+            var map = new LocMap(source6,source7,source8,source9);
             var locchart = new LocChart();
             var tree = new SeasonTree(source1);
             //call update on charts here
             occupations.update();
-            locchart.update(source1,source3,source4,source6,source7,source8,source9);
+            locchart.update(source1,source3,source4);
             d3.select("#mapthatwontload").on("click",updateVisualization);
             updateVisualization();
 
@@ -79,11 +79,11 @@
                     return d;
                   }
                 });
-                map.update(source1a,source3a,source4a,source6,source7,source8,source9);
-                locchart.update(source1a,source3a,source4a,source6,source7,source8,source9);
+                map.update(source1a,source3a,source4a);
+                locchart.update(source1a,source3a,source4a);
             } else{
-              map.update(source1,source3,source4,source6,source7,source8,source9);
-              locchart.update(source1,source3,source4,source6,source7,source8,source9);
+              map.update(source1,source3,source4);
+              locchart.update(source1,source3,source4);
             }
           }
         }

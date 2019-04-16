@@ -33,7 +33,7 @@ Occupations.prototype.init = function(){
 Occupations.prototype.wrangleData = function(){
     var vis = this;
 
-    
+
     vis.categoriesData.forEach(function(d){
         d.Elimination_Week = +d.Elimination_Week;
         // if(!categories.includes(d.Category)){
@@ -58,12 +58,12 @@ Occupations.prototype.wrangleData = function(){
         })
 
     vis.displayData = d3.hierarchy({values: nest.entries(vis.categoriesData)}, function(d) { return d.values; })
-        .sum(function(d){ 
+        .sum(function(d){
             if(d.value != null){
                 return d.value.count;
             }
         })
-    
+
     console.log(vis.displayData);
 
 }
@@ -98,7 +98,7 @@ Occupations.prototype.update = function(){
         // ])
         .domain([2.32,3.97])
         // .range(['#ffd6e1','#fdbbc8','#faa1b0','#f48698','#ee6981','#e5486b','#dc1456']);
-        // .range([rgb(255, 214, 225), rgb(249,181,201), rgb(243,149,178), rgb(237,117,155), 
+        // .range([rgb(255, 214, 225), rgb(249,181,201), rgb(243,149,178), rgb(237,117,155),
         //     rgb(231,84,132), rgb(225,52,109), rgb(220, 20, 86)])
         .range([d3.rgb("#ffd6e1"),d3.rgb('#fdbbc8'),d3.rgb('#faa1b0'),d3.rgb('#f48698'),
         d3.rgb('#ee6981'),d3.rgb('#e5486b'),d3.rgb('#dc1456')]);
@@ -107,12 +107,12 @@ Occupations.prototype.update = function(){
     var bubbleChart = d3.pack(vis.categoriesData)
         .size([vis.svgWidth, vis.svgHeight])
         .padding(3)
-    
+
     var focus;
     var view;
 
     vis.svg
-        .attr("viewBox", " -" + vis.svgWidth/2 + " -" + vis.svgHeight/2 + " " 
+        .attr("viewBox", " -" + vis.svgWidth/2 + " -" + vis.svgHeight/2 + " "
             + vis.svgWidth + " " + vis.svgHeight + "")
         .on("click", function(){ zoom(root) });
 
@@ -124,7 +124,7 @@ Occupations.prototype.update = function(){
     //         .attr("transform", function(d){
     //             return "translate(" + d.x + "," + d.y + ")";
     //         })
-        
+
     var root = bubbleChart(vis.displayData);
 
     var avg = {}
@@ -152,8 +152,8 @@ Occupations.prototype.update = function(){
                 }
             })
             .attr("pointer-events", d => !d.children ? "none" : null)
-            .on("mouseover", function(d){ 
-                d3.select(this).attr("stroke", "#000"); 
+            .on("mouseover", function(d){
+                d3.select(this).attr("stroke", "#000");
                 updateTooltip(d);
             })
             .on("mouseout", function() { d3.select(this).attr("stroke", null); })
@@ -223,14 +223,14 @@ Occupations.prototype.update = function(){
 
         function zoom(d) {
             focus = d;
-        
+
             const transition = vis.svg.transition()
                 .duration(750)
                 .tween("zoom", function(){
                   const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
                   return t => zoomTo(i(t));
                 });
-        
+
             text
               .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
               .transition(transition)
@@ -245,8 +245,8 @@ Occupations.prototype.update = function(){
         function updateTooltip(d){
             tooltip
                 .text("Job Category:  " + d.data.key)
-            
+
 
         }
-    
+
 }
