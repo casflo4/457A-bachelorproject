@@ -19,7 +19,7 @@ LocChart.prototype.init = function(){
 
     //Gets access to the div element created for this chart from HTML
     var divelectoralVotes = d3.select("#map3").classed("content", true);
-    self.svgBounds = 750;//divelectoralVotes.node().getBoundingClientRect();
+    self.svgBounds = divelectoralVotes.node().getBoundingClientRect().width;
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
     self.svgHeight = 500;
 
@@ -28,33 +28,8 @@ LocChart.prototype.init = function(){
         .attr("width",self.svgWidth)
         .attr("height",self.svgHeight)
 
-        self.legend = d3.select("#legend").classed("content",true);
-
-        //Global colorScale to be used consistently by all the charts
-        self.colorScale = d3.scaleOrdinal()
-                  .domain(["Winner","Contestants (eliminated after halfway point)","Contestants (eliminated before halfway point)"])
-                  .range(["rgb(174,221,92)","rgb(243,188,65)","rgb(225,75,108)"]);
-
-        self.legendSvg = self.legend.append("svg")
-        .attr("width",self.svgWidth)
-        .attr("height",250)
-        .attr("transform", "translate(" + 27.5 + ",50)")
-
-          self.legendSvg.append("g")
-            .attr("class", "legendQuantile");
-
-        var legendQuantile = d3.legendColor()
-            .shapeWidth(200)
-            .cells(3)
-            .orient('vertical')
-            .scale(self.colorScale);
-
-        self.legendSvg.select(".legendQuantile")
-        //.attr("transform", "scale(.615)translate(0,0)")
-        .call(legendQuantile);
-
     self.x = d3.scaleBand()
-          .range([0,self.svgWidth-106])
+          .range([0,self.svgWidth-51])
           .paddingInner(0.2)
           .domain(d3.range(0,50));
 
@@ -307,7 +282,7 @@ var winnersnested = d3.nest()
         return d.key;
     }))
 
-    self.newwidth = (self.svgWidth-100)/ og.length;
+    self.newwidth = (self.svgWidth-79)/ og.length;
 
     self.y.domain([0,66]);
 

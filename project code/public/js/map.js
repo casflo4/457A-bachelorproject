@@ -19,7 +19,7 @@ LocMap.prototype.init = function(){
 
     //Gets access to the div element created for this chart from HTML
     var divelectoralVotes = d3.select("#map").classed("content", true);
-    self.svgBounds = 750;//divelectoralVotes.node().getBoundingClientRect();
+    self.svgBounds = divelectoralVotes.node().getBoundingClientRect().width;
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
     self.svgHeight = 500;
 
