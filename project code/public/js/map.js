@@ -19,9 +19,9 @@ LocMap.prototype.init = function(){
 
     //Gets access to the div element created for this chart from HTML
     var divelectoralVotes = d3.select("#map").classed("content", true);
-    self.svgBounds = 1000;//divelectoralVotes.node().getBoundingClientRect();
+    self.svgBounds = 750;//divelectoralVotes.node().getBoundingClientRect();
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
-    self.svgHeight = 1000;
+    self.svgHeight = 500;
 
     self.greenIcon = L.icon({
     iconUrl: 'public/css/images/leaf-green.png',
