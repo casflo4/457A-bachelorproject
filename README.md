@@ -1,6 +1,11 @@
 # 457A-bachelorproject
 Changing the world one bachelor at a time
 
+Github Pages Link to see process book:
+https://casflo4.github.io/457A-bachelorproject/proposalandprocessbook/processbook.html
+
+Github Pages Link to see the site so far:
+https://casflo4.github.io/457A-bachelorproject/project%20code/index.html
 
 External Sources Used
 
@@ -11,3 +16,14 @@ Zoomable bubble chart example:  https://observablehq.com/@d3/zoomable-circle-pac
 D3 Nest tutorial:  https://amber.rbind.io/blog/2017/05/02/d3nest/
 Nest Treemap example:  https://bl.ocks.org/mbostock/2838bf53e0e65f369f476afd653663a2
 D3 Interpolate documentation:  https://github.com/d3/d3-interpolate
+https://github.com/d3/d3-hierarchy
+https://bl.ocks.org/alokkshukla/3d6be4be0ef9f6977ec6718b2916d168
+https://amber.rbind.io/blog/2017/05/02/d3nest/
+https://bl.ocks.org/mbostock/2838bf53e0e65f369f476afd653663a2
+https://observablehq.com/@d3/zoomable-circle-packing
+http://bl.ocks.org/1Cr18Ni9/d72b6ba95285b80fe4c7498e784a8e0c
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+https://bl.ocks.org/mbostock/7555321
+https://bost.ocks.org/mike/leaflet/
+https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
+

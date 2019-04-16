@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSE457: Final Project</title>
+    <link rel="stylesheet" href="public/css/style.css"/>
+    <link rel="stylesheet" href="public/css/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
+    <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+    <script type="text/javascript" src="bower_components/d3/d3.js"></script>
+    <script type="text/javascript" src="bower_components/d3-tip/index.js"></script>
+    <script type="text/javascript" src="bower_components/d3/queue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.js"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+   crossorigin=""></script>
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+</head>
+
+<body>
+
+<h1>The Bachelor: Finding your perfect match!</h1>
+<p class="info">Name: Julia Dickerman, Lainie Esralew, Lucas Florence; <br/>E-Mail: jcdickerman@wustl.edu, lainie.esralew@wustl.edu, l.florence@wustl.edu; <br/>UID: 450914, 456655, 448491
+</p><br/>
+<form class="form-inline">
+		<div class="form-group">
+			<label for="ranking-type"><em>Select by Season:</em></label>
+			<select class="form-control" id="ranking-type">
+				<option value="all">All</option>
+				<option value="1">Season 1</option>
+				<option value="2">Season 2</option>
+        <option value="3">Season 3</option>
+        <option value="4">Season 4</option>
+        <option value="5">Season 5</option>
+        <option value="6">Season 6</option>
+        <option value="7">Season 7</option>
+        <option value="8">Season 8</option>
+        <option value="9">Season 9</option>
+        <option value="10">Season 10</option>
+        <option value="11">Season 11</option>
+        <option value="12">Season 12</option>
+        <option value="13">Season 13</option>
+        <option value="14">Season 14</option>
+        <option value="15">Season 15</option>
+        <option value="16">Season 16</option>
+        <option value="17">Season 17</option>
+        <option value="18">Season 18</option>
+        <option value="19">Season 19</option>
+        <option value="20">Season 20</option>
+        <option value="21">Season 21</option>
+			</select>
+
+		</div>
+	</form>
+  <br/>
+<div id = "map-container">
+<h2>Contestant Hometowns</h2>
+    <p>This visualization depicts the hometowns of Bachelor contestants in all of the seasons.
+            Click on a map marker for more information about the contestant.</p>
+<br />
+<div id = "map" class = "view">
+    </div>
+
+</div>
+
+<br>
+<div id = "tree" class = "view">
+</div>
+
+<div id = "map3" class = "view">
+
+</div>
+
+
+<div id = "occupations-container">
+<div id = "occupations" class = "view">
+    <h2>Contestant Occupations</h2>
+    <p>This visualization depicts the job categories of Bachelor contestants in all of the seasons.
+        The size of the bubble indicates frequency, while the color indicates the Average Elimination Week.</p>
+</div>
+</div>
+
+<script src="public/js/leaflet.js"></script>
+<script type="application/javascript" src="public/js/d3plus.full.min.js"></script>
+<script type="application/javascript" src="public/js/map.js"></script>
+<script type="application/javascript" src="public/js/occupations.js"></script>
+<script type="application/javascript" src="public/js/seasonTree.js"></script>
+<script type="application/javascript" src="public/js/main.js"></script>
+<script type="application/javascript" src="public/js/createnewfile.js"></script>
+<script type="application/javascript" src="public/js/locationbreakdown.js"></script>
+
+</body>
+</html>
