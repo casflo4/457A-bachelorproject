@@ -26,4 +26,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://bl.ocks.org/mbostock/7555321
 https://bost.ocks.org/mike/leaflet/
 https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
+https://leafletjs.com/examples/quick-start/
+https://leafletjs.com/examples/custom-icons/
+https://leafletjs.com/examples/geojson/
+
 

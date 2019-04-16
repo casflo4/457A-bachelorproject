@@ -4,7 +4,7 @@ ul.tabs{
     list-style: none;
 }
 ul.tabs li{
-    background: #ffc4d6
+    background: #ffc4d6;
     color: #222;
     display: inline-block;
     padding: 10px 15px;
@@ -27,6 +27,7 @@ ul.tabs li.current{
 }
 
 
+
 body {
     font-family: Lato;
     background-color: #ffc4d6;
@@ -43,7 +44,7 @@ body {
 }
 
 #occupations-container{
-    float: left;
+    width:100%
 }
 
 h1 {
@@ -52,6 +53,7 @@ h1 {
     color: #464646;
     margin: 0px;
     padding: 0px;
+    margin-top: 20px;
     margin-left: 20px;
 }
 

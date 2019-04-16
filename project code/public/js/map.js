@@ -19,7 +19,7 @@ LocMap.prototype.init = function(){
 
     //Gets access to the div element created for this chart from HTML
     var divelectoralVotes = d3.select("#map").classed("content", true);
-    self.svgBounds = divelectoralVotes.node().getBoundingClientRect().width;
+    self.svgBounds = 750;//divelectoralVotes.node().getBoundingClientRect().width;
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
     self.svgHeight = 500;
 
@@ -201,7 +201,7 @@ winners = L.layerGroup(winners);
   var streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
   self.map = L.map('map', {
       center: [37.8, -96.9],
-      zoom: 4.375,
+      zoom: 4,
       layers: [streets, better, worse, regions, winners]
   });
   var baseMaps = {
