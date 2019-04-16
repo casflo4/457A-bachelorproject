@@ -134,7 +134,7 @@ SeasonTree.prototype.update = function(){
                 row +=1;
             }
             vis.svg.append("circle")
-            .attr("r", 29)
+            .attr("r", 31)
             //.attr("stroke", "white")
             .attr("cx", function(){
                 if (j>11 && i%2 == 0){
@@ -159,7 +159,7 @@ SeasonTree.prototype.update = function(){
                 }
             })
             .attr("cy", function(){
-                return 125+59*(row);
+                return 130+63*(row);
             })
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
@@ -203,7 +203,7 @@ SeasonTree.prototype.update = function(){
                 }
             })
             .attr("y", function(){
-                return 125+59*(row);
+                return 130+63*(row);
             })
             .style("fill", "white")
             .style("text-anchor", "middle")
@@ -217,9 +217,10 @@ SeasonTree.prototype.update = function(){
                     +d.occupation+"</p>")
                 .attr("class", "d3-tip");
                 vis.div
-                .attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; })
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY ) + "px");
+                // .attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; })
+                // .style("left", (d3.event.pageX) + "px")
+                // .style("top", (d3.event.pageY ) + "px")
+                .transform("translate", (d3.event.pageX + "," + d3.event.pageY));
 
             })
             .on("mouseout",function(d)
