@@ -21,8 +21,14 @@ SeasonTree.prototype.init = function(){
     vis.svg = div.append("svg")
         .attr("width",vis.svgWidth)
         .attr("height",vis.svgHeight);
-
-    vis.loadData(1);
+    var season = document.getElementById('ranking-type').value;
+    console.log(season);
+    if (season == 'all'){
+        vis.allMessage();
+    }
+    else{
+        vis.loadData(season);
+    } 
 };
 
 SeasonTree.prototype.loadData = function(season) {
@@ -54,6 +60,10 @@ SeasonTree.prototype.loadData = function(season) {
     }
     vis.update();
 
+};
+
+SeasonTree.prototype.allMessage = function(){
+    console.log("cannot visualize all seasons at once");
 };
 
 
