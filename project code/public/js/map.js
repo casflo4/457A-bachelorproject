@@ -85,6 +85,9 @@ popupAnchor:  [-3, -76] // point from which the popup should open relative to th
             self.votestoWin = self.svg.append("text")
               .attr("x",self.svgWidth/2)
               .attr("y",40);
+              mapboxUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+              mapboxAttribution =  '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
+              self.streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
 };
 
 /**
@@ -196,16 +199,16 @@ winners = L.layerGroup(winners);
   regions.push(geoJson4);
 
   regions = L.layerGroup(regions);
-  mapboxUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-  mapboxAttribution =  '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
-  var streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
+
+
   self.map = L.map('map', {
       center: [37.8, -96.9],
-      zoom: 4,
-      layers: [streets, better, worse, regions, winners]
+      zoom: 3,
+      //removeOutsideVisibleBounds: true,
+      layers: [self.streets, better, worse,regions, winners]
   });
   var baseMaps = {
-    "<span style='color: gray, opacity: .5'>Streets</span>": streets
+    "<span style='color: gray, opacity: .5'>Streets</span>": self.streets
   };
 
   var overlayMaps = {

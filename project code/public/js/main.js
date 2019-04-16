@@ -42,9 +42,8 @@
             //call update on charts here
             occupations.update();
             locchart.update(source1,source3,source4,source6,source7,source8,source9);
+            d3.select("#mapthatwontload").on("click",updateVisualization);
             updateVisualization();
-          //  map.update(source1,source3,source4,source6,source7,source8,source9);
-            //map.update(source1,source3,source4,source6,source7,source8,source9);
 
             function updateTree(){
               tree.loadData(document.getElementById("ranking-type-tree").value);
