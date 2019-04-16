@@ -145,8 +145,9 @@ SeasonTree.prototype.update = function(){
             .on("mouseover",function(d)
             {
                 console.log("circle");
-                vis.div.transition().duration(200).style("opacity",.9);
-                vis.div.html("hi")
+                vis.div.transition().duration(200).style("opacity",.9)
+                .style("fill", "black");
+                vis.div.html("<p>hi</p>")
                 .attr("class", "d3-tip");
 
             })
