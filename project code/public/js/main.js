@@ -41,8 +41,9 @@
             //call update on charts here
             occupations.update();
             locchart.update(source1,source3,source4,source6,source7,source8,source9);
-            map.update(source1,source3,source4,source6,source7,source8,source9);
-            map.update(source1,source3,source4,source6,source7,source8,source9);
+            updateVisualization();
+          //  map.update(source1,source3,source4,source6,source7,source8,source9);
+            //map.update(source1,source3,source4,source6,source7,source8,source9);
 
             function updateVisualization() {
               if (d3.select("#ranking-type").property("value")!="all"){
@@ -124,10 +125,8 @@ $(document).ready(function(){
 
 	$('ul.tabs li').click(function(){
 		var tab_id = $(this).attr('data-tab');
-
 		$('ul.tabs li').removeClass('current');
 		$('.tab-content').removeClass('current');
-
 		$(this).addClass('current');
 		$("#"+tab_id).addClass('current');
 	})
