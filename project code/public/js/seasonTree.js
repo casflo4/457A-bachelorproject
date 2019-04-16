@@ -23,14 +23,9 @@ SeasonTree.prototype.init = function(){
     vis.svg = div.append("svg")
         .attr("width",vis.svgWidth)
         .attr("height",vis.svgHeight);
-    var season = document.getElementById('ranking-type').value;
+    var season = document.getElementById('ranking-type-tree').value;
     console.log(season);
-    if (season == 'all'){
-        vis.loadData(1);
-    }
-    else{
         vis.loadData(season);
-    } 
 };
 
 SeasonTree.prototype.loadData = function(season) {
@@ -135,7 +130,7 @@ SeasonTree.prototype.update = function(){
                 row +=1;
             }
             vis.svg.append("circle")
-            .attr("r", 31)
+            .attr("r", 29)
             //.attr("stroke", "white")
             .attr("cx", function(){
                 if (j>11 && i%2 == 0){
@@ -160,7 +155,7 @@ SeasonTree.prototype.update = function(){
                 }
             })
             .attr("cy", function(){
-                return 135+63*(row);
+                return 125+59*(row);
             })
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
@@ -204,7 +199,7 @@ SeasonTree.prototype.update = function(){
                 }
             })
             .attr("y", function(){
-                return 135+63*(row);
+                return 125+59*(row);
             })
             .style("fill", "white")
             .style("text-anchor", "middle")

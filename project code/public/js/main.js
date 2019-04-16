@@ -33,6 +33,7 @@
               });
             });
             d3.select("#ranking-type").on("change",updateVisualization);
+            d3.select("#ranking-type-tree").on("change",updateTree);
             //Creating instances for each visualization here
             var occupations = new Occupations(source1, source2);
             var map = new LocMap();
@@ -43,6 +44,10 @@
             locchart.update(source1,source3,source4,source6,source7,source8,source9);
             map.update(source1,source3,source4,source6,source7,source8,source9);
             map.update(source1,source3,source4,source6,source7,source8,source9);
+
+            function updateTree(){
+              tree.loadData(document.getElementById("ranking-type-tree").value);
+            }
 
             function updateVisualization() {
               if (d3.select("#ranking-type").property("value")!="all"){
