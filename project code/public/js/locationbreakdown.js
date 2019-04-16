@@ -289,6 +289,9 @@ var winnersnested = d3.nest()
     var rect = self.svg.selectAll("rect")
          .data(og);
     rect.enter().append("rect")
+    .transition()
+    .duration(250)
+    .ease(d3.easeLinear)
           .attr("fill",function(d,i){
             /*
             if (LocChart.prototype.chooseloc(d)=="Northeast"){
@@ -327,6 +330,9 @@ var winnersnested = d3.nest()
             });
 
             self.svg.append("rect")
+            .transition()
+            .duration(250)
+            .ease(d3.easeLinear)
                     .attr("fill",function(){
                       return "rgb(243,188,65)";
                     })
@@ -350,6 +356,9 @@ var winnersnested = d3.nest()
             winnersnested.forEach(function(d1,i1){
               if (d1.key==d.key){
                 self.svg.append("rect")
+                .transition()
+                .duration(250)
+                .ease(d3.easeLinear)
                     .attr("fill",function(){
                       return "rgb(174,221,92)";
                     })
