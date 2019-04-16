@@ -22,14 +22,13 @@ SeasonTree.prototype.init = function(){
         .attr("width",vis.svgWidth)
         .attr("height",vis.svgHeight);
 
-    vis.loadData(21);
+    vis.loadData(1);
 };
 
 SeasonTree.prototype.loadData = function(season) {
     var vis = this;
     var finalWeek = 0;
     vis.displayData[0] = [];
-    console.log(Array.from(vis.data));
     vis.data.forEach(function(a){
         if (parseInt(a.Season) == season){
             if(a.Outcome == "Winner"){
@@ -52,8 +51,6 @@ SeasonTree.prototype.loadData = function(season) {
         if(row.length!=0){
             vis.displayData.push(row);
         }
-        console.log(i);
-        console.log(vis.displayData);
     }
     vis.update();
 
@@ -67,7 +64,6 @@ SeasonTree.prototype.update = function(){
     .attr("height", 750)
     .attr("width", 229.5)
     .attr("x", function(){
-        console.log(vis.svg.node().firstChild);
         return (vis.svgWidth-vis.imgWidth)/2;
     });
     if(vis.displayData[0].length != 0){
