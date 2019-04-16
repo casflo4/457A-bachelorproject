@@ -13,11 +13,10 @@ function SeasonTree(_allData) {
 
 SeasonTree.prototype.init = function(){
     var vis = this;
-    self.margin = {top: 10, right: 20, bottom: 30, left: 50};
+    self.margin = {top: 10, right: 20, bottom: 30, left: 20};
 
     var div = d3.select("#tree").classed("view", true);
-    // vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right;
-    vis.svgWidth = 1200;
+    vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right;
     vis.svgHeight = 800;
     vis.imgWidth = 229.5;
 
@@ -88,10 +87,14 @@ SeasonTree.prototype.update = function(){
         .data(vis.displayData[0])
         .on("mouseover",function(d)
         {
-            console.log(d.first_name);
             vis.div.transition().duration(200).style("opacity",.9);
-            vis.div.html(d.first_name)
+            vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
+                +d.city+", "+d.state+","+d.country+"<br>"
+                +d.occupation+"</p>")
             .attr("class", "d3-tip");
+            vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY ) + "px");
 
         })
         .on("mouseout",function(d)
@@ -105,7 +108,24 @@ SeasonTree.prototype.update = function(){
         .attr("y", 100)
         .style("fill", "white")
         .style("text-anchor", "middle")
-        .style("font-size", 20);
+        .style("font-size", 20)
+        .data(vis.displayData[0])
+        .on("mouseover",function(d)
+        {
+            vis.div.transition().duration(200).style("opacity",.9);
+            vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
+                +d.city+", "+d.state+","+d.country+"<br>"
+                +d.occupation+"</p>")
+            .attr("class", "d3-tip");
+            vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY ) + "px");
+
+        })
+        .on("mouseout",function(d)
+        {
+            vis.div.transition().duration(500).style("opacity",0);  
+        });
     }
     var row = 0;
     for(var i=1; i<vis.displayData.length; ++i){
@@ -142,14 +162,18 @@ SeasonTree.prototype.update = function(){
             .attr("cy", function(){
                 return 135+63*(row);
             })
-            .data(vis.displayData[0])
+            .data(vis.displayData[i])
             .on("mouseover",function(d)
             {
-                console.log("circle");
-                vis.div.transition().duration(200).style("opacity",.9)
-                .style("fill", "black");
-                vis.div.html("<p>hi</p>")
+                console.log(d);
+                vis.div.transition().duration(200).style("opacity",.9);
+                vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
+                    +d.city+", "+d.state+","+d.country+"<br>"
+                    +d.occupation+"</p>")
                 .attr("class", "d3-tip");
+                vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY ) + "px");
 
             })
             .on("mouseout",function(d)
@@ -184,7 +208,24 @@ SeasonTree.prototype.update = function(){
             })
             .style("fill", "white")
             .style("text-anchor", "middle")
-            .style("font-size", 9);
+            .style("font-size", 9)
+            .data(vis.displayData[i])
+            .on("mouseover",function(d)
+            {
+                vis.div.transition().duration(200).style("opacity",.9);
+                vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
+                    +d.city+", "+d.state+","+d.country+"<br>"
+                    +d.occupation+"</p>")
+                .attr("class", "d3-tip");
+                vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY ) + "px");
+
+            })
+            .on("mouseout",function(d)
+            {
+                vis.div.transition().duration(500).style("opacity",0);  
+            });
         }
     }
 }
