@@ -4,8 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>CSE457: Final Project</title>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/style.css"/>
     <link rel="stylesheet" href="public/css/leaflet.css">
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>-->
     <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
   crossorigin=""/>-->
@@ -13,6 +18,7 @@
     <script type="text/javascript" src="bower_components/d3-tip/index.js"></script>
     <!--<script type="text/javascript" src="bower_components/d3/d3-legend.js"></script>-->
     <script type="text/javascript" src="bower_components/d3/queue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.js"></script>
     <!--<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
    crossorigin=""></script>-->
@@ -68,11 +74,9 @@
 <div id = "map3" class = "view">
 </div>
 </div>
-<div id = "legend" class = "view"></div>
 <br/>
 <div id = "tree" class = "view">
 </div>
-
 <div id = "occupations-container">
 <div id = "occupations" class = "view">
     <h2>Contestant Occupations</h2>
@@ -80,7 +84,7 @@
         The size of the bubble indicates frequency, while the color indicates the Average Elimination Week.</p>
 </div>
 </div>
-<script src="public/js/leaflet.js"></script>
+<script type="application/javascript" src="public/js/leaflet.js"></script>
 <script type="application/javascript" src="public/js/d3plus.full.min.js"></script>
 <script type="application/javascript" src="public/js/map.js"></script>
 <script type="application/javascript" src="public/js/occupations.js"></script>
@@ -88,6 +92,5 @@
 <script type="application/javascript" src="public/js/main.js"></script>
 <script type="application/javascript" src="public/js/createnewfile.js"></script>
 <script type="application/javascript" src="public/js/locationbreakdown.js"></script>
-<script type="text/javascript" src="bower_components/d3/d3-legend.js"></script>
 </body>
 </html>

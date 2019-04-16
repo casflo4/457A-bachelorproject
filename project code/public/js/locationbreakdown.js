@@ -28,31 +28,6 @@ LocChart.prototype.init = function(){
         .attr("width",self.svgWidth)
         .attr("height",self.svgHeight)
 
-        self.legend = d3.select("#legend").classed("content",true);
-
-        //Global colorScale to be used consistently by all the charts
-        self.colorScale = d3.scaleOrdinal()
-                  .domain(["Winner","Contestants (eliminated after halfway point)","Contestants (eliminated before halfway point)"])
-                  .range(["rgb(174,221,92)","rgb(243,188,65)","rgb(225,75,108)"]);
-
-        self.legendSvg = self.legend.append("svg")
-        .attr("width",self.svgWidth)
-        .attr("height",250)
-        .attr("transform", "translate(" + 27.5 + ",50)")
-
-          self.legendSvg.append("g")
-            .attr("class", "legendQuantile");
-
-        var legendQuantile = d3.legendColor()
-            .shapeWidth(200)
-            .cells(3)
-            .orient('vertical')
-            .scale(self.colorScale);
-
-        self.legendSvg.select(".legendQuantile")
-        //.attr("transform", "scale(.615)translate(0,0)")
-        .call(legendQuantile);
-
     self.x = d3.scaleBand()
           .range([0,self.svgWidth-106])
           .paddingInner(0.2)
