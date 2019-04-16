@@ -6,6 +6,8 @@ function SeasonTree(_allData) {
     vis.displayData = [];
 
     vis.init();
+
+    vis.div = d3.select("#tree").append("div").attr("class","tooltip").style("opacity",0);//tooltip
 };
 
 
@@ -24,7 +26,7 @@ SeasonTree.prototype.init = function(){
     var season = document.getElementById('ranking-type').value;
     console.log(season);
     if (season == 'all'){
-        vis.allMessage();
+        vis.loadData(1);
     }
     else{
         vis.loadData(season);
@@ -81,7 +83,21 @@ SeasonTree.prototype.update = function(){
         .attr("r", 50)
         //.attr("stroke", "white")
         .attr("cx", vis.svgWidth/2-20)
-        .attr("cy", 100);
+        .attr("cy", 100)
+        .data(vis.displayData[0])
+        .on("mouseover",function(d)
+        {
+            console.log(d.first_name);
+            vis.div.transition().duration(200).style("opacity",.9);
+            vis.div.html(d.first_name)
+            .attr("class", "d3-tip");
+
+        })
+        .on("mouseout",function(d)
+        {
+            vis.div.transition().duration(500).style("opacity",0);  
+        });
+
         vis.svg.append("text")
         .text(vis.displayData[0][0].first_name)
         .attr("x", vis.svgWidth/2-20)
@@ -89,12 +105,6 @@ SeasonTree.prototype.update = function(){
         .style("fill", "white")
         .style("text-anchor", "middle")
         .style("font-size", 20);
-        // vis.svg.append("text")
-        // .text(vis.displayData[0][0].last_name)
-        // .attr("x", vis.svgWidth/2-20)
-        // .attr("y", 110)
-        // .style("fill", "white")
-        // .style("text-anchor", "middle");
     }
     var row = 0;
     for(var i=1; i<vis.displayData.length; ++i){
@@ -130,6 +140,19 @@ SeasonTree.prototype.update = function(){
             })
             .attr("cy", function(){
                 return 135+63*(row);
+            })
+            .data(vis.displayData[0])
+            .on("mouseover",function(d)
+            {
+                console.log("circle");
+                vis.div.transition().duration(200).style("opacity",.9);
+                vis.div.html("hi")
+                .attr("class", "d3-tip");
+
+            })
+            .on("mouseout",function(d)
+            {
+                vis.div.transition().duration(500).style("opacity",0);  
             });
             vis.svg.append("text")
             .text(vis.displayData[i][j].first_name)
@@ -160,19 +183,6 @@ SeasonTree.prototype.update = function(){
             .style("fill", "white")
             .style("text-anchor", "middle")
             .style("font-size", 9);
-            // vis.svg.append("text")
-            // .text(vis.displayData[i][j].last_name)
-            // .attr("x", function(){
-            //     if (i%2==0){
-            //         return vis.svgWidth/2-70-50*j;
-            //     }
-            //     else{
-            //         return vis.svgWidth/2+70+50*j;
-            //     }
-            // })
-            // .attr("y", 110+65*i)
-            // .style("fill", "white")
-            // .style("text-anchor", "middle");
         }
     }
 }
