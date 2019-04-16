@@ -201,7 +201,7 @@ winners = L.layerGroup(winners);
   var streets = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
   self.map = L.map('map', {
       center: [37.8, -96.9],
-      zoom: 4.375,
+      zoom: 4,
       layers: [streets, better, worse, regions, winners]
   });
   var baseMaps = {
