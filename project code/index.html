@@ -6,17 +6,16 @@
     <title>CSE457: Final Project</title>
     <link rel="stylesheet" href="public/css/style.css"/>
     <link rel="stylesheet" href="public/css/leaflet.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-  crossorigin=""/>
-    <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+  crossorigin=""/>-->
     <script type="text/javascript" src="bower_components/d3/d3.js"></script>
     <script type="text/javascript" src="bower_components/d3-tip/index.js"></script>
+    <!--<script type="text/javascript" src="bower_components/d3/d3-legend.js"></script>-->
     <script type="text/javascript" src="bower_components/d3/queue.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.js"></script>
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+    <!--<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-   crossorigin=""></script>
+   crossorigin=""></script>-->
     <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
@@ -58,24 +57,26 @@
 		</div>
 	</form>
   <br/>
-<div id = "map-container">
+
 <h2>Contestant Hometowns</h2>
     <p>This visualization depicts the hometowns of Bachelor contestants in all of the seasons.
             Click on a map marker for more information about the contestant.</p>
 <br />
+<div id = "map-container">
 <div id = "map" class = "view">
-    </div>
-
 </div>
+<div id = "map3" class = "view">
+</div>
+</div>
+<br/>
+<br/>
+<div id = "legend" class = "view"></div>
+<br/>
+<br/>
 
-<br>
+<br/>
 <div id = "tree" class = "view">
 </div>
-
-<div id = "map3" class = "view">
-
-</div>
-
 
 <div id = "occupations-container">
 <div id = "occupations" class = "view">
@@ -84,7 +85,6 @@
         The size of the bubble indicates frequency, while the color indicates the Average Elimination Week.</p>
 </div>
 </div>
-
 <script src="public/js/leaflet.js"></script>
 <script type="application/javascript" src="public/js/d3plus.full.min.js"></script>
 <script type="application/javascript" src="public/js/map.js"></script>
@@ -93,6 +93,6 @@
 <script type="application/javascript" src="public/js/main.js"></script>
 <script type="application/javascript" src="public/js/createnewfile.js"></script>
 <script type="application/javascript" src="public/js/locationbreakdown.js"></script>
-
+<script type="text/javascript" src="bower_components/d3/d3-legend.js"></script>
 </body>
 </html>
