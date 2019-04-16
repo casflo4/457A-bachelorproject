@@ -30,12 +30,13 @@ SeasonTree.prototype.init = function(){
 
 SeasonTree.prototype.loadData = function(season) {
     var vis = this;
+    vis.displayData = [];    
     var finalWeek = 0;
     vis.displayData[0] = [];
     vis.data.forEach(function(a){
         if (parseInt(a.Season) == season){
             if(a.Outcome == "Winner"){
-                vis.displayData[0] = [{first_name:a.Name, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place}];
+                vis.displayData[0] = [{first_name:a.Name, elimination_week:a.Elimination_Week, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place}];
             }
             if(a.Elimination_Week>finalWeek){
                 finalWeek = a.Elimination_Week;
@@ -47,7 +48,7 @@ SeasonTree.prototype.loadData = function(season) {
         vis.data.forEach(function(a){
             if (parseInt(a.Season) == season){
                 if(a.Elimination_Week == i && a.Outcome != "Winner"){
-                    row.push({first_name:a.Name, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place});
+                    row.push({first_name:a.Name, elimination_week:a.Elimination_Week, last_name:a['Last Name'], occupation:a.Occupation, age:+a.Age, city:a.City, state:a.State, country:a.Country, place:a.Place});
                 }
             }
         });
@@ -55,6 +56,7 @@ SeasonTree.prototype.loadData = function(season) {
             vis.displayData.push(row);
         }
     }
+    console.log(vis.displayData);
     vis.update();
 
 };
@@ -73,6 +75,8 @@ SeasonTree.prototype.update = function(){
     .attr("x", function(){
         return (vis.svgWidth-vis.imgWidth)/2;
     });
+    vis.svg.selectAll("circle").remove();
+    vis.svg.selectAll("text").remove();
     if(vis.displayData[0].length != 0){
         vis.svg.append("circle")
         .attr("r", 50)
