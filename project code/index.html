@@ -26,60 +26,69 @@
 <h1>The Bachelor: Finding your perfect match!</h1>
 <p class="info">Name: Julia Dickerman, Lainie Esralew, Lucas Florence; <br/>E-Mail: jcdickerman@wustl.edu, lainie.esralew@wustl.edu, l.florence@wustl.edu; <br/>UID: 450914, 456655, 448491
 </p><br/>
-<form class="form-inline">
-		<div class="form-group">
-			<label for="ranking-type"><em>Select by Season:</em></label>
-			<select class="form-control" id="ranking-type">
-				<option value="all">All</option>
-				<option value="1">Season 1</option>
-				<option value="2">Season 2</option>
-        <option value="3">Season 3</option>
-        <option value="4">Season 4</option>
-        <option value="5">Season 5</option>
-        <option value="6">Season 6</option>
-        <option value="7">Season 7</option>
-        <option value="8">Season 8</option>
-        <option value="9">Season 9</option>
-        <option value="10">Season 10</option>
-        <option value="11">Season 11</option>
-        <option value="12">Season 12</option>
-        <option value="13">Season 13</option>
-        <option value="14">Season 14</option>
-        <option value="15">Season 15</option>
-        <option value="16">Season 16</option>
-        <option value="17">Season 17</option>
-        <option value="18">Season 18</option>
-        <option value="19">Season 19</option>
-        <option value="20">Season 20</option>
-        <option value="21">Season 21</option>
-			</select>
 
-		</div>
-	</form>
-  <br/>
+<ul class="tabs">
+  <li class="tab-link current" data-tab="tree-container">Season Outcomes</li>
+  <li class="tab-link" data-tab="map-container-2">Contestant Hometowns</li>
+  <li class="tab-link" data-tab="occupations-container">Contestant Occupations</li>
+</ul>
 
-<h2>Contestant Hometowns</h2>
-    <p>This visualization depicts the hometowns of Bachelor contestants in all of the seasons.
-            Click on a map marker for more information about the contestant.</p>
-<br />
-<div id = "map-container">
-<div id = "map" class = "view">
-</div>
-<div id = "map3" class = "view">
-</div>
-</div>
-<div id = "legend" class = "view"></div>
-<br/>
-<div id = "tree" class = "view">
+
+<div id = "map-container-2" class = "tab-content">
+  <h2>Contestant Hometowns</h2>
+      <p>This visualization depicts the hometowns of Bachelor contestants in all of the seasons.
+          Click on a map marker for more information about the contestant.</p>
+      <br>
+          <form class="form-inline">
+              <div class="form-group">
+                <label for="ranking-type"><em>Select by Season:</em></label>
+                <select class="form-control" id="ranking-type">
+                  <option value="all">All</option>
+                  <option value="1">Season 1</option>
+                  <option value="2">Season 2</option>
+                  <option value="3">Season 3</option>
+                  <option value="4">Season 4</option>
+                  <option value="5">Season 5</option>
+                  <option value="6">Season 6</option>
+                  <option value="7">Season 7</option>
+                  <option value="8">Season 8</option>
+                  <option value="9">Season 9</option>
+                  <option value="10">Season 10</option>
+                  <option value="11">Season 11</option>
+                  <option value="12">Season 12</option>
+                  <option value="13">Season 13</option>
+                  <option value="14">Season 14</option>
+                  <option value="15">Season 15</option>
+                  <option value="16">Season 16</option>
+                  <option value="17">Season 17</option>
+                  <option value="18">Season 18</option>
+                  <option value="19">Season 19</option>
+                  <option value="20">Season 20</option>
+                  <option value="21">Season 21</option>
+                </select>
+          
+              </div>
+            </form>
+            <br>
+  <div id = "map-container">
+    <div id = "map" class = "view"></div>
+    <div id = "map3" class = "view"></div>
+  </div>
 </div>
 
-<div id = "occupations-container">
-<div id = "occupations" class = "view">
+<div id = "tree-container" class = "tab-content current">
+  <div id = "tree" class = "view" ></div>
+</div>
+
+<div id = "occupations-container" class = "tab-content">
     <h2>Contestant Occupations</h2>
     <p>This visualization depicts the job categories of Bachelor contestants in all of the seasons.
         The size of the bubble indicates frequency, while the color indicates the Average Elimination Week.</p>
+    <div id = "tooltip"></div>
+    <div id = "occupations" class = "view"></div>
 </div>
-</div>
+
+<script src="public/js/jquery.min.js"></script>
 <script src="public/js/leaflet.js"></script>
 <script type="application/javascript" src="public/js/d3plus.full.min.js"></script>
 <script type="application/javascript" src="public/js/map.js"></script>
