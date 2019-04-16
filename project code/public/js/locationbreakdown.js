@@ -19,7 +19,7 @@ LocChart.prototype.init = function(){
 
     //Gets access to the div element created for this chart from HTML
     var divelectoralVotes = d3.select("#map3").classed("content", true);
-    self.svgBounds = divelectoralVotes.node().getBoundingClientRect().width;
+    self.svgBounds = 750;//divelectoralVotes.node().getBoundingClientRect().width;
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
     self.svgHeight = 500;
 
@@ -282,7 +282,7 @@ var winnersnested = d3.nest()
         return d.key;
     }))
 
-    self.newwidth = (self.svgWidth-79)/ og.length;
+    self.newwidth = (self.svgWidth-45)/ og.length;
 
     self.y.domain([0,66]);
 
