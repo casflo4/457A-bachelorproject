@@ -20,8 +20,8 @@ Occupations.prototype.init = function(){
     // self.svgBounds = divyearChart.node().getBoundingClientRect();
     // vis.svgWidth = self.svgBounds.width - self.margin.left - self.margin.right;
 
-    vis.svgWidth = 600;
-    vis.svgHeight = 600;
+    vis.svgWidth = 540;
+    vis.svgHeight = 520;
 
     vis.svg = div.append("svg")
         .attr("width",vis.svgWidth)
@@ -181,12 +181,12 @@ Occupations.prototype.update = function(){
         })
         .attr("font-size", function(d){
             if(d.children){
-                size = d.r/3;
-                if(size > 26){ return 25; }
+                size = d.r;
+                if(size > 60){ return 60; }
                 else{ return size; }
             }
             else{
-                size = d.r/1.5;
+                size = d.r/2;
                 return size;
             }
         })
