@@ -21,7 +21,7 @@ LocChart.prototype.init = function(){
     var divelectoralVotes = d3.select("#map3").classed("content", true);
     self.svgBounds = 750;//divelectoralVotes.node().getBoundingClientRect().width;
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
-    self.svgHeight = 500;
+    self.svgHeight = 400;
 
     //creates svg element within the div
     self.svg = divelectoralVotes.append("svg")
@@ -39,8 +39,7 @@ LocChart.prototype.init = function(){
     self.xAxis = d3.axisBottom()
         .scale(self.x);
 
-    self.yAxis = d3.axisLeft()
-        .scale(self.y);
+
 
     self.svg.append("g")
         .attr("class", "x-axis axis")
@@ -51,17 +50,17 @@ LocChart.prototype.init = function(){
 
     // Axis title
     self.svg.append("text")
-        .attr("x", self.svgWidth/2 - 100)
+        .attr("x", self.svgWidth/2-10)
         .attr("y", self.svgHeight)
-        .text("Bachelor Candidate Home Locations");
+        .text("Home Location");
 
   self.svg.append("text")
             .attr("x", self.svgWidth/2-100)
             .attr("y", 15)
-            .text("Bachelor Candidate Success By Hometown");
+            .text("Bachelor Candidate Success By Home Locations");
 
   self.svg.append("text")
-      .attr("x", -390)
+      .attr("x", -220)
       .attr("y", 20)
       .text("# of Candidates")
       .attr("transform", "rotate(270)");
@@ -286,6 +285,18 @@ var winnersnested = d3.nest()
     self.newwidth = (self.svgWidth-45)/ og.length;
 
     self.y.domain([0,og[0].values.length]);
+
+    values = []
+    var x = 0;
+    while(x<=og[0].values.length){
+      values.push(x);
+      x++;
+    }
+
+    self.yAxis = d3.axisLeft()
+        .scale(self.y)
+        .tickValues(values)
+        .tickFormat(d => (d));
 
     var rect = self.svg.selectAll("rect")
          .data(og);

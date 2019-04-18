@@ -22,9 +22,9 @@ LocMap.prototype.init = function(){
 
     //Gets access to the div element created for this chart from HTML
     var divelectoralVotes = d3.select("#map").classed("content", true);
-    self.svgBounds = 750;//divelectoralVotes.node().getBoundingClientRect().width;
+    self.svgBounds = 400;//divelectoralVotes.node().getBoundingClientRect().width;
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
-    self.svgHeight = 500;
+    self.svgHeight = 400;
 
     self.greenIcon = L.icon({
     iconUrl: 'public/css/images/leaf-green.png',
@@ -214,7 +214,7 @@ winners = L.layerGroup(winners);
       layers: [self.streets, better, worse,self.regions, winners]
   });
   var baseMaps = {
-    "<span style='color: gray, opacity: .5'>Streets</span>": self.streets
+    "<span style='color: gray, opacity: .5'>Base Map</span>": self.streets
   };
 
   var overlayMaps = {
