@@ -13,7 +13,7 @@
         //load the data
         queue()
             .defer(d3.csv, "data/bachelor contestants for data.world.csv")
-            .defer(d3.csv, "data/occupations.csv")
+            .defer(d3.csv, "data/occupations2.csv")
             .defer(d3.csv, "data/historical_bachelor_contestants.csv")
             .defer(d3.json, "data/updatedcontestantdata.json")
             .defer(d3.json, "data/updatedcontestantdata (1).json")
