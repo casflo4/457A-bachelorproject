@@ -85,21 +85,25 @@ SeasonTree.prototype.update = function(){
         .attr("cy", 100)
         .data(vis.displayData[0])
         .on("mouseover",function(d)
-        {
-            vis.div.transition().duration(200).style("opacity",.9);
-            vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
-                +d.city+", "+d.state+", "+d.country+"<br>"
-                +d.occupation+"</p>")
-            .attr("class", "d3-tip");
-            vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
-            .style("left", (d3.event.pageX) + "px")
-            .style("top", (d3.event.pageY ) + "px");
+            {   
+                vis.div.transition().duration(200).style("opacity",.9);
+                vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
+                    +d.city+", "+d.state+", "+d.country+"<br>"
+                    +d.occupation+"</p>")
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY)-1010 + "px")
+                .attr("class", "d3-tip");
 
-        })
-        .on("mouseout",function(d)
-        {
-            vis.div.transition().duration(500).style("opacity",0);  
-        });
+            })
+            .on("mouseout",function(d)
+            {
+                vis.div.transition().duration(500).style("opacity",0);  
+            })
+            .on("mousemove",function(d){
+                vis.div
+                .style("left", (d3.event.pageX)-10 + "px")     
+                .style("top", (d3.event.pageY)-1030 + "px");
+            });
 
         vis.svg.append("text")
         .text(vis.displayData[0][0].first_name)
@@ -110,21 +114,25 @@ SeasonTree.prototype.update = function(){
         .style("font-size", 20)
         .data(vis.displayData[0])
         .on("mouseover",function(d)
-        {
-            vis.div.transition().duration(200).style("opacity",.9);
-            vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
-                +d.city+", "+d.state+", "+d.country+"<br>"
-                +d.occupation+"</p>")
-            .attr("class", "d3-tip");
-            vis.div//.attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; });
-            .style("left", (d3.event.pageX) + "px")
-            .style("top", (d3.event.pageY ) + "px");
+            {   
+                vis.div.transition().duration(200).style("opacity",.9);
+                vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
+                    +d.city+", "+d.state+", "+d.country+"<br>"
+                    +d.occupation+"</p>")
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY)-1010 + "px")
+                .attr("class", "d3-tip");
 
-        })
-        .on("mouseout",function(d)
-        {
-            vis.div.transition().duration(500).style("opacity",0);  
-        });
+            })
+            .on("mouseout",function(d)
+            {
+                vis.div.transition().duration(500).style("opacity",0);  
+            })
+            .on("mousemove",function(d){
+                vis.div
+                .style("left", (d3.event.pageX)-10 + "px")     
+                .style("top", (d3.event.pageY)-1030 + "px");
+            });
     }
     var row = 0;
     for(var i=1; i<vis.displayData.length; ++i){
@@ -168,16 +176,19 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY)-1010 + "px")
                 .attr("class", "d3-tip");
-                vis.div
-                .attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; })
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY ) + "px");
 
             })
             .on("mouseout",function(d)
             {
                 vis.div.transition().duration(500).style("opacity",0);  
+            })
+            .on("mousemove",function(d){
+                vis.div
+                .style("left", (d3.event.pageX)-10 + "px")     
+                .style("top", (d3.event.pageY)-1030 + "px");
             });
             vis.svg.append("text")
             .text(vis.displayData[i][j].first_name)
@@ -210,21 +221,24 @@ SeasonTree.prototype.update = function(){
             .style("font-size", 9)
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
-            {
+            {   
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY)-1010 + "px")
                 .attr("class", "d3-tip");
-                vis.div
-                .attr("transform", function(d) { return "translate(" + d3.event.pageX + "," + d3.event.pageY + ")"; })
-                // .style("left", (d3.event.pageX) + "px")
-                // .style("top", (d3.event.pageY ) + "px");
 
             })
             .on("mouseout",function(d)
             {
                 vis.div.transition().duration(500).style("opacity",0);  
+            })
+            .on("mousemove",function(d){
+                vis.div
+                .style("left", (d3.event.pageX)-10 + "px")     
+                .style("top", (d3.event.pageY)-1030 + "px");
             });
         }
     }
