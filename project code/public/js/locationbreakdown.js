@@ -21,7 +21,7 @@ LocChart.prototype.init = function(){
     var divelectoralVotes = d3.select("#map3").classed("content", true);
     self.svgBounds = 750;//divelectoralVotes.node().getBoundingClientRect().width;
     self.svgWidth = self.svgBounds - self.margin.left - self.margin.right;
-    self.svgHeight = 500;
+    self.svgHeight = 400;
 
     //creates svg element within the div
     self.svg = divelectoralVotes.append("svg")
@@ -34,13 +34,12 @@ LocChart.prototype.init = function(){
           .domain(d3.range(0,50));
 
     self.y = d3.scaleLinear()
-        .range([self.svgHeight,80]);
+        .range([self.svgHeight-25,80]);
 
     self.xAxis = d3.axisBottom()
         .scale(self.x);
 
-    self.yAxis = d3.axisLeft()
-        .scale(self.y);
+
 
     self.svg.append("g")
         .attr("class", "x-axis axis")
@@ -51,17 +50,17 @@ LocChart.prototype.init = function(){
 
     // Axis title
     self.svg.append("text")
-        .attr("x", self.svgWidth/2 - 100)
+        .attr("x", self.svgWidth/2-10)
         .attr("y", self.svgHeight)
-        .text("Bachelor Candidate Home Locations");
+        .text("Home Location");
 
   self.svg.append("text")
             .attr("x", self.svgWidth/2-100)
             .attr("y", 15)
-            .text("Bachelor Candidate Success By State");
+            .text("Bachelor Candidate Success By Home Locations");
 
   self.svg.append("text")
-      .attr("x", -390)
+      .attr("x", -220)
       .attr("y", 20)
       .text("# of Candidates")
       .attr("transform", "rotate(270)");
@@ -232,7 +231,7 @@ LocChart.prototype.chooseloc = function (d) {
  * @param newbystory sentimnent data for each story
  **/
 
-LocChart.prototype.update = function(data1,data2,data3,data6,data7,data8,data9){
+LocChart.prototype.update = function(data1,data2,data3){
 
   d3.selectAll(".axis").remove().exit();
   d3.selectAll("rect").remove().exit();
@@ -274,6 +273,7 @@ var winnersnested = d3.nest()
     })
     .entries(winners);
 
+
     og.sort(function(x,y){
       return d3.descending(x.values.length,y.values.length);
     });
@@ -284,7 +284,19 @@ var winnersnested = d3.nest()
 
     self.newwidth = (self.svgWidth-45)/ og.length;
 
-    self.y.domain([0,66]);
+    self.y.domain([0,og[0].values.length]);
+
+    values = []
+    var x = 0;
+    while(x<=og[0].values.length){
+      values.push(x);
+      x++;
+    }
+
+    self.yAxis = d3.axisLeft()
+        .scale(self.y)
+        .tickValues(values)
+        .tickFormat(d => (d));
 
     var rect = self.svg.selectAll("rect")
          .data(og);
@@ -328,7 +340,7 @@ var winnersnested = d3.nest()
               }
             }
             });
-
+            lengthofsegment = (self.svgHeight-25-80)/og[0].values.length;
             self.svg.append("rect")
             .transition()
             .duration(250)
@@ -337,16 +349,16 @@ var winnersnested = d3.nest()
                       return "rgb(243,188,65)";
                     })
                     .attr("y", function() {
-                      return self.svgHeight-self.winner*9.6969-self.betterCount*9.6969-80;
+                      return self.svgHeight-self.winner*lengthofsegment-self.betterCount*lengthofsegment-80;
                     })
                     .attr("x", function() {
                         return (self.newwidth*i)+50;
                     })
                     .attr("width", self.newwidth-5)
                     .attr("height", function(){
-                      return self.betterCount*9.6969;
+                      return self.betterCount*lengthofsegment;
                     });
-            return self.svgHeight-self.winner*9.6969-self.worseCount*9.6969-self.betterCount*9.6969-80;
+            return self.svgHeight-self.winner*lengthofsegment-self.worseCount*lengthofsegment-self.betterCount*lengthofsegment-80;
           })
           .attr("x", function(d,i) {
             return (self.newwidth*i)+50;
@@ -363,14 +375,14 @@ var winnersnested = d3.nest()
                       return "rgb(174,221,92)";
                     })
                     .attr("y", function() {
-                      return self.svgHeight-(d1.values.length*9.6969)-80;
+                      return self.svgHeight-(d1.values.length*lengthofsegment)-80;
                     })
                     .attr("x", function() {
                         return (self.newwidth*i)+50;
                     })
                     .attr("width", self.newwidth-5)
                     .attr("height", function(){
-                      return d1.values.length*9.6969;
+                      return d1.values.length*lengthofsegment;
                     });
               }
             })
@@ -392,7 +404,7 @@ var winnersnested = d3.nest()
             }
             });
 
-            return self.worseCount*9.6969;
+            return self.worseCount*lengthofsegment;
           })
 
       var groupx = self.svg.append("g")
@@ -416,6 +428,6 @@ var winnersnested = d3.nest()
 
     	var groupy = self.svg.append("g")
     			.attr("class", "axis y-axis")
-    			.attr("transform", "translate("+self.margin.left+","+(self.margin.top-110)+")")
+    			.attr("transform", "translate("+self.margin.left+","+(self.margin.top-85)+")")
     			.call(self.yAxis);
 };

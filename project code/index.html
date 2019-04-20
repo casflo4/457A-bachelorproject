@@ -7,21 +7,9 @@
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/style.css"/>
     <link rel="stylesheet" href="public/css/leaflet.css">
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>-->
-    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-  crossorigin=""/>-->
     <script type="text/javascript" src="bower_components/d3/d3.js"></script>
     <script type="text/javascript" src="bower_components/d3-tip/index.js"></script>
-    <!--<script type="text/javascript" src="bower_components/d3/d3-legend.js"></script>-->
     <script type="text/javascript" src="bower_components/d3/queue.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.js"></script>
-    <!--<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-   crossorigin=""></script>-->
     <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
@@ -36,7 +24,7 @@
 
 <ul class="tabs">
   <li class="tab-link current" data-tab="tree-container">Season Outcomes</li>
-  <li class="tab-link" data-tab="map-container-2">Contestant Hometowns</li>
+  <li class="tab-link" id="mapthatwontload" data-tab="map-container-2">Contestant Hometowns</li>
   <li class="tab-link" data-tab="occupations-container">Contestant Occupations</li>
 </ul>
 
@@ -44,19 +32,15 @@
 <div id = "map-container-2" class = "tab-content">
   <h2>Contestant Hometowns</h2>
       <p>This visualization depicts the hometowns of Bachelor contestants in all of the seasons.
-          Click on a map marker for more information about the contestant.</p>
-      <br>
+          Click on a map marker for more information about the contestant. Click on the layer button to filter out groups.</p>
       <ul>
           <li><strong style="color:rgb(225,75,108)">Red</strong> represents Contestants (eliminated before the halfway point)</li>
           <li><strong style="color:rgb(243,188,65)">Orange</strong> represents Contestants (eliminated after the halfway point)</li>
           <li><strong style="color:rgb(174,221,92)">Green</strong> respresents Winners</li></ul>
-    <br />
-
     <form class="form-inline">
         <div class="form-group">
           <label for="ranking-type"><em>Select by Season:</em></label>
           <select class="form-control" id="ranking-type">
-            <option value="all">All</option>
             <option value="1">Season 1</option>
             <option value="2">Season 2</option>
             <!--<option value="3">Season 3</option>
@@ -78,6 +62,7 @@
             <option value="19">Season 19</option>
             <option value="20">Season 20</option>
             <option value="21">Season 21</option>
+            <option value="all">All</option>
           </select>
 
               </div>

@@ -13,7 +13,7 @@
         //load the data
         queue()
             .defer(d3.csv, "data/bachelor contestants for data.world.csv")
-            .defer(d3.csv, "data/occupations.csv")
+            .defer(d3.csv, "data/occupations2.csv")
             .defer(d3.csv, "data/historical_bachelor_contestants.csv")
             .defer(d3.json, "data/updatedcontestantdata.json")
             .defer(d3.json, "data/updatedcontestantdata (1).json")
@@ -36,14 +36,14 @@
             d3.select("#ranking-type-tree").on("change",updateTree);
             //Creating instances for each visualization here
             var occupations = new Occupations(source1, source2);
-            var map = new LocMap();
+            var map = new LocMap(source6,source7,source8,source9);
             var locchart = new LocChart();
             var tree = new SeasonTree(source1);
             //call update on charts here
             occupations.update();
-            locchart.update(source1,source3,source4,source6,source7,source8,source9);
-            map.update(source1,source3,source4,source6,source7,source8,source9);
-            map.update(source1,source3,source4,source6,source7,source8,source9);
+            locchart.update(source1,source3,source4);
+            d3.select("#mapthatwontload").on("click",updateVisualization);
+            updateVisualization();
 
             function updateTree(){
               tree.loadData(document.getElementById("ranking-type-tree").value);
@@ -79,11 +79,11 @@
                     return d;
                   }
                 });
-                map.update(source1a,source3a,source4a,source6,source7,source8,source9);
-                locchart.update(source1a,source3a,source4a,source6,source7,source8,source9);
+                map.update(source1a,source3a,source4a);
+                locchart.update(source1a,source3a,source4a);
             } else{
-              map.update(source1,source3,source4,source6,source7,source8,source9);
-              locchart.update(source1,source3,source4,source6,source7,source8,source9);
+              map.update(source1,source3,source4);
+              locchart.update(source1,source3,source4);
             }
           }
         }
@@ -129,10 +129,8 @@ $(document).ready(function(){
 
 	$('ul.tabs li').click(function(){
 		var tab_id = $(this).attr('data-tab');
-
 		$('ul.tabs li').removeClass('current');
 		$('.tab-content').removeClass('current');
-
 		$(this).addClass('current');
 		$("#"+tab_id).addClass('current');
 	})
