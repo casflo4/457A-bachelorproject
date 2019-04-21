@@ -30,7 +30,7 @@ SeasonTree.prototype.init = function(){
 
 SeasonTree.prototype.loadData = function(season) {
     var vis = this;
-    vis.displayData = [];    
+    vis.displayData = [];
     var finalWeek = 0;
     vis.displayData[0] = [];
     vis.data.forEach(function(a){
@@ -70,80 +70,68 @@ SeasonTree.prototype.update = function(){
     var vis = this;
     vis.svg.append("image")
     .attr("xlink:href", "public/css/images/rose.png")
-    .attr("height", 600)
-    .attr("width", 183.6)
+    .attr("height", 750)
+    .attr("width", 229.5)
     .attr("x", function(){
         return (vis.svgWidth-vis.imgWidth)/2;
     });
     vis.svg.selectAll("circle").remove();
     vis.svg.selectAll("text").remove();
-    vis.svg.append("text")
-    .text("View the Outcomes of seasons of the Bachelor.")
-    .attr("x", 20)
-    .attr("y", 30)
-    .style("fill", "black")
-    .style("font-size", 14);
-    vis.svg.append("text")
-    .text("Hover over a contestant to learn more.")
-    .attr("x", 20)
-    .attr("y", 45)
-    .style("fill", "black")
-    .style("font-size", 14);
     if(vis.displayData[0].length != 0){
         vis.svg.append("circle")
-        .attr("r", 35)
+        .attr("r", 50)
         //.attr("stroke", "white")
-        .attr("cx", vis.svgWidth/2-35)
-        .attr("cy", 90)
+        .attr("cx", vis.svgWidth/2-20)
+        .attr("cy", 100)
         .data(vis.displayData[0])
         .on("mouseover",function(d)
-            {   
+            {
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px")
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY)-1010 + "px")
                 .attr("class", "d3-tip");
 
             })
             .on("mouseout",function(d)
             {
-                vis.div.transition().duration(500).style("opacity",0);  
+                vis.div.transition().duration(500).style("opacity",0);
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px");
+                .style("left", (d3.event.pageX)-10 + "px")
+                .style("top", (d3.event.pageY)-1030 + "px");
             });
 
         vis.svg.append("text")
         .text(vis.displayData[0][0].first_name)
-        .attr("x", vis.svgWidth/2-35)
-        .attr("y", 90)
+        .attr("x", vis.svgWidth/2-20)
+        .attr("y", 100)
         .style("fill", "white")
         .style("text-anchor", "middle")
-        .style("font-size", 14)
+        .style("font-size", 20)
         .data(vis.displayData[0])
         .on("mouseover",function(d)
-            {   
+            {
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px")
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY)-1010 + "px")
                 .attr("class", "d3-tip");
 
             })
             .on("mouseout",function(d)
             {
-                vis.div.transition().duration(500).style("opacity",0);  
+                vis.div.transition().duration(500).style("opacity",0);
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px");
+                .style("left", (d3.event.pageX)-10 + "px")
+                .style("top", (d3.event.pageY)-1030 + "px");
             });
     }
     var row = 0;
@@ -154,104 +142,103 @@ SeasonTree.prototype.update = function(){
                 row +=1;
             }
             vis.svg.append("circle")
-            .attr("r", 24)
+            .attr("r", 31)
             //.attr("stroke", "white")
             .attr("cx", function(){
                 if (j>11 && i%2 == 0){
 
-                    return vis.svgWidth/2-65-49*(j-12);
+                    return vis.svgWidth/2-40-63*(j-12);
                 }
                 else if (j>11){
-                    return vis.svgWidth/2+35+49*(j-12);
+                    return vis.svgWidth/2+60+63*(j-12);
                 }
                 else if (j>5 && i%2 == 0){
 
-                    return vis.svgWidth/2-65-49*(j-6);
+                    return vis.svgWidth/2-40-63*(j-6);
                 }
                 else if (j>5){
-                    return vis.svgWidth/2+35+49*(j-6);
+                    return vis.svgWidth/2+60+63*(j-6);
                 }
                 if (i%2==0){
-                    return vis.svgWidth/2-65-49*j;
+                    return vis.svgWidth/2-40-63*j;
                 }
                 else{
-                    return vis.svgWidth/2+35+49*j;
+                    return vis.svgWidth/2+60+63*j;
                 }
             })
             .attr("cy", function(){
-                return 115+49*(row);
+                return 130+63*(row);
             })
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
-            {   
+            {
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px")
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY)-1010 + "px")
                 .attr("class", "d3-tip");
 
             })
             .on("mouseout",function(d)
             {
-                vis.div.transition().duration(500).style("opacity",0);  
+                vis.div.transition().duration(500).style("opacity",0);
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px");
+                .style("left", (d3.event.pageX)-10 + "px")
+                .style("top", (d3.event.pageY)-1030 + "px");
             });
             vis.svg.append("text")
             .text(vis.displayData[i][j].first_name)
             .attr("x", function(){
                 if (j>11 && i%2 == 0){
 
-                    return vis.svgWidth/2-65-49*(j-12);
+                    return vis.svgWidth/2-40-63*(j-12);
                 }
                 else if (j>11){
-                    return vis.svgWidth/2+35+49*(j-12);
+                    return vis.svgWidth/2+60+63*(j-12);
                 }
                 else if (j>5 && i%2 == 0){
-
-                    return vis.svgWidth/2-65-49*(j-6);
+                    return vis.svgWidth/2-40-63*(j-6);
                 }
                 else if (j>5){
-                    return vis.svgWidth/2+35+49*(j-6);
+                    return vis.svgWidth/2+60+63*(j-6);
                 }
-                if (i%2==0){
-                    return vis.svgWidth/2-65-49*j;
+                else if (i%2==0){
+                    return vis.svgWidth/2-40-63*j;
                 }
                 else{
-                    return vis.svgWidth/2+35+49*j;
+                    return vis.svgWidth/2+60+63*j;
                 }
             })
             .attr("y", function(){
-                return 115+49*(row);
+                return 130+63*(row);
             })
             .style("fill", "white")
             .style("text-anchor", "middle")
-            .style("font-size", 7)
+            .style("font-size", 9)
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
-            {   
+            {
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px")
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY)-1010 + "px")
                 .attr("class", "d3-tip");
 
             })
             .on("mouseout",function(d)
             {
-                vis.div.transition().duration(500).style("opacity",0);  
+                vis.div.transition().duration(500).style("opacity",0);
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px");
+                .style("left", (d3.event.pageX)-10 + "px")
+                .style("top", (d3.event.pageY)-1030 + "px");
             });
         }
     }
