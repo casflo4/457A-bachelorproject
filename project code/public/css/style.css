@@ -35,9 +35,9 @@ body {
     background-color: #ffc4d6;
 }
 
-.label{
+/*.label{
   margin-left: 100px;
-}
+}*/
 
 #map-container{
   display: flex;
