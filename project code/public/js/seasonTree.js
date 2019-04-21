@@ -17,7 +17,7 @@ SeasonTree.prototype.init = function(){
 
     var div = d3.select("#tree").classed("view", true);
     vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right;
-    vis.svgHeight = 640;
+    vis.svgHeight = 570;
     vis.imgWidth = 195.84;
 
     vis.svg = div.append("svg")
@@ -30,7 +30,7 @@ SeasonTree.prototype.init = function(){
 
 SeasonTree.prototype.loadData = function(season) {
     var vis = this;
-    vis.displayData = [];    
+    vis.displayData = [];
     var finalWeek = 0;
     vis.displayData[0] = [];
     vis.data.forEach(function(a){
@@ -97,23 +97,23 @@ SeasonTree.prototype.update = function(){
         .attr("cy", 85)
         .data(vis.displayData[0])
         .on("mouseover",function(d)
-            {   
+            {
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("left", (d3.event.pageX)-5 + "px")
                 .style("top", (d3.event.pageY)-995 + "px")
                 .attr("class", "d3-tip");
 
             })
             .on("mouseout",function(d)
             {
-                vis.div.transition().duration(500).style("opacity",0);  
+                vis.div.transition().duration(500).style("opacity",0);
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("left", (d3.event.pageX)-5 + "px")
                 .style("top", (d3.event.pageY)-995 + "px");
             });
 
@@ -126,23 +126,23 @@ SeasonTree.prototype.update = function(){
         .style("font-size", 14)
         .data(vis.displayData[0])
         .on("mouseover",function(d)
-            {   
+            {
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("left", (d3.event.pageX)-5 + "px")
                 .style("top", (d3.event.pageY)-995 + "px")
                 .attr("class", "d3-tip");
 
             })
             .on("mouseout",function(d)
             {
-                vis.div.transition().duration(500).style("opacity",0);  
+                vis.div.transition().duration(500).style("opacity",0);
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("left", (d3.event.pageX)-5 + "px")
                 .style("top", (d3.event.pageY)-995 + "px");
             });
     }
@@ -183,23 +183,23 @@ SeasonTree.prototype.update = function(){
             })
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
-            {   
+            {
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("left", (d3.event.pageX)-5 + "px")
                 .style("top", (d3.event.pageY)-995 + "px")
                 .attr("class", "d3-tip");
 
             })
             .on("mouseout",function(d)
             {
-                vis.div.transition().duration(500).style("opacity",0);  
+                vis.div.transition().duration(500).style("opacity",0);
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("left", (d3.event.pageX)-5 + "px")
                 .style("top", (d3.event.pageY)-995 + "px");
             });
             vis.svg.append("text")
@@ -234,23 +234,23 @@ SeasonTree.prototype.update = function(){
             .style("font-size", 6)
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
-            {   
+            {
                 vis.div.transition().duration(200).style("opacity",.9);
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("left", (d3.event.pageX)-5 + "px")
                 .style("top", (d3.event.pageY)-995 + "px")
                 .attr("class", "d3-tip");
 
             })
             .on("mouseout",function(d)
             {
-                vis.div.transition().duration(500).style("opacity",0);  
+                vis.div.transition().duration(500).style("opacity",0);
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("left", (d3.event.pageX)-5 + "px")
                 .style("top", (d3.event.pageY)-995 + "px");
             });
         }
