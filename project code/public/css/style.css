@@ -23,9 +23,17 @@ ul.tabs li.current{
     padding: 15px;
 }
 
+#bio{
+    width: 250px;
+}
+
 .tab-content.current{
     display: inherit;
     background: white;
+}
+
+#container{
+    display: flex;
 }
 
 
