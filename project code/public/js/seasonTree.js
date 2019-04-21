@@ -17,8 +17,8 @@ SeasonTree.prototype.init = function(){
 
     var div = d3.select("#tree").classed("view", true);
     vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right;
-    vis.svgHeight = 800;
-    vis.imgWidth = 229.5;
+    vis.svgHeight = 640;
+    vis.imgWidth = 195.84;
 
     vis.svg = div.append("svg")
         .attr("width",vis.svgWidth)
@@ -70,8 +70,8 @@ SeasonTree.prototype.update = function(){
     var vis = this;
     vis.svg.append("image")
     .attr("xlink:href", "public/css/images/rose.png")
-    .attr("height", 600)
-    .attr("width", 183.6)
+    .attr("height", 580)
+    .attr("width", 177.48)
     .attr("x", function(){
         return (vis.svgWidth-vis.imgWidth)/2;
     });
@@ -93,8 +93,8 @@ SeasonTree.prototype.update = function(){
         vis.svg.append("circle")
         .attr("r", 35)
         //.attr("stroke", "white")
-        .attr("cx", vis.svgWidth/2-35)
-        .attr("cy", 90)
+        .attr("cx", vis.svgWidth/2-20)
+        .attr("cy", 85)
         .data(vis.displayData[0])
         .on("mouseover",function(d)
             {   
@@ -102,8 +102,8 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px")
+                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("top", (d3.event.pageY)-985 + "px")
                 .attr("class", "d3-tip");
 
             })
@@ -113,14 +113,14 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px");
+                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("top", (d3.event.pageY)-985 + "px");
             });
 
         vis.svg.append("text")
         .text(vis.displayData[0][0].first_name)
-        .attr("x", vis.svgWidth/2-35)
-        .attr("y", 90)
+        .attr("x", vis.svgWidth/2-20)
+        .attr("y", 85)
         .style("fill", "white")
         .style("text-anchor", "middle")
         .style("font-size", 14)
@@ -131,8 +131,8 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px")
+                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("top", (d3.event.pageY)-985 + "px")
                 .attr("class", "d3-tip");
 
             })
@@ -142,8 +142,8 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px");
+                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("top", (d3.event.pageY)-985 + "px");
             });
     }
     var row = 0;
@@ -154,32 +154,32 @@ SeasonTree.prototype.update = function(){
                 row +=1;
             }
             vis.svg.append("circle")
-            .attr("r", 24)
+            .attr("r", 22)
             //.attr("stroke", "white")
             .attr("cx", function(){
                 if (j>11 && i%2 == 0){
 
-                    return vis.svgWidth/2-65-49*(j-12);
+                    return vis.svgWidth/2-65-45*(j-12);
                 }
                 else if (j>11){
-                    return vis.svgWidth/2+35+49*(j-12);
+                    return vis.svgWidth/2+35+45*(j-12);
                 }
                 else if (j>5 && i%2 == 0){
 
-                    return vis.svgWidth/2-65-49*(j-6);
+                    return vis.svgWidth/2-65-45*(j-6);
                 }
                 else if (j>5){
-                    return vis.svgWidth/2+35+49*(j-6);
+                    return vis.svgWidth/2+35+45*(j-6);
                 }
                 if (i%2==0){
-                    return vis.svgWidth/2-65-49*j;
+                    return vis.svgWidth/2-65-45*j;
                 }
                 else{
-                    return vis.svgWidth/2+35+49*j;
+                    return vis.svgWidth/2+35+45*j;
                 }
             })
             .attr("cy", function(){
-                return 115+49*(row);
+                return 115+45*(row);
             })
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
@@ -188,8 +188,8 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px")
+                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("top", (d3.event.pageY)-985 + "px")
                 .attr("class", "d3-tip");
 
             })
@@ -199,39 +199,39 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px");
+                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("top", (d3.event.pageY)-985 + "px");
             });
             vis.svg.append("text")
             .text(vis.displayData[i][j].first_name)
             .attr("x", function(){
                 if (j>11 && i%2 == 0){
 
-                    return vis.svgWidth/2-65-49*(j-12);
+                    return vis.svgWidth/2-65-45*(j-12);
                 }
                 else if (j>11){
-                    return vis.svgWidth/2+35+49*(j-12);
+                    return vis.svgWidth/2+35+45*(j-12);
                 }
                 else if (j>5 && i%2 == 0){
 
-                    return vis.svgWidth/2-65-49*(j-6);
+                    return vis.svgWidth/2-65-45*(j-6);
                 }
                 else if (j>5){
-                    return vis.svgWidth/2+35+49*(j-6);
+                    return vis.svgWidth/2+35+45*(j-6);
                 }
                 if (i%2==0){
-                    return vis.svgWidth/2-65-49*j;
+                    return vis.svgWidth/2-65-45*j;
                 }
                 else{
-                    return vis.svgWidth/2+35+49*j;
+                    return vis.svgWidth/2+35+45*j;
                 }
             })
             .attr("y", function(){
-                return 115+49*(row);
+                return 115+45*(row);
             })
             .style("fill", "white")
             .style("text-anchor", "middle")
-            .style("font-size", 7)
+            .style("font-size", 6)
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
             {   
@@ -239,8 +239,8 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px")
+                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("top", (d3.event.pageY)-985 + "px")
                 .attr("class", "d3-tip");
 
             })
@@ -250,8 +250,8 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)+10 + "px")     
-                .style("top", (d3.event.pageY)-1140 + "px");
+                .style("left", (d3.event.pageX)-5 + "px")     
+                .style("top", (d3.event.pageY)-985 + "px");
             });
         }
     }
