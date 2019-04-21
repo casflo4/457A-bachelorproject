@@ -179,7 +179,7 @@ SeasonTree.prototype.update = function(){
                 }
             })
             .attr("cy", function(){
-                return 115+45*(row);
+                return 108+45*(row);
             })
             .datum(vis.displayData[i][j])
             .on("mouseover",function(d)
@@ -227,7 +227,7 @@ SeasonTree.prototype.update = function(){
                 }
             })
             .attr("y", function(){
-                return 115+45*(row);
+                return 108+45*(row);
             })
             .style("fill", "white")
             .style("text-anchor", "middle")
