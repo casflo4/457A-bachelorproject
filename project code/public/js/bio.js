@@ -46,48 +46,80 @@ Bio.prototype.update = function(){
     vis.svg.selectAll("circle").remove();
     vis.svg.selectAll("text").remove();
     vis.svg.selectAll("image").remove();
-    vis.svg.append("text")
-    .text(vis.displayData["First Name - Bachelor"] + " " + vis.displayData["Last Name - Bachelor"])
-    .attr("x", vis.svgWidth/2)
-    .attr("y", 40)
-    .style("fill", "black")
-    .style("text-anchor", "middle")
-    .style("font-size", 18);
-    vis.svg.append("text")
-    .text("and")
-    .attr("x", vis.svgWidth/2)
-    .attr("y", 60)
-    .style("fill", "black")
-    .style("text-anchor", "middle")
-    .style("font-size", 15);
-    vis.svg.append("text")
-    .text(vis.displayData["First Name - Winner"] + " " + vis.displayData["Last Name - Winner"])
-    .attr("x", vis.svgWidth/2)
-    .attr("y", 80)
-    .style("fill", "black")
-    .style("text-anchor", "middle")
-    .style("font-size", 18);
-    vis.svg.append("image")
-    .attr("xlink:href", vis.displayData.Picture)
-    .attr("height", 180)
-    .attr("width", 180)
-    .attr("x", function(){
-        return (vis.svgWidth-180)/2;
-    })
-    .attr("y", 110);
-    vis.svg.append("text")
-    .text("Relationship Outcome:")
-    .attr("x", vis.svgWidth/2)
-    .attr("y", 320)
-    .style("fill", "black")
-    .style("text-anchor", "middle")
-    .style("font-size", 15);
-    vis.svg.append("text")
-    .text(vis.displayData["Marriage Status"])
-    .attr("x", vis.svgWidth/2)
-    .attr("y", 340)
-    .style("fill", "black")
-    .style("text-anchor", "middle")
-    .style("font-size", 15);
-
+    if (vis.displayData["Last Name - Winner"] == "Winner"){
+        vis.svg.append("text")
+        .text(vis.displayData["First Name - Bachelor"] + " " + vis.displayData["Last Name - Bachelor"])
+        .attr("x", vis.svgWidth/2)
+        .attr("y", 60)
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 18);
+        vis.svg.append("image")
+        .attr("xlink:href", vis.displayData.Picture)
+        .attr("height", 180)
+        .attr("width", 180)
+        .attr("x", function(){
+            return (vis.svgWidth-180)/2;
+        })
+        .attr("y", 110);
+        vis.svg.append("text")
+        .text("Outcome:")
+        .attr("x", vis.svgWidth/2)
+        .attr("y", 320)
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 15);
+        vis.svg.append("text")
+        .text(vis.displayData["Marriage Status"])
+        .attr("x", vis.svgWidth/2)
+        .attr("y", 340)
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 15);
+    }
+    else{
+        vis.svg.append("text")
+        .text(vis.displayData["First Name - Bachelor"] + " " + vis.displayData["Last Name - Bachelor"])
+        .attr("x", vis.svgWidth/2)
+        .attr("y", 40)
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 18);
+        vis.svg.append("text")
+        .text("and")
+        .attr("x", vis.svgWidth/2)
+        .attr("y", 60)
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 15);
+        vis.svg.append("text")
+        .text(vis.displayData["First Name - Winner"] + " " + vis.displayData["Last Name - Winner"])
+        .attr("x", vis.svgWidth/2)
+        .attr("y", 80)
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 18);
+        vis.svg.append("image")
+        .attr("xlink:href", vis.displayData.Picture)
+        .attr("height", 180)
+        .attr("width", 180)
+        .attr("x", function(){
+            return (vis.svgWidth-180)/2;
+        })
+        .attr("y", 110);
+        vis.svg.append("text")
+        .text("Relationship Outcome:")
+        .attr("x", vis.svgWidth/2)
+        .attr("y", 320)
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 15);
+        vis.svg.append("text")
+        .text(vis.displayData["Marriage Status"])
+        .attr("x", vis.svgWidth/2)
+        .attr("y", 340)
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 15);
+    }
 }
