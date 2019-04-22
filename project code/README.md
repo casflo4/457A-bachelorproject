@@ -15,3 +15,6 @@ https://bl.ocks.org/mbostock/7555321
 
 https://codepen.io/cssjockey/pen/jGzuK
 
+https://www.w3schools.com/howto/howto_js_display_checkbox_text.asp
+
+https://www.w3schools.com/howto/howto_css_switch.asp

@@ -15,7 +15,7 @@ Occupations.prototype.init = function(){
     var vis = this;
     vis.margin = {top: 10, right: 20, bottom: 30, left: 50};
 
-    var div = d3.select("#occupations").classed("view", true);
+    var div = d3.select("#occupations-vis").classed("view", true);
 
     // self.svgBounds = divyearChart.node().getBoundingClientRect();
     // vis.svgWidth = self.svgBounds.width - self.margin.left - self.margin.right;
@@ -190,11 +190,6 @@ Occupations.prototype.update = function(){
             https://observablehq.com/@d3/zoomable-circle-packing */
 
         d3.selectAll(".job")
-            .style("stroke", function(d){
-                var job = d3.select(this).attr("value")
-                console.log(d3.selectAll("#"+job))
-                return null;
-            })
             .on("click", d => focus !== d.parent && (zoom(d.parent), d3.event.stopPropagation()));
 
 
@@ -229,7 +224,6 @@ Occupations.prototype.update = function(){
             }
         })
         .attr("class", "label")
-        .attr("id", "labelmove")
         .attr("fill", "black")
         .style("display", function(d){
             if(d.parent===root){
