@@ -135,7 +135,7 @@ ListOccupations.prototype.update = function(){
 
             })
             .attr("y", function(d,i){
-                return rowHeight * (i+1) + rowHeight/10;
+                return rowHeight * (i+1) + rowHeight/10 + 1;
             })
             .style("fill", "white")
             .style("font-size", 18)
