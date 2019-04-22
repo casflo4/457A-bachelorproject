@@ -83,7 +83,7 @@ ListOccupations.prototype.wrangleData = function(){
     $(document).ready(function(){
         if (toggle.checked == true){
             vis.arr = vis.best_unique;
-        } 
+        }
         else {
             vis.arr = vis.worst_unique;
         }
@@ -113,6 +113,7 @@ ListOccupations.prototype.update = function(){
         .enter()
         .append("image")
             .attr("xlink:href", "public/css/images/rose2.png")
+            .attr("style", "opacity:.6")
             .attr("height", rowHeight)
             .attr("width", rowHeight)
             .attr("x", rowHeight/2)
@@ -125,9 +126,16 @@ ListOccupations.prototype.update = function(){
         .enter()
         .append("text")
             .attr("class", "num")
-            .attr("x", rowHeight-rowHeight/9)
+            .attr("x", function(d,i){
+              if(i+1==10){
+                return rowHeight-rowHeight/9 - 5;
+              }else{
+                return rowHeight-rowHeight/9;
+              }
+
+            })
             .attr("y", function(d,i){
-                return rowHeight * (i+1) + rowHeight/10;
+                return rowHeight * (i+1) + rowHeight/10 + 1;
             })
             .style("fill", "white")
             .style("font-size", 18)
@@ -147,13 +155,10 @@ ListOccupations.prototype.update = function(){
                 .attr("y", function(d,i){
                     return rowHeight * (i+1) + rowHeight/10;
                 })
-                .style("fill", "#ce0037")
+                .style("fill", "black")
                 .style("font-size", 16)
                 .text(function(d){
                     return d.key;
                 })
 
 }
-
-
-
