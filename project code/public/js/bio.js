@@ -16,7 +16,7 @@ Bio.prototype.init = function(){
 
     var div = d3.select("#bio");
     vis.svgWidth =  div.node().getBoundingClientRect().width;
-    vis.svgHeight = 580;
+    vis.svgHeight = 440;
 
     vis.svg = div.append("svg")
         .attr("width",vis.svgWidth)

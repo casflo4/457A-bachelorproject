@@ -17,7 +17,7 @@ SeasonTree.prototype.init = function(){
 
     var div = d3.select("#tree").classed("view", true);
     vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right-50;
-    vis.svgHeight = 580;
+    vis.svgHeight = 570;
     vis.imgWidth = 195.84;
 
     vis.svg = div.append("svg")
@@ -71,7 +71,7 @@ SeasonTree.prototype.update = function(){
     vis.svg.selectAll("image").remove();
     vis.svg.append("image")
     .attr("xlink:href", "public/css/images/rose.png")
-    .attr("height", 580)
+    .attr("height", 570)
     .attr("width", 177.48)
     .attr("x", function(){
         return (vis.svgWidth-vis.imgWidth)/2;
