@@ -37,12 +37,14 @@
             d3.select("#ranking-type-tree").on("change",updateTree);
             //Creating instances for each visualization here
             var occupations = new Occupations(source1, source2);
+            var list = new ListOccupations(source1, source2);
             var map = new LocMap(source6,source7,source8,source9);
             var locchart = new LocChart();
             var tree = new SeasonTree(source1);
             var bio = new Bio(source10);
             //call update on charts here
             occupations.update();
+            list.update();
             locchart.update(source1,source3,source4);
             d3.select("#mapthatwontload").on("click",updateVisualization);
             updateVisualization();

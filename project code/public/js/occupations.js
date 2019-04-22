@@ -190,11 +190,6 @@ Occupations.prototype.update = function(){
             https://observablehq.com/@d3/zoomable-circle-packing */
 
         d3.selectAll(".job")
-            .style("stroke", function(d){
-                var job = d3.select(this).attr("value")
-                console.log(d3.selectAll("#"+job))
-                return null;
-            })
             .on("click", d => focus !== d.parent && (zoom(d.parent), d3.event.stopPropagation()));
             
 

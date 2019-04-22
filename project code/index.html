@@ -24,7 +24,7 @@
     <ul class="tabs">
       <li class="tab-link current" data-tab="tree-container">Season Outcomes</li>
       <li class="tab-link" id="mapthatwontload" data-tab="map-container-2">Contestant Hometowns</li>
-      <li class="tab-link" data-tab="occupations-container">Contestant Occupations</li>
+      <li class="tab-link" data-tab="occupations-container-2">Contestant Occupations</li>
   </ul>
 
 <div id = "map-container-2" class = "tab-content">
@@ -107,19 +107,35 @@
 </div>
 </div>
 
-<div id = "occupations-container" class="tab-content">
+<div id = "occupations-container-2" class="tab-content">
     <h2>Contestant Occupations</h2>
     <p>This visualization depicts the job categories of Bachelor contestants in all of the seasons.
-        The size of the bubble indicates frequency, while the color indicates the Average Elimination Week.</p>
+        The size of the bubble indicates frequency, while a darker color indicates a larger Average Elimination Week,
+        which means greater success on the show. Click on a job category to learn more about the job titles in it.</p>
         <div id = "tooltip"></div>
         <br>
-        <div id = "occupations" class = "view"></div>
+        <div id="occupations-container">
+          <div id = "occupations" class = "view"></div>
+          <div id = "list-occupations" class = "view">
+            <h4>Top 10 Worst and Best Unique Job Titles</h4>
+            <p>Ranked by average elimination week.</p>
+              <div id= "toggle">
+                <span>Worst</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span>Best</span>
+            </div>
+          </div>
+      </div>
     </div>
 
     <script type="application/javascript" src="public/js/jquery.min.js"></script>
     <script type="application/javascript" src="public/js/leaflet.js"></script>
     <script type="application/javascript" src="public/js/d3plus.full.min.js"></script>
     <script type="application/javascript" src="public/js/map.js"></script>
+    <script type="application/javascript" src="public/js/list_occupations.js"></script>
     <script type="application/javascript" src="public/js/occupations.js"></script>
     <script type="application/javascript" src="public/js/seasonTree.js"></script>
     <script type="application/javascript" src="public/js/main.js"></script>
