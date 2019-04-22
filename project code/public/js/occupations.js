@@ -64,7 +64,7 @@ Occupations.prototype.wrangleData = function(){
             }
         })
 
-    console.log(vis.displayData);
+    // console.log(vis.displayData);
 
 }
 
@@ -134,6 +134,15 @@ Occupations.prototype.update = function(){
         .data(root.descendants().slice(1))
         .enter()
         .append("circle")
+        .attr("value", function(d){
+            var str = d.data.key;
+            str = str.replace(/\s/g, '-');
+            return str;
+        })
+        .attr("class", function(d){
+            if(!d.children){ return "job"; }
+            else{ return "category"; }
+        })
             .style("fill", function(d) {
                 if(d.children){
                     var sum = d3.sum(d.data.values, function(i) {
@@ -151,17 +160,43 @@ Occupations.prototype.update = function(){
                     return i(0.25);
                 }
             })
-            .attr("pointer-events", d => !d.children ? "none" : null)
             .on("mouseover", function(d){
-                d3.select(this).attr("stroke", "#000");
-                updateTooltip(d);
+                if(d.children){
+                    d3.selectAll(".category").attr("stroke", null)
+                    d3.select(this).attr("stroke", "#000");
+                    updateTooltip(d);
+                }
+                else{
+                    if(focus !== root){
+                        var job = d3.select(this).attr("value");
+                        d3.selectAll("#"+job).style("fill-opacity", 1);
+                    }
+                }
             })
-            .on("mouseout", function() { d3.select(this).attr("stroke", null); })
+            .on("mouseout", function(d){
+                if(!d.children){
+                    var job = d3.select(this).attr("value");
+                    var text = d3.selectAll("#"+job);
+                    if(text.node().getComputedTextLength() > d.r*10){
+                        text.style("fill-opacity", 0);
+                    }
+                }
+            })
+
+        d3.selectAll(".category")
             .on("click", d => focus !== d && (zoom(d), d3.event.stopPropagation()));
             //^^^^
             /* Zooming functionality (the zoomTo and zoom functions) from Mike Bostock tutorial
             https://observablehq.com/@d3/zoomable-circle-packing */
 
+        d3.selectAll(".job")
+            .style("stroke", function(d){
+                var job = d3.select(this).attr("value")
+                console.log(d3.selectAll("#"+job))
+                return null;
+            })
+            .on("click", d => focus !== d.parent && (zoom(d.parent), d3.event.stopPropagation()));
+            
 
     var text = vis.svg.append("g")
         .selectAll("text")
@@ -170,36 +205,38 @@ Occupations.prototype.update = function(){
         .append("text")
         .style("text-anchor", "middle")
         .attr("pointer-events", "none")
+        .attr("id", function(d){
+            var str = d.data.key;
+            str = str.replace(/\s/g, '-');
+            return str;
+        })
         .text(function(d) {
             if(d.children){
-                console.log(d + "   " + d.data.key);
                 return abbreviations[d.data.key];
             }
             else{
                 return d.data.key;
             }
         })
-        .attr("font-size", function(d){
+        .style("font-size", function(d){
             if(d.children){
-                size = d.r;
-                if(size > 60){ return 60; }
+                size = d.r/2;
+                if(size > 20){ return 20; }
                 else{ return size; }
             }
             else{
-                size = d.r/2;
-                return size;
+                return 12;
             }
         })
         .attr("class", "label")
         .attr("fill", "black")
-        // .attr("width", function(d){
-        //     return d.r;
-        // })
         .style("display", function(d){
             if(d.parent===root){
-                return "inline"
+                return "inline";
             }
-            else{ return "none" };
+            else{
+                return "none";
+            }
         });
 
         zoomTo([root.x, root.y, root.r * 2]);
@@ -232,12 +269,31 @@ Occupations.prototype.update = function(){
                 });
 
             text
-              .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
-              .transition(transition)
-                .style("fill-opacity", d => d.parent === focus ? 1 : 0)
-                .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
-                .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
-          }
+                .filter(function(d) { 
+                    return d.parent === focus || this.style.display === "inline"; 
+                })
+                .style("display", function(d){
+                    if(d.parent===focus){
+                        return "inline";
+                    }
+                    else{
+                        return "none";
+                    }
+                })
+                .style("fill-opacity", 0)
+                .transition(transition)
+                    .style("fill-opacity", function(d){
+                        if(d.parent===focus && this.getComputedTextLength() < d.r*10){
+                            return 1;
+                        }
+                        else{
+                            return 0;
+                        }
+                    })
+        
+        }
+
+        
 
         var tooltip = d3.select("#tooltip")
           .append("text")
