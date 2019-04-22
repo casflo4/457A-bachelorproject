@@ -17,7 +17,7 @@ SeasonTree.prototype.init = function(){
 
     var div = d3.select("#tree").classed("view", true);
     vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right-50;
-    vis.svgHeight = 570;
+    vis.svgHeight = 590;
     vis.imgWidth = 195.84;
 
     vis.svg = div.append("svg")
@@ -92,8 +92,8 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-250 + "px")
-                .style("top", (d3.event.pageY)-920 + "px")
+                .style("left", (d3.event.pageX)-330 + "px")
+                .style("top", (d3.event.pageY)-930 + "px")
                 .attr("class", "d3-tip");
 
             })
@@ -103,8 +103,8 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-250 + "px")
-                .style("top", (d3.event.pageY)-920 + "px");
+                .style("left", (d3.event.pageX)-330 + "px")
+                .style("top", (d3.event.pageY)-930 + "px");
             });
 
         vis.svg.append("text")
@@ -121,8 +121,8 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-250 + "px")
-                .style("top", (d3.event.pageY)-920 + "px")
+                    .style("left", (d3.event.pageX)-330 + "px")
+                    .style("top", (d3.event.pageY)-930 + "px")
                 .attr("class", "d3-tip");
 
             })
@@ -132,8 +132,8 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-250 + "px")
-                .style("top", (d3.event.pageY)-920 + "px");
+                .style("left", (d3.event.pageX)-330 + "px")
+                .style("top", (d3.event.pageY)-930 + "px");
             });
         vis.svg.append("text")
         .text("Winner")
@@ -201,8 +201,8 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-250 + "px")
-                .style("top", (d3.event.pageY)-920 + "px")
+                    .style("left", (d3.event.pageX)-330 + "px")
+                    .style("top", (d3.event.pageY)-930 + "px")
                 .attr("class", "d3-tip");
 
             })
@@ -212,8 +212,8 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-250 + "px")
-                .style("top", (d3.event.pageY)-920 + "px");
+                .style("left", (d3.event.pageX)-330 + "px")
+                .style("top", (d3.event.pageY)-930 + "px");
             });
             vis.svg.append("text")
             .text(vis.displayData[i][j].first_name)
@@ -252,8 +252,8 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-250 + "px")
-                .style("top", (d3.event.pageY)-920 + "px")
+                    .style("left", (d3.event.pageX)-330 + "px")
+                    .style("top", (d3.event.pageY)-930 + "px")
                 .attr("class", "d3-tip");
 
             })
@@ -263,8 +263,8 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-250 + "px")
-                .style("top", (d3.event.pageY)-920 + "px");
+                .style("left", (d3.event.pageX)-330 + "px")
+                .style("top", (d3.event.pageY)-930 + "px");
             });
         }
     }
