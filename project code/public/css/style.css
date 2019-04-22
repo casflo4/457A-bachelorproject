@@ -24,7 +24,10 @@ ul.tabs li.current{
 }
 
 #bio{
-    width: 250px;
+background-color: #cec4cb;
+margin-top: 0px;
+  width: 300px;
+  height: 570px;
 }
 
 .tab-content.current{

@@ -21,9 +21,10 @@
             .defer(d3.json, "data/geojson2.json")
             .defer(d3.json, "data/geojson3.json")
             .defer(d3.json, "data/geojson4.json")
+            .defer(d3.csv, "data/bio.csv")
             .await(createVisualization);
 
-          function createVisualization(error, source1, source2, source3, source4, source5, source6, source7, source8, source9) {
+          function createVisualization(error, source1, source2, source3, source4, source5, source6, source7, source8, source9, source10) {
             source4.forEach(function(d,i){
               source5.forEach(function(d1,i1){
                 if (d1.Name == d.Name && d["Last Name"] == d1["Last Name"] && d.Season == d1.Season){
@@ -39,6 +40,7 @@
             var map = new LocMap(source6,source7,source8,source9);
             var locchart = new LocChart();
             var tree = new SeasonTree(source1);
+            var bio = new Bio(source10);
             //call update on charts here
             occupations.update();
             locchart.update(source1,source3,source4);
@@ -47,6 +49,7 @@
 
             function updateTree(){
               tree.loadData(document.getElementById("ranking-type-tree").value);
+              bio.loadData(document.getElementById("ranking-type-tree").value);
             }
 
             function updateVisualization() {
