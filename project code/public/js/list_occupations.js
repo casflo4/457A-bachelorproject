@@ -113,7 +113,7 @@ ListOccupations.prototype.update = function(){
         .enter()
         .append("image")
             .attr("xlink:href", "public/css/images/rose2.png")
-            .attr("style", "opacity:.6")
+            .attr("style", "opacity:.7")
             .attr("height", rowHeight)
             .attr("width", rowHeight)
             .attr("x", rowHeight/2)

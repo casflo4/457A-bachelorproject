@@ -100,8 +100,9 @@ Occupations.prototype.update = function(){
         // .range(['#ffd6e1','#fdbbc8','#faa1b0','#f48698','#ee6981','#e5486b','#dc1456']);
         // .range([rgb(255, 214, 225), rgb(249,181,201), rgb(243,149,178), rgb(237,117,155),
         //     rgb(231,84,132), rgb(225,52,109), rgb(220, 20, 86)])
-        .range([d3.rgb("#ffd6e1"),d3.rgb('#fdbbc8'),d3.rgb('#faa1b0'),d3.rgb('#f48698'),
-        d3.rgb('#ee6981'),d3.rgb('#e5486b'),d3.rgb('#dc1456')]);
+        // .range([d3.rgb("#ffd6e1"),d3.rgb('#fdbbc8'),d3.rgb('#faa1b0'),d3.rgb('#f48698'),
+        // d3.rgb('#ee6981'),d3.rgb('#e5486b'),d3.rgb('#dc1456')])
+        .range([d3.rgb("#ffbcc2"), d3.rgb("#fca5ad"), d3.rgb("#f88e98"), d3.rgb("#f37784"), d3.rgb("#ec5e70"), d3.rgb("#e5415d"), d3.rgb("#dd114b")])
 
 
     var bubbleChart = d3.pack(vis.categoriesData)

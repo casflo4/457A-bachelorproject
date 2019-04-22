@@ -4,7 +4,9 @@ ul.tabs{
     list-style: none;
 }
 ul.tabs li{
-    background: #ffc4d6;
+    background: 
+    #ffcece
+    ;
     color: #222;
     display: inline-block;
     padding: 10px 15px;
@@ -54,7 +56,9 @@ margin-right: 20px;
 
 body {
     font-family: Lato;
-    background-color: #ffc4d6;
+    background-color: 
+    #ffcece
+    ;
 }
 
 /*.label{
@@ -307,7 +311,7 @@ h2,p,form{
     border-radius: 50%;
   }
 
-  #info{
+  .info{
     margin-left:0px;
       width: 90%;
   }
