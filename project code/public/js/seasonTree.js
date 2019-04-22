@@ -79,18 +79,24 @@ SeasonTree.prototype.update = function(){
     .style("opacity", 0.6);
     vis.svg.selectAll("circle").remove();
     vis.svg.selectAll("text").remove();
-    // vis.svg.append("text")
-    // .text("View the Outcomes of seasons of the Bachelor.")
-    // .attr("x", 20)
-    // .attr("y", 30)
-    // .style("fill", "black")
-    // .style("font-size", 14);
-    // vis.svg.append("text")
-    // .text("Hover over a contestant to learn more.")
-    // .attr("x", 20)
-    // .attr("y", 45)
-    // .style("fill", "black")
-    // .style("font-size", 14);
+    vis.svg.append("text")
+    .text("Season Tree")
+    .attr("x", 20)
+    .attr("y", 30)
+    .style("fill", "black")
+    .style("font-size", 32);
+    vis.svg.append("text")
+    .text("Choose a season to view the eliminations.")
+    .attr("x", 20)
+    .attr("y", 55)
+    .style("fill", "black")
+    .style("font-size", 14);
+    vis.svg.append("text")
+    .text("Hover over a contestant to learn more.")
+    .attr("x", 20)
+    .attr("y",70)
+    .style("fill", "black")
+    .style("font-size", 14);
     if(vis.displayData[0].length != 0){
         vis.svg.append("circle")
         .attr("r", 35)
