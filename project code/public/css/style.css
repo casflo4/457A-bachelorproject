@@ -232,7 +232,7 @@ h2,p,form{
   /*margin-right: 1%;*/
   }
 
-  ul{
-    margin-left: 40px;
+  ul,#tooltip{
+    margin-left: 20px;
     /*margin-right: 1%;*/
     }
