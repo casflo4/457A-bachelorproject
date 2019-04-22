@@ -26,7 +26,15 @@ ul.tabs li.current{
 #bio{
 background-color: #cec4cb;
 margin-top: 0px;
-  width: 300px;
+  width: 320px;
+  height: 570px;
+  border: 5px solid black;
+}
+
+#tree-description{
+margin-top: 0px;
+margin-right: 20px;
+  width: 500px;
   height: 570px;
 }
 

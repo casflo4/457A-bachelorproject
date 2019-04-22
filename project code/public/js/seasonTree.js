@@ -16,12 +16,12 @@ SeasonTree.prototype.init = function(){
     self.margin = {top: 10, right: 20, bottom: 30, left: 20};
 
     var div = d3.select("#tree").classed("view", true);
-    vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right;
+    vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right-150;
     vis.svgHeight = 580;
     vis.imgWidth = 195.84;
 
     vis.svg = div.append("svg")
-        .attr("width",vis.svgWidth)
+        .attr("width",vis.svgWidth+150)
         .attr("height",vis.svgHeight);
     var season = document.getElementById('ranking-type-tree').value;
     console.log(season);
@@ -79,24 +79,24 @@ SeasonTree.prototype.update = function(){
     .style("opacity", 0.6);
     vis.svg.selectAll("circle").remove();
     vis.svg.selectAll("text").remove();
-    vis.svg.append("text")
-    .text("Season Tree")
-    .attr("x", 20)
-    .attr("y", 30)
-    .style("fill", "black")
-    .style("font-size", 32);
-    vis.svg.append("text")
-    .text("Choose a season to view the eliminations.")
-    .attr("x", 20)
-    .attr("y", 55)
-    .style("fill", "black")
-    .style("font-size", 14);
-    vis.svg.append("text")
-    .text("Hover over a contestant to learn more.")
-    .attr("x", 20)
-    .attr("y",70)
-    .style("fill", "black")
-    .style("font-size", 14);
+    // vis.svg.append("text")
+    // .text("Season Tree")
+    // .attr("x", 20)
+    // .attr("y", 30)
+    // .style("fill", "black")
+    // .style("font-size", 32);
+    // vis.svg.append("text")
+    // .text("Choose a season to view the eliminations.")
+    // .attr("x", 20)
+    // .attr("y", 55)
+    // .style("fill", "black")
+    // .style("font-size", 14);
+    // vis.svg.append("text")
+    // .text("Hover over a contestant to learn more.")
+    // .attr("x", 20)
+    // .attr("y",70)
+    // .style("fill", "black")
+    // .style("font-size", 14);
     if(vis.displayData[0].length != 0){
         vis.svg.append("circle")
         .attr("r", 35)
