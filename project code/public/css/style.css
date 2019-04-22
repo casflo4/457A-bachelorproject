@@ -23,9 +23,20 @@ ul.tabs li.current{
     padding: 15px;
 }
 
+#bio{
+background-color: #cec4cb;
+margin-top: 0px;
+  width: 300px;
+  height: 570px;
+}
+
 .tab-content.current{
     display: inherit;
     background: white;
+}
+
+#container{
+    display: flex;
 }
 
 
@@ -35,18 +46,34 @@ body {
     background-color: #ffc4d6;
 }
 
+/*.label{
+  margin-left: 100px;
+}*/
+
 #map-container{
   display: flex;
     /*float: left;*/
     justify-content: space-around;
     width: 100%;
-    height: 404px;
+    height: 420px;
     padding-left: 2%;
     padding-right: 2%;
 }
 
+#tree{
+    /*display: flex;*/
+    justify-content: space-around;
+    width: 100%;
+    height: 570px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+#tree-container{
+  height: 635px;
+}
+
 #occupations-container{
-    width:100%
+    width:100%;
 }
 
 h1 {
@@ -116,9 +143,11 @@ h2{
 .d3-tip {
     /*line-height: 5;*/
     padding-left: 10px;
-    width: 250px;
+    width: 280px;
+    position: relative;
     padding-right: 10px;
     min-width: 250px;
+    font-size: 16px;
     border-style: groove;
     /*padding: 12px;*/
     background: #FFFFFF;
@@ -136,11 +165,11 @@ h2{
 .d3-tip:after {
     /*box-sizing: border-box;*/
     display: inline;
-    font-size: 10px;
+    font-size: 12px;
     width: 100%;
     /*line-height: 1;*/
     color: rgba(0, 0, 0, 0.8);
-    position: relative;
+    /*position: relative;*/
     pointer-events: none;
 }
 
@@ -148,8 +177,8 @@ h2{
 .d3-tip.n:after {
     content: "\25BC";
     /*margin: -1px 0 0 0;*/
-    top: 100%;
-    left: 0;
+/*    top: 100%;
+    left: 0;*/
     text-align: center;
 }
 
@@ -157,16 +186,16 @@ h2{
 .d3-tip.e:after {
     content: "\26A0";
     /*margin: -4px 0 0 0;*/
-    top: -800px;
-    left: -8px;
+/*    top: -800px;
+    left: -8px;*/
 }
 
 /* Southward tooltips */
 .d3-tip.s:after {
     content: "\25B2";
     /*margin: 4px 0 1px 0;*/
-    top: -8px;
-    left: 1481px;
+/*    top: -8px;
+    left: 1481px;*/
     text-align: center;
 }
 
@@ -174,8 +203,8 @@ h2{
 .d3-tip.w:after {
     content: "\25B6";
     /*margin: -4px 0 0 -1px;*/
-    top: 50%;
-    left: 100%;
+/*    top: 50%;
+    left: 100%;*/
 }
 
 h3{

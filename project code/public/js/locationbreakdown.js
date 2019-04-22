@@ -288,11 +288,20 @@ var winnersnested = d3.nest()
 
     values = []
     var x = 0;
+    if (og[0].values.length==66){
+      console.log(66);
+      console.log(og[0].values.length);
+      while(x<=og[0].values.length){
+        values.push(x);
+        x+=3;
+      }
+    }
+    else{
     while(x<=og[0].values.length){
       values.push(x);
       x++;
     }
-
+  }
     self.yAxis = d3.axisLeft()
         .scale(self.y)
         .tickValues(values)
