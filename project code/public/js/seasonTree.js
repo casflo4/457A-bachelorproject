@@ -77,18 +77,18 @@ SeasonTree.prototype.update = function(){
     });
     vis.svg.selectAll("circle").remove();
     vis.svg.selectAll("text").remove();
-    vis.svg.append("text")
-    .text("View the Outcomes of seasons of the Bachelor.")
-    .attr("x", 20)
-    .attr("y", 30)
-    .style("fill", "black")
-    .style("font-size", 14);
-    vis.svg.append("text")
-    .text("Hover over a contestant to learn more.")
-    .attr("x", 20)
-    .attr("y", 45)
-    .style("fill", "black")
-    .style("font-size", 14);
+    // vis.svg.append("text")
+    // .text("View the Outcomes of seasons of the Bachelor.")
+    // .attr("x", 20)
+    // .attr("y", 30)
+    // .style("fill", "black")
+    // .style("font-size", 14);
+    // vis.svg.append("text")
+    // .text("Hover over a contestant to learn more.")
+    // .attr("x", 20)
+    // .attr("y", 45)
+    // .style("fill", "black")
+    // .style("font-size", 14);
     if(vis.displayData[0].length != 0){
         vis.svg.append("circle")
         .attr("r", 35)
@@ -102,7 +102,7 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-225 + "px")
+                .style("left", (d3.event.pageX)-255 + "px")
                 .style("top", (d3.event.pageY)-920 + "px")
                 .attr("class", "d3-tip");
 
@@ -113,7 +113,7 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-225 + "px")
+                .style("left", (d3.event.pageX)-255 + "px")
                 .style("top", (d3.event.pageY)-920 + "px");
             });
 
@@ -131,7 +131,7 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-225 + "px")
+                .style("left", (d3.event.pageX)-255 + "px")
                 .style("top", (d3.event.pageY)-920 + "px")
                 .attr("class", "d3-tip");
 
@@ -142,7 +142,7 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-225 + "px")
+                .style("left", (d3.event.pageX)-255 + "px")
                 .style("top", (d3.event.pageY)-920 + "px");
             });
     }
@@ -188,7 +188,7 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-225 + "px")
+                .style("left", (d3.event.pageX)-255 + "px")
                 .style("top", (d3.event.pageY)-920 + "px")
                 .attr("class", "d3-tip");
 
@@ -199,7 +199,7 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-225 + "px")
+                .style("left", (d3.event.pageX)-255 + "px")
                 .style("top", (d3.event.pageY)-920 + "px");
             });
             vis.svg.append("text")
@@ -239,7 +239,7 @@ SeasonTree.prototype.update = function(){
                 vis.div.html("<strong>"+d.first_name+" "+d.last_name+"</strong>, "+d.age+"<br><p>"
                     +d.city+", "+d.state+", "+d.country+"<br>"
                     +d.occupation+"</p>")
-                .style("left", (d3.event.pageX)-225 + "px")
+                .style("left", (d3.event.pageX)-255 + "px")
                 .style("top", (d3.event.pageY)-920 + "px")
                 .attr("class", "d3-tip");
 
@@ -250,7 +250,7 @@ SeasonTree.prototype.update = function(){
             })
             .on("mousemove",function(d){
                 vis.div
-                .style("left", (d3.event.pageX)-225 + "px")
+                .style("left", (d3.event.pageX)-255 + "px")
                 .style("top", (d3.event.pageY)-920 + "px");
             });
         }

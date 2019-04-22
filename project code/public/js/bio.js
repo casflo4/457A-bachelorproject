@@ -74,5 +74,20 @@ Bio.prototype.update = function(){
     .attr("x", function(){
         return (vis.svgWidth-180)/2;
     })
-    .attr("y", 100);
+    .attr("y", 110);
+    vis.svg.append("text")
+    .text("Relationship Outcome:")
+    .attr("x", vis.svgWidth/2)
+    .attr("y", 320)
+    .style("fill", "black")
+    .style("text-anchor", "middle")
+    .style("font-size", 15);
+    vis.svg.append("text")
+    .text(vis.displayData["Marriage Status"])
+    .attr("x", vis.svgWidth/2)
+    .attr("y", 340)
+    .style("fill", "black")
+    .style("text-anchor", "middle")
+    .style("font-size", 15);
+
 }
