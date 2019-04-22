@@ -4,7 +4,7 @@ ul.tabs{
     list-style: none;
 }
 ul.tabs li{
-    background: rgba(225,75,108,0);
+    background: #ffb5c1;
     color: #222;
     display: inline-block;
     padding: 10px 15px;
@@ -27,7 +27,7 @@ ul.tabs li.current{
 position: relative;
 top: 20px;
 margin-right: 20px;
-background-color: #cec4cb;
+background-color: #d1cacb;
 margin-top: 0px;
   width: 340px;
   height: 550px;
@@ -54,7 +54,7 @@ margin-right: 20px;
 
 body {
     font-family: Lato;
-    background-color: rgba(225,75,108,.4);/*#ffc4d6;*/
+    background-color: #ffb5c1;
 }
 
 /*.label{
