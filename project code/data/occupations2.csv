@@ -32,7 +32,7 @@ Accountant,1,Business Management & Administration
 Executive Assistant,2,Business Management & Administration
 Flight Attendant,2,Transportation & Logistics
 Guidance Counselor,6,Education
-Communications Director/NHL Ice Girl,1,Arts & Communications
+Communications Director and NHL Ice Girl,1,Arts & Communications
 Photographer,2,Arts & Communications
 Nanny,5,Human Services
 Waitress,3,Hospitality & Tourism
@@ -47,7 +47,7 @@ Bartender,3,Hospitality & Tourism
 Music Composer,4,Arts & Communications
 Digital Marketing Manager,2,Sales & Marketing
 Student,2,Education
-Medical Sales Representative/NBA Dancer,6,Sales & Marketing
+Medical Sales Representative and NBA Dancer,6,Sales & Marketing
 Mathematician,3,Miscellaneous
 Travel Nurse,3,Health Science
 Unemployed,4,Miscellaneous
@@ -97,7 +97,7 @@ Realtor,3,Sales & Marketing
 Waitress,7,Hospitality & Tourism
 Attorney,9,Law & Public Safety
 Pediatric Nurse,10,Health Science
-Nanny/Freelance Journalist,6,Human Services
+Nanny and Freelance Journalist,6,Human Services
 Neonatal Nurse,10,Health Science
 Boutique Owner,10,Business Management & Administration
 Business Owner,8,Business Management & Administration
@@ -168,12 +168,12 @@ Account Manager,6,Sales & Marketing
 Consultant,2,Business Management & Administration
 Model,2,Sales & Marketing
 Model,2,Sales & Marketing
-Massage Therapist/Bartender,2,Human Services
+Massage Therapist and Bartender,2,Human Services
 Hair Stylist,2,Human Services
 Account Manager,3,Sales & Marketing
 Student,2,Education
 Professional Soccer Player,2,Sports & Training
-Swim Instructor/Nanny/Personal Trainer,3,Sports & Training
+Swim Instructor and Nanny and Personal Trainer,3,Sports & Training
 Attorney,3,Law & Public Safety
 Professional Cheerleader,3,Sports & Training
 Account Manager,4,Sales & Marketing
@@ -238,7 +238,7 @@ Social Worker,9,Human Services
 News Reporter,1,Arts & Communications
 Law Student,1,Education
 Realtor,1,Sales & Marketing
-Timothy's Biology Teacher,1,Miscellaneous
+Timothys Biology Teacher,1,Miscellaneous
 Event Planner,1,Business Management & Administration
 Graduate Student,1,Education
 Law Student,1,Education
@@ -278,7 +278,7 @@ Hot-dog vendor,3,Sales & Marketing
 Personal Trainer,3,Sports & Training
 Singer-songwriter,4,Arts & Communications
 Insurance Representative,1,Sales & Marketing
-Children's book author,4,Arts & Communications
+Childrens book author,4,Arts & Communications
 Fashion designer,5,Arts & Communications
 Advertising Coordinator,5,Sales & Marketing
 Photographer,6,Arts & Communications
@@ -292,7 +292,7 @@ Teacher,1,Education
 Menswear Buyer,1,Sales & Marketing
 Jewelry Designer,1,Arts & Communications
 Account Executive,1,Business Management & Administration
-Single Mother & Charity Accountant,1,Miscellaneous
+Single Mother and Charity Accountant,1,Miscellaneous
 Nurse Practitioner,1,Health Science
 Medical Student,2,Education
 Teacher,2,Education
@@ -360,7 +360,7 @@ Hair Stylist,7,Human Services
 Food writer,7,Arts & Communications
 Funeral Director,8,Human Services
 Dental Student,9,Education
-Children's Hospital Event Planner,10,Business Management & Administration
+Childrens Hospital Event Planner,10,Business Management & Administration
 Office Manager,3,Business Management & Administration
 Neonatal Nurse,1,Health Science
 Critical Care Nurse,1,Health Science
