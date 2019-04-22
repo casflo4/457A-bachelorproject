@@ -68,13 +68,15 @@ SeasonTree.prototype.allMessage = function(){
 
 SeasonTree.prototype.update = function(){
     var vis = this;
+    vis.svg.selectAll("image").remove();
     vis.svg.append("image")
     .attr("xlink:href", "public/css/images/rose.png")
     .attr("height", 580)
     .attr("width", 177.48)
     .attr("x", function(){
         return (vis.svgWidth-vis.imgWidth)/2;
-    });
+    })
+    .style("opacity", 0.6);
     vis.svg.selectAll("circle").remove();
     vis.svg.selectAll("text").remove();
     // vis.svg.append("text")
@@ -145,10 +147,33 @@ SeasonTree.prototype.update = function(){
                 .style("left", (d3.event.pageX)-255 + "px")
                 .style("top", (d3.event.pageY)-920 + "px");
             });
+        vis.svg.append("text")
+        .text("Winner")
+        .attr("x", vis.svgWidth/2-20)
+        .attr("y", 21)
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 28)
     }
     var row = 0;
     for(var i=1; i<vis.displayData.length; ++i){
         row +=1;
+        vis.svg.append("text")
+        .text("Eliminated Week " + vis.displayData[i][0].elimination_week)
+        .attr("x", function(){
+            if (i%2 == 0){
+                return vis.svgWidth/2-145;
+            }
+            else{
+                return vis.svgWidth/2+130;
+            }
+        })
+        .attr("y", function(){
+                return 78+45*(row);
+            })
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", 18)
         for(var j=0; j<vis.displayData[i].length; ++j){
             if (j==6 || j==12){
                 row +=1;
