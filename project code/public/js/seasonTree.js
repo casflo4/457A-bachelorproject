@@ -16,12 +16,12 @@ SeasonTree.prototype.init = function(){
     self.margin = {top: 10, right: 20, bottom: 30, left: 20};
 
     var div = d3.select("#tree").classed("view", true);
-    vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right-150;
+    vis.svgWidth =  div.node().getBoundingClientRect().width - self.margin.left - self.margin.right-50;
     vis.svgHeight = 580;
     vis.imgWidth = 195.84;
 
     vis.svg = div.append("svg")
-        .attr("width",vis.svgWidth+150)
+        .attr("width",vis.svgWidth+50)
         .attr("height",vis.svgHeight);
     var season = document.getElementById('ranking-type-tree').value;
     console.log(season);
