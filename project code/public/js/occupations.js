@@ -191,7 +191,7 @@ Occupations.prototype.update = function(){
 
         d3.selectAll(".job")
             .on("click", d => focus !== d.parent && (zoom(d.parent), d3.event.stopPropagation()));
-            
+
 
     var text = vis.svg.append("g")
         .selectAll("text")
@@ -224,6 +224,7 @@ Occupations.prototype.update = function(){
             }
         })
         .attr("class", "label")
+        .attr("id", "labelmove")
         .attr("fill", "black")
         .style("display", function(d){
             if(d.parent===root){
@@ -264,8 +265,8 @@ Occupations.prototype.update = function(){
                 });
 
             text
-                .filter(function(d) { 
-                    return d.parent === focus || this.style.display === "inline"; 
+                .filter(function(d) {
+                    return d.parent === focus || this.style.display === "inline";
                 })
                 .style("display", function(d){
                     if(d.parent===focus){
@@ -285,10 +286,10 @@ Occupations.prototype.update = function(){
                             return 0;
                         }
                     })
-        
+
         }
 
-        
+
 
         var tooltip = d3.select("#tooltip")
           .append("text")

@@ -24,9 +24,20 @@ ul.tabs li.current{
 }
 
 #bio{
+position: relative;
+top: 20px;
+margin-right: 20px;
 background-color: #cec4cb;
 margin-top: 0px;
-  width: 300px;
+  width: 340px;
+  height: 550px;
+  border: 5px solid black;
+}
+
+#tree-description{
+margin-top: 10px;
+margin-right: 20px;
+  width: 350px;
   height: 570px;
 }
 
@@ -228,8 +239,8 @@ h2,p,form{
   /*margin-right: 1%;*/
   }
 
-  ul{
-    margin-left: 40px;
+  ul,#tooltip{
+    margin-left: 20px;
     /*margin-right: 1%;*/
     }
 
