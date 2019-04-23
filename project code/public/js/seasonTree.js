@@ -29,7 +29,6 @@ SeasonTree.prototype.init = function() {
     .attr("width", vis.svgWidth + 50)
     .attr("height", vis.svgHeight);
   var season = document.getElementById('ranking-type-tree').value;
-  console.log(season);
   vis.loadData(season);
 };
 
@@ -81,7 +80,6 @@ SeasonTree.prototype.loadData = function(season) {
       vis.displayData.push(row);
     }
   }
-  console.log(vis.displayData);
   vis.update();
 
 };

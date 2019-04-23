@@ -27,7 +27,6 @@ Bio.prototype.init = function() {
     .attr("width", vis.svgWidth)
     .attr("height", vis.svgHeight);
   var season = document.getElementById('ranking-type-tree').value;
-  console.log(season);
   vis.loadData(season);
 };
 
@@ -39,7 +38,6 @@ Bio.prototype.loadData = function(season) {
       vis.displayData = dataset[i];
     }
   }
-  console.log(vis.displayData);
   vis.update();
 };
 

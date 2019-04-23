@@ -65,8 +65,6 @@ ListOccupations.prototype.wrangleData = function() {
 
   vis.displayData = nest.entries(vis.categoriesData);
 
-  console.log(vis.displayData);
-
   //return only unique jobs
   var uniqueJobs = vis.displayData.filter(function(d) {
     return d.value.count === 1;
@@ -160,8 +158,6 @@ ListOccupations.prototype.update = function() {
       var n = i + 1
       return n.toString();
     })
-
-  console.log(vis.arr)
 
   //add job titles
   vis.svg.selectAll(".jobtitle")

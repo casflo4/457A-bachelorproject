@@ -257,8 +257,6 @@ LocChart.prototype.update = function(data1, data2, data3) {
 
   //change bounds based upon max y value
   if (og[0].values.length == 66) {
-    console.log(66);
-    console.log(og[0].values.length);
     while (x <= og[0].values.length) {
       values.push(x);
       x += 3;
