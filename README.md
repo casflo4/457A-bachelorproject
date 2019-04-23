@@ -4,8 +4,8 @@ Changing the world one bachelor at a time
 ## Here's our site! Take a look:
 https://washuvis.github.io/bachelornation/project%20code/index.html
 
-Credit where credit is due.
-Here are the external sources we used:
+### Credit where credit is due.
+### Here are the external sources we used:
 
 [Pack layout tutorial](https://d3indepth.com/layouts/)
 D3 Hierarchy documentation:  https://github.com/d3/d3-hierarchy
