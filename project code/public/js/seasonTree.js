@@ -91,7 +91,6 @@ SeasonTree.prototype.loadData = function(season) {
     if (row.length != 0) {
       vis.displayData.push(row);
     }
-  }
 //update the vis with the new data
   vis.update();
 
