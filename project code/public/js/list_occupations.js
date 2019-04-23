@@ -26,6 +26,7 @@ ListOccupations.prototype.init = function() {
     left: 50
   };
 
+  //selects the div from html
   var div = d3.select("#list-occupations").classed("view", true);
 
   vis.svgWidth = 500;
@@ -45,6 +46,7 @@ ListOccupations.prototype.wrangleData = function() {
     d.Elimination_Week = +d.Elimination_Week;
   });
 
+  //groups the data by occupation, giving each a value of count and average elimination week
   var nest = d3.nest()
     .key(function(d) {
       return d.Occupation;
@@ -65,14 +67,17 @@ ListOccupations.prototype.wrangleData = function() {
 
   console.log(vis.displayData);
 
+  //return only unique jobs
   var uniqueJobs = vis.displayData.filter(function(d) {
     return d.value.count === 1;
   })
 
+  //sort descending by elimination week to get the best unique jobs
   vis.best_unique = uniqueJobs.sort(function(a, b) {
     return b.value.avg_elim_week - a.value.avg_elim_week
   }).slice(0, 10);
 
+  //sort ascending by elimination week to get the worst unique jobs
   vis.worst_unique = uniqueJobs.sort(function(a, b) {
     return a.value.avg_elim_week - b.value.avg_elim_week
   }).slice(0, 10);
@@ -90,6 +95,8 @@ ListOccupations.prototype.wrangleData = function() {
   //     return a.value.avg_elim_week - b.value.avg_elim_week
   // }).slice(0,10);
 
+  //Check the toggle button for if the user wants to view the worst or best jobs
+  //Change the array being used in the update function based on the user's selection
   $(document).ready(function() {
     if (toggle.checked == true) {
       vis.arr = vis.best_unique;
@@ -116,6 +123,7 @@ ListOccupations.prototype.update = function() {
 
   vis.svg.selectAll(".jobtitle").remove();
 
+  //add roses to the vis
   vis.svg.selectAll("image")
     .data(vis.arr)
     .enter()
@@ -129,6 +137,7 @@ ListOccupations.prototype.update = function() {
       return rowHeight * i + rowMargin;
     })
 
+//add numbers to the roses
   vis.svg.selectAll(".num")
     .data(vis.arr)
     .enter()
@@ -154,6 +163,7 @@ ListOccupations.prototype.update = function() {
 
   console.log(vis.arr)
 
+  //add job titles
   vis.svg.selectAll(".jobtitle")
     .data(vis.arr)
     .enter()

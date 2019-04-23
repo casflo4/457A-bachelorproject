@@ -78,6 +78,7 @@ LocMap.prototype.init = function() {
   self.y = d3.scaleBand()
     .rangeRound([0, 50])
     .paddingInner(0.1);
+
   //creates x scale
   self.x = d3.scaleLinear()
     .range([0, self.svgWidth]);
@@ -141,8 +142,9 @@ LocMap.prototype.init = function() {
 
 /**
  * Creates the map
- * @param newbysentence sentiment data based on each sentence for every story
- * @param newbystory sentimnent data for each story
+ * @param data1 candidate data #1
+ * @param data2 candidate data #2
+ * @param data3  candidate data #3
  **/
 
 LocMap.prototype.update = function(data1, data2, data3) {

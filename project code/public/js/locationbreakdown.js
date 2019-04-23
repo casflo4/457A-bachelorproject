@@ -1,7 +1,5 @@
 /**
- * Constructor for the ElectoralVoteChart
- *
- * @param brushSelection an instance of the BrushSelection class
+ * Constructor for the LocChart
  */
 function LocChart() {
 
@@ -32,44 +30,51 @@ LocChart.prototype.init = function() {
     .attr("width", self.svgWidth)
     .attr("height", self.svgHeight)
 
+  //creates x scale
   self.x = d3.scaleBand()
     .range([0, self.svgWidth - 51])
     .paddingInner(0.2)
     .domain(d3.range(0, 50));
 
+  //creates y scale
   self.y = d3.scaleLinear()
     .range([self.svgHeight - 25, 80]);
 
+  //creates x axis
   self.xAxis = d3.axisBottom()
     .scale(self.x);
 
-
-
+  //creates g for x axis
   self.svg.append("g")
     .attr("class", "x-axis axis")
     .attr("transform", "translate(0," + self.svgHeight + ")");
 
+  //creates g for y axis
   self.svg.append("g")
     .attr("class", "y-axis axis");
 
-  // Axis title
+  //x axis title
   self.svg.append("text")
     .attr("x", self.svgWidth / 2 - 10)
     .attr("y", self.svgHeight)
     .text("Home Location");
 
+  //graph title
   self.svg.append("text")
     .attr("x", self.svgWidth / 2 - 100)
     .attr("y", 15)
     .text("Bachelor Candidate Success By Home Locations");
 
+    //y axis title
   self.svg.append("text")
     .attr("x", -220)
     .attr("y", 20)
     .text("# of Candidates")
     .attr("transform", "rotate(270)");
 };
-
+/**
+ * Assigns region to state
+ */
 LocChart.prototype.chooseloc = function(d) {
   if (d.key == "Alabama") {
     return "South";
@@ -179,25 +184,30 @@ LocChart.prototype.chooseloc = function(d) {
 }
 
 /**
- * Creates the map
- * @param newbysentence sentiment data based on each sentence for every story
- * @param newbystory sentimnent data for each story
+ * Creates the chart
+ * @param data1 candidate data #1
+ * @param data2 candidate data #2
+ * @param data3  candidate data #3
  **/
 
-LocChart.prototype.update = function(data1, data2, data3) {
 
+LocChart.prototype.update = function(data1, data2, data3) {
+  //removes existing rects
   d3.selectAll(".axis").remove().exit();
   d3.selectAll("rect").remove().exit();
 
   var self = this;
+
   self.worseCount = 0;
   seasonlength = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  //calculates the number of contestants in each season
   data3.forEach(function(d, i) {
     if (parseInt(d.Elimination_Week) > seasonlength[parseInt(d.Season) - 1]) {
       seasonlength[parseInt(d.Season) - 1] = parseInt(d.Elimination_Week);
     }
   });
 
+  //nests contestants based on state and combining results D.C and D.C.
   var og = d3.nest()
     .key(function(d) {
       if (d.State == "D.C") {
@@ -208,12 +218,14 @@ LocChart.prototype.update = function(data1, data2, data3) {
     })
     .entries(data3);
 
+  //filtering the winners
   var winners = data3.filter(function(d, i) {
     if (parseInt(d.Place) == 1 || d.Outcome == "Winner") {
       return d;
     }
   });
 
+  //nests winners based on state and combining results D.C and D.C.
   var winnersnested = d3.nest()
     .key(function(d) {
       if (d.State == "D.C") {
@@ -224,21 +236,26 @@ LocChart.prototype.update = function(data1, data2, data3) {
     })
     .entries(winners);
 
-
+  //sorted nested contestants
   og.sort(function(x, y) {
     return d3.descending(x.values.length, y.values.length);
   });
 
+  //input x's domain based on the contestants state
   self.x.domain(og.map(function(d) {
     return d.key;
   }))
 
+  //determine the width based upon the number of states present for the season
   self.newwidth = (self.svgWidth - 45) / og.length;
 
+  //input x's domain based on the state with the most contestants
   self.y.domain([0, og[0].values.length]);
 
-  values = []
+  values = [];
   var x = 0;
+
+  //change bounds based upon max y value
   if (og[0].values.length == 66) {
     console.log(66);
     console.log(og[0].values.length);
@@ -252,37 +269,26 @@ LocChart.prototype.update = function(data1, data2, data3) {
       x++;
     }
   }
+
+  //create y axis
   self.yAxis = d3.axisLeft()
     .scale(self.y)
     .tickValues(values)
     .tickFormat(d => (d));
 
+  //create base rects for worse than half
   var rect = self.svg.selectAll("rect")
     .data(og);
+
   rect.enter().append("rect")
     .transition()
     .duration(250)
     .ease(d3.easeLinear)
     .attr("fill", function(d, i) {
-      /*
-      if (LocChart.prototype.chooseloc(d)=="Northeast"){
-        return 'rgba(99,173,242,.5)';//"#63ADF2";
-      }
-      else if (LocChart.prototype.chooseloc(d)=="Midwest"){
-          return 'rgba(84,94,117,.5)';//"#545E75";
-      }
-      else if (LocChart.prototype.chooseloc(d)=="South"){
-          return 'rgba(156,175,183,.5)';//"#9CAFB7";
-      }
-      else if (LocChart.prototype.chooseloc(d)=="West"){
-          return 'rgba(66,1-29,164,.5)';//"#4281A4";
-      }
-      else{
-        return "black";
-      }*/
       return "rgb(225,75,108)";
     })
     .attr("y", function(d, i) {
+      //count non-winners into better and worse than half
       self.worseCount = 0;
       self.betterCount = 0;
       self.winner = 0;
@@ -297,7 +303,11 @@ LocChart.prototype.update = function(data1, data2, data3) {
           }
         }
       });
+
+      //figure the vertical length of 1 contestant
       lengthofsegment = (self.svgHeight - 25 - 80) / og[0].values.length;
+
+      //append more rectancles for better than half
       self.svg.append("rect")
         .transition()
         .duration(250)
@@ -315,6 +325,8 @@ LocChart.prototype.update = function(data1, data2, data3) {
         .attr("height", function() {
           return self.betterCount * lengthofsegment;
         });
+
+      //return y for worse than half
       return self.svgHeight - self.winner * lengthofsegment - self.worseCount * lengthofsegment - self.betterCount * lengthofsegment - 80;
     })
     .attr("x", function(d, i) {
@@ -322,6 +334,8 @@ LocChart.prototype.update = function(data1, data2, data3) {
     })
     .attr("width", self.newwidth - 5)
     .attr("height", function(d, i) {
+
+      //append winner rects
       winnersnested.forEach(function(d1, i1) {
         if (d1.key == d.key) {
           self.svg.append("rect")
@@ -343,7 +357,7 @@ LocChart.prototype.update = function(data1, data2, data3) {
             });
         }
       })
-
+      //calculate height of worse than half rect
       self.worseCount = 0;
       self.betterCount = 0;
       self.winner = 0;
@@ -362,6 +376,7 @@ LocChart.prototype.update = function(data1, data2, data3) {
       return self.worseCount * lengthofsegment;
     })
 
+  //append x axis and rotate
   var groupx = self.svg.append("g")
     .attr("class", "axis x-axis")
     .attr("transform", "translate(" + self.margin.left + "," + (self.svgHeight - self.margin.bottom - 50) + ")")
@@ -381,6 +396,7 @@ LocChart.prototype.update = function(data1, data2, data3) {
       return "rotate(-45)"
     });
 
+  //append y axis and rotate
   var groupy = self.svg.append("g")
     .attr("class", "axis y-axis")
     .attr("transform", "translate(" + self.margin.left + "," + (self.margin.top - 85) + ")")

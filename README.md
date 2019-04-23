@@ -4,6 +4,8 @@ Changing the world one bachelor at a time
 ## Here's our site! Take a look:
 [The Bachelor: What Makes the Perfect Bachelor Contestant?](https://washuvis.github.io/bachelornation/project%20code/index.html)
 
+[Screencast Video](https://youtu.be/pM6WCKNMDFw)
+
 #### Credit where credit is due.<br />Here are the external sources we used:
 - [Pack layout tutorial](https://d3indepth.com/layouts/)
 - [D3 Hierarchy documentation](https://github.com/d3/d3-hierarchy)
