@@ -1,13 +1,11 @@
 # 457A-bachelorproject
-Changing the world one bachelor at a time
+### Changing the world one bachelor at a time
 
-Github Pages Link to see process book:
-https://casflo4.github.io/457A-bachelorproject/proposalandprocessbook/processbook.html
+## Here's our site! Take a look:
+https://washuvis.github.io/bachelornation/project%20code/index.html
 
-Github Pages Link to see the site so far:
-https://casflo4.github.io/457A-bachelorproject/project%20code/index.html
-
-External Sources Used
+###Credit where credit is due.
+###Here are the external sources we used:
 
 Pack layout tutorial:  https://d3indepth.com/layouts/
 D3 Hierarchy documentation:  https://github.com/d3/d3-hierarchy
@@ -29,5 +27,3 @@ https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
 https://leafletjs.com/examples/quick-start/
 https://leafletjs.com/examples/custom-icons/
 https://leafletjs.com/examples/geojson/
-
-
