@@ -30,3 +30,4 @@ Changing the world one bachelor at a time.
 - [jQuery tab](https://codepen.io/cssjockey/pen/jGzuK)
 - [Displaying Checkbox Text](https://www.w3schools.com/howto/howto_js_display_checkbox_text.asp)
 - [CSS Switch](https://www.w3schools.com/howto/howto_css_switch.asp)
+- [Generating Favicon.ico](https://www.favicon-generator.org/)
