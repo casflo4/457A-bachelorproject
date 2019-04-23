@@ -1,5 +1,5 @@
 # 457A-bachelorproject
-Changing the world one bachelor at a time
+Changing the world one bachelor at a time.
 
 ## Here's our site! Take a look:
 [The Bachelor: What Makes the Perfect Bachelor Contestant?](https://washuvis.github.io/bachelornation/project%20code/index.html)
