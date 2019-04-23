@@ -2,7 +2,7 @@
 Changing the world one bachelor at a time
 
 ## Here's our site! Take a look:
-https://washuvis.github.io/bachelornation/project%20code/index.html
+[The Bachelor: What Makes the Perfect Bachelor Contestant?](https://washuvis.github.io/bachelornation/project%20code/index.html)
 
 #### Credit where credit is due.<br />Here are the external sources we used:
 - [Pack layout tutorial](https://d3indepth.com/layouts/)
