@@ -1,4 +1,7 @@
-//constructor
+/**
+ * Constructor for the SeasonTree
+ * @param _allData all data
+ **/
 function SeasonTree(_allData) {
   var vis = this;
 
@@ -11,7 +14,9 @@ function SeasonTree(_allData) {
   vis.div = d3.select("#tree").append("div").attr("class", "tooltip").style("opacity", 0); //tooltip
 };
 
-//init function
+/**
+ * Init vis
+ **/
 SeasonTree.prototype.init = function() {
   var vis = this;
   self.margin = {
@@ -35,8 +40,10 @@ SeasonTree.prototype.init = function() {
   vis.loadData(season);
 };
 
-//load data function
-//param season represents season being visualized
+/**
+ * Loads the data
+ * @param season current season data being visualized
+ **/
 SeasonTree.prototype.loadData = function(season) {
   var vis = this;
   //clear display Data array
@@ -96,7 +103,9 @@ SeasonTree.prototype.loadData = function(season) {
 
 };
 
-//update data function
+/**
+ * Creates updates the chart
+ **/
 SeasonTree.prototype.update = function() {
   var vis = this;
   //add background image to svg

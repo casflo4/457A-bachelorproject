@@ -1,4 +1,7 @@
-//constructor
+/**
+ * Constructor for the Bio
+ * @param _allData all data
+ */
 function Bio(_allData) {
   var vis = this;
 
@@ -10,7 +13,9 @@ function Bio(_allData) {
 
 };
 
-//function init
+/**
+ * Initializes the svg elements required for this chart
+ */
 Bio.prototype.init = function() {
   var vis = this;
   self.margin = {
@@ -26,14 +31,16 @@ Bio.prototype.init = function() {
   vis.svg = div.append("svg")
     .attr("width", vis.svgWidth)
     .attr("height", vis.svgHeight);
-    //get season from page
+  //get season from page
   var season = document.getElementById('ranking-type-tree').value;
   //load data with season as param
   vis.loadData(season);
 };
 
-//function load data
-//param season is the current season being visualized
+/**
+ * Loads the data
+ * @param season current season data being visualized
+ **/
 Bio.prototype.loadData = function(season) {
   var vis = this;
   //create an array from the dataset
@@ -48,7 +55,9 @@ Bio.prototype.loadData = function(season) {
   vis.update();
 };
 
-//function update
+/**
+ * Updates the chart
+ **/
 Bio.prototype.update = function() {
   var vis = this;
   //remove all elements from svg
@@ -65,7 +74,7 @@ Bio.prototype.update = function() {
       .style("fill", "black")
       .style("text-anchor", "middle")
       .style("font-size", 18);
-      //append image of bachelor
+    //append image of bachelor
     vis.svg.append("image")
       .attr("xlink:href", vis.displayData.Picture)
       .attr("height", 180)
@@ -74,7 +83,7 @@ Bio.prototype.update = function() {
         return (vis.svgWidth - 180) / 2;
       })
       .attr("y", 110);
-      //append text outcome text
+    //append text outcome text
     vis.svg.append("text")
       .text("Outcome:")
       .attr("x", vis.svgWidth / 2)
@@ -82,7 +91,7 @@ Bio.prototype.update = function() {
       .style("fill", "black")
       .style("text-anchor", "middle")
       .style("font-size", 15);
-      //append status text
+    //append status text
     vis.svg.append("text")
       .text(vis.displayData["Marriage Status"])
       .attr("x", vis.svgWidth / 2)
@@ -101,7 +110,7 @@ Bio.prototype.update = function() {
       .style("fill", "black")
       .style("text-anchor", "middle")
       .style("font-size", 18);
-      //append and
+    //append and
     vis.svg.append("text")
       .text("and")
       .attr("x", vis.svgWidth / 2)
@@ -109,7 +118,7 @@ Bio.prototype.update = function() {
       .style("fill", "black")
       .style("text-anchor", "middle")
       .style("font-size", 15);
-      //append winner name
+    //append winner name
     vis.svg.append("text")
       .text(vis.displayData["First Name - Winner"] + " " + vis.displayData["Last Name - Winner"])
       .attr("x", vis.svgWidth / 2)
@@ -117,7 +126,7 @@ Bio.prototype.update = function() {
       .style("fill", "black")
       .style("text-anchor", "middle")
       .style("font-size", 18);
-      //append image of couple
+    //append image of couple
     vis.svg.append("image")
       .attr("xlink:href", vis.displayData.Picture)
       .attr("height", 180)
@@ -126,7 +135,7 @@ Bio.prototype.update = function() {
         return (vis.svgWidth - 180) / 2;
       })
       .attr("y", 110);
-      //append relationship outcome text
+    //append relationship outcome text
     vis.svg.append("text")
       .text("Relationship Outcome:")
       .attr("x", vis.svgWidth / 2)
@@ -134,7 +143,7 @@ Bio.prototype.update = function() {
       .style("fill", "black")
       .style("text-anchor", "middle")
       .style("font-size", 15);
-      //append current status of relationship
+    //append current status of relationship
     vis.svg.append("text")
       .text(vis.displayData["Marriage Status"])
       .attr("x", vis.svgWidth / 2)

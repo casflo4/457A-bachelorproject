@@ -65,7 +65,7 @@ LocChart.prototype.init = function() {
     .attr("y", 15)
     .text("Bachelor Candidate Success By Home Locations");
 
-    //y axis title
+  //y axis title
   self.svg.append("text")
     .attr("x", -220)
     .attr("y", 20)
@@ -189,8 +189,6 @@ LocChart.prototype.chooseloc = function(d) {
  * @param data2 candidate data #2
  * @param data3  candidate data #3
  **/
-
-
 LocChart.prototype.update = function(data1, data2, data3) {
   //removes existing rects
   d3.selectAll(".axis").remove().exit();
