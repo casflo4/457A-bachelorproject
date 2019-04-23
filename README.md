@@ -2,7 +2,7 @@
 Changing the world one bachelor at a time.
 
 ## Here's our site! Take a look:
-[The Bachelor: What Makes the Perfect Bachelor Contestant?](https://washuvis.github.io/bachelornation/project%20code/index.html)
+[The Bachelor: What Makes the Perfect Bachelor Contestant?](https://washuvis.github.io/bachelornation/project%code/index.html)
 
 [Screencast Video](https://youtu.be/pM6WCKNMDFw)
 
