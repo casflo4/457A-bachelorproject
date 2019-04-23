@@ -20,10 +20,9 @@ Occupations.prototype.init = function() {
     left: 50
   };
 
+  //select div from html
   var div = d3.select("#occupations-vis").classed("view", true);
 
-  // self.svgBounds = divyearChart.node().getBoundingClientRect();
-  // vis.svgWidth = self.svgBounds.width - self.margin.left - self.margin.right;
 
   vis.svgWidth = 540;
   vis.svgHeight = 520;
@@ -41,11 +40,10 @@ Occupations.prototype.wrangleData = function() {
 
   vis.categoriesData.forEach(function(d) {
     d.Elimination_Week = +d.Elimination_Week;
-    // if(!categories.includes(d.Category)){
-    //     categories.push(d.Category);
-    // }
   });
 
+  //Group the data by occupation within job categories
+  //give each occupation a value for count and average elimination week
   var nest = d3.nest()
     .key(function(d) {
       return d.Category;
@@ -65,6 +63,7 @@ Occupations.prototype.wrangleData = function() {
       };
     })
 
+    //set the data to be displayed
   vis.displayData = d3.hierarchy({
       values: nest.entries(vis.categoriesData)
     }, function(d) {
@@ -83,6 +82,7 @@ Occupations.prototype.wrangleData = function() {
 Occupations.prototype.update = function() {
   var vis = this;
 
+  //Abbreviated text for the job categories to use in the vis
   var abbreviations = {
     "Business Management & Administration": "Business",
     "Finance": "Fin.",
@@ -100,20 +100,7 @@ Occupations.prototype.update = function() {
   }
 
   var colorScale = d3.scaleQuantile()
-    // .domain([
-    //     d3.min(vis.displayData.descendants().slice(1), function(d){
-    //         return d.data.value.avg_elim_week;
-    //     }),
-    //     d3.max(vis.displayData.descendants().slice(1), function(d){
-    //         return d.data.value.avg_elim_week;
-    //     })
-    // ])
     .domain([2.32, 3.97])
-    // .range(['#ffd6e1','#fdbbc8','#faa1b0','#f48698','#ee6981','#e5486b','#dc1456']);
-    // .range([rgb(255, 214, 225), rgb(249,181,201), rgb(243,149,178), rgb(237,117,155),
-    //     rgb(231,84,132), rgb(225,52,109), rgb(220, 20, 86)])
-    // .range([d3.rgb("#ffd6e1"),d3.rgb('#fdbbc8'),d3.rgb('#faa1b0'),d3.rgb('#f48698'),
-    // d3.rgb('#ee6981'),d3.rgb('#e5486b'),d3.rgb('#dc1456')])
     .range([d3.rgb("#ffbcc2"), d3.rgb("#fca5ad"), d3.rgb("#f88e98"), d3.rgb("#f37784"), d3.rgb("#ec5e70"), d3.rgb("#e5415d"), d3.rgb("#dd114b")])
 
 
@@ -124,6 +111,7 @@ Occupations.prototype.update = function() {
   var focus;
   var view;
 
+  //when user clicks on svg, they are taken back to the original view
   vis.svg
     .attr("viewBox", " -" + vis.svgWidth / 2 + " -" + vis.svgHeight / 2 + " " +
       vis.svgWidth + " " + vis.svgHeight + "")
@@ -131,19 +119,14 @@ Occupations.prototype.update = function() {
       zoom(root)
     });
 
-  // var bubble = vis.svg.selectAll(".bubble")
-  //     .data(bubbleChart(vis.displayData).descendants().slice(1))
-  //     .enter()
-  //     .append("g")
-  //         .attr("class", "bubble")
-  //         .attr("transform", function(d){
-  //             return "translate(" + d.x + "," + d.y + ")";
-  //         })
-
+//sets the "root" view as the original view of all data
   var root = bubbleChart(vis.displayData);
 
   var avg = {}
 
+  //Append bubbles to the vis
+  //size indiciates frequency, color indicates average elimination week
+  //mouseover to see the job titles that do not fit within the circles
   var bubble = vis.svg.append("g")
     .selectAll("circle")
     .data(root.descendants().slice(1))
@@ -199,6 +182,8 @@ Occupations.prototype.update = function() {
       }
     })
 
+
+    //on click, the zoom function is called to zoom into the selected job category
   d3.selectAll(".category")
     .on("click", d => focus !== d && (zoom(d), d3.event.stopPropagation()));
   //^^^^
@@ -209,6 +194,7 @@ Occupations.prototype.update = function() {
     .on("click", d => focus !== d.parent && (zoom(d.parent), d3.event.stopPropagation()));
 
 
+    //Append text labels with job titles
   var text = vis.svg.append("g")
     .selectAll("text")
     .data(root.descendants().slice(1))
@@ -250,6 +236,7 @@ Occupations.prototype.update = function() {
       }
     });
 
+    //Zooming functionality
   zoomTo([root.x, root.y, root.r * 2]);
 
   function zoomTo(v) {
@@ -278,7 +265,7 @@ Occupations.prototype.update = function() {
         const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
         return t => zoomTo(i(t));
       });
-
+    //only show the text if it fits within the bounds of the circle
     text
       .filter(function(d) {
         return d.parent === focus || this.style.display === "inline";
@@ -302,8 +289,7 @@ Occupations.prototype.update = function() {
 
   }
 
-
-
+//"tooltip" for hovering job categories
   var tooltip = d3.select("#tooltip")
     .append("text")
 
