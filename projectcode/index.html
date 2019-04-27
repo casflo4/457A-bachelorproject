@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSE457: Final Project</title>
   <link rel="stylesheet" href="public/css/bootstrap.min.css">
   <link rel="stylesheet" href="public/css/style.css" />
@@ -32,18 +33,20 @@
 </head>
 
 <body>
+  <div id="pink">
   <h1>The Bachelor: What Makes the Perfect Bachelor Contestant?</h1>
   <p class="info" id="bottompadding"> Looking for your <em>true love</em>? Looking to <em>win</em> your next Bachelor TV show bracket? You've come to the right place!</p>
   <p> We, Bachelor Nation, created this site based on web scraped data from the Bachelor TV show. We divided our visualization into 3 sections - Outcomes, Hometowns, and Occupations.<br/> This site gives a breakdown of who won, when, and more information
     on the aggregate and individual level, so you can find your own insights for that little competitive advantage on that bracket or on that date.
   </p>
   <a id="processbook" href="https://washuvis.github.io/bachelornation/proposalandprocessbook/processbook.html"><button id="processbookbutton">Process Book</button></a>
+  <a id="youtube" href="https://www.youtube.com/watch?v=pM6WCKNMDFw&feature=youtu.be"><button id="youtubebutton">Instructional Video</button></a>
   <ul class="tabs">
     <li class="tab-link current" data-tab="tree-container">Season Outcomes</li>
     <li class="tab-link" id="mapthatwontload" data-tab="map-container-2">Contestant Hometowns</li>
     <li class="tab-link" data-tab="occupations-container-2">Contestant Occupations</li>
   </ul>
-
+</div>
   <div id="map-container-2" class="tab-content">
     <h2>Contestant Hometowns</h2>
     <p>This visualization depicts the hometowns of Bachelor contestants and can be filtered by each season. Click on a map marker for more information about the contestant or on the layer button to filter out layer groups.</p>
