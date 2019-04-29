@@ -1,10 +1,21 @@
 # 457A-bachelorproject
 Changing the world one bachelor at a time.
 
+- Our code for the actual Bachelor site is in the projectcode folder which has the main index.html file and 4 sub-folders (**bower_components**, **data**, **fonts**, and **public**).
+  - **bower_components** contains all of the libraries used (d3,d3-tip).
+  - **data** contains all the web scraped data we used from data.world and Kaggle (more information in the proposal and process book).
+  - **fonts** contains the fonts we used.
+  - **public** contains the relevant js and css files used to create the site. Each visualization is a prototype with init, loadData, and update methods. These prototypes are instantiated and their methods are called from the main.js class in the js folder.
+- Our code (images + html files) for our proposal and process book are in the proposalandprocessbook folder. 
+
 ## Here's our site! Take a look:
 [The Bachelor: What Makes the Perfect Bachelor Contestant?](https://washuvis.github.io/bachelornation/projectcode/index.html)
 
 [Screencast Video](https://youtu.be/pM6WCKNMDFw)
+
+[Process Book](https://washuvis.github.io/bachelornation/proposalandprocessbook/processbook.html)
+
+[Project Proposal](https://washuvis.github.io/bachelornation/proposalandprocessbook/finalProjectProposal.html)
 
 #### Credit where credit is due.<br />Here are the external sources we used:
 - [Pack layout tutorial](https://d3indepth.com/layouts/)
