@@ -29,7 +29,7 @@ SeasonTree.prototype.init = function() {
   //create the svg
   var div = d3.select("#tree").classed("view", true);
   vis.svgWidth = div.node().getBoundingClientRect().width - self.margin.left - self.margin.right - 50;
-  vis.svgHeight = 590;
+  vis.svgHeight = 570;
   vis.imgWidth = 195.84;
   vis.svg = div.append("svg")
     .attr("width", vis.svgWidth + 50)
@@ -134,8 +134,8 @@ SeasonTree.prototype.update = function() {
         vis.div.html("<strong>" + d.first_name + " " + d.last_name + "</strong>, " + d.age + "<br><p>" +
             d.city + ", " + d.state + ", " + d.country + "<br>" +
             d.occupation + "</p>")
-          .style("left", (d3.event.pageX) - 330 + "px")
-          .style("top", (d3.event.pageY) - 930 + "px")
+          .style("left", (d3.event.pageX) - 345 + "px")
+          .style("top", (d3.event.pageY) - 910 + "px")
           .attr("class", "d3-tip");
 
       })
@@ -144,8 +144,8 @@ SeasonTree.prototype.update = function() {
       })
       .on("mousemove", function(d) {
         vis.div
-          .style("left", (d3.event.pageX) - 330 + "px")
-          .style("top", (d3.event.pageY) - 930 + "px");
+          .style("left", (d3.event.pageX) - 345 + "px")
+          .style("top", (d3.event.pageY) - 910 + "px");
       });
       //create winner text with tooltip
     vis.svg.append("text")
@@ -161,8 +161,8 @@ SeasonTree.prototype.update = function() {
         vis.div.html("<strong>" + d.first_name + " " + d.last_name + "</strong>, " + d.age + "<br><p>" +
             d.city + ", " + d.state + ", " + d.country + "<br>" +
             d.occupation + "</p>")
-          .style("left", (d3.event.pageX) - 330 + "px")
-          .style("top", (d3.event.pageY) - 930 + "px")
+          .style("left", (d3.event.pageX) - 345 + "px")
+          .style("top", (d3.event.pageY) - 910 + "px")
           .attr("class", "d3-tip");
 
       })
@@ -171,8 +171,8 @@ SeasonTree.prototype.update = function() {
       })
       .on("mousemove", function(d) {
         vis.div
-          .style("left", (d3.event.pageX) - 330 + "px")
-          .style("top", (d3.event.pageY) - 930 + "px");
+          .style("left", (d3.event.pageX) - 345 + "px")
+          .style("top", (d3.event.pageY) - 910 + "px");
       });
       //append text "winner"
     vis.svg.append("text")
@@ -242,8 +242,8 @@ SeasonTree.prototype.update = function() {
           vis.div.html("<strong>" + d.first_name + " " + d.last_name + "</strong>, " + d.age + "<br><p>" +
               d.city + ", " + d.state + ", " + d.country + "<br>" +
               d.occupation + "</p>")
-            .style("left", (d3.event.pageX) - 330 + "px")
-            .style("top", (d3.event.pageY) - 930 + "px")
+            .style("left", (d3.event.pageX) - 345 + "px")
+            .style("top", (d3.event.pageY) - 910 + "px")
             .attr("class", "d3-tip");
 
         })
@@ -252,8 +252,8 @@ SeasonTree.prototype.update = function() {
         })
         .on("mousemove", function(d) {
           vis.div
-            .style("left", (d3.event.pageX) - 330 + "px")
-            .style("top", (d3.event.pageY) - 930 + "px");
+            .style("left", (d3.event.pageX) - 345 + "px")
+            .style("top", (d3.event.pageY) - 910 + "px");
         });
         //append text for each contestant's name
       vis.svg.append("text")
@@ -290,8 +290,8 @@ SeasonTree.prototype.update = function() {
           vis.div.html("<strong>" + d.first_name + " " + d.last_name + "</strong>, " + d.age + "<br><p>" +
               d.city + ", " + d.state + ", " + d.country + "<br>" +
               d.occupation + "</p>")
-            .style("left", (d3.event.pageX) - 330 + "px")
-            .style("top", (d3.event.pageY) - 930 + "px")
+            .style("left", (d3.event.pageX) - 345 + "px")
+            .style("top", (d3.event.pageY) - 910 + "px")
             .attr("class", "d3-tip");
 
         })
@@ -300,8 +300,8 @@ SeasonTree.prototype.update = function() {
         })
         .on("mousemove", function(d) {
           vis.div
-            .style("left", (d3.event.pageX) - 330 + "px")
-            .style("top", (d3.event.pageY) - 930 + "px");
+            .style("left", (d3.event.pageX) - 345 + "px")
+            .style("top", (d3.event.pageY) - 910 + "px");
         });
     }
   }

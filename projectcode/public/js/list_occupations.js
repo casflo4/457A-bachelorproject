@@ -30,7 +30,7 @@ ListOccupations.prototype.init = function() {
   var div = d3.select("#list-occupations").classed("view", true);
 
   vis.svgWidth = 500;
-  vis.svgHeight = 520;
+  vis.svgHeight = 480;
 
   vis.svg = div.append("svg")
     .attr("width", vis.svgWidth)

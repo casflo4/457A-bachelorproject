@@ -63,12 +63,15 @@ body {
   margin-left: 100px;
 }*/
 
+#list-occupations{
+height: 500px;
+}
 #map-container{
   display: flex;
     /*float: left;*/
     justify-content: space-around;
     width: 100%;
-    height: 420px;
+    height: 400px;
     padding-left: 2%;
     padding-right: 2%;
 }
@@ -77,12 +80,13 @@ body {
     /*display: flex;*/
     justify-content: space-around;
     width: 100%;
-    height: 590px;
+    height: 570px;
     padding-left: 2%;
     padding-right: 2%;
 }
+
 #tree-container{
-  height: 642px;
+  height: 550px;
 }
 
 #occupations-container{
@@ -90,9 +94,17 @@ body {
       /*float: left;*/
       justify-content: space-around;
       width: 100%;
-      height: 620px;
+      height: 600px;
       padding-left: 2%;
       padding-right: 2%;
+  }
+
+  #occupations-container-2{
+      height: 500px;
+    }
+
+  #occupations-vis{
+    height: 500px;
   }
 
 h1 {
@@ -160,6 +172,7 @@ h2{
     -webkit-margin-before: 5px;
     -webkit-margin-after:  5px;
 }
+
 .d3-tip {
     /*line-height: 5;*/
     padding-left: 10px;
@@ -175,6 +188,7 @@ h2{
     border-radius: 10px;
     pointer-events: none;
 }
+
 .tooltip-title{
     font-size:18px;
     font-family: "Arial Black";
@@ -392,4 +406,24 @@ h2,p,form{
     padding-top: 0px;
     background-color: #ffb5c1;
   }
-}
+
+  @media only screen and (max-width: 1350px) {
+    #youtubebutton, #processbookbutton, #youtube,#processbook{
+      position:fixed;
+      top: -50px;
+      width: 0;
+      height: 0;
+      border: none;
+      color: transparent;
+    }
+
+    #youtubebutton:hover, #processbookbutton:hover{
+      position:fixed;
+      top: -50px;
+      background-color: none;
+      width: 0;
+      height: 0;
+      border: none;
+      color: transparent;
+    }
+  }

@@ -25,7 +25,7 @@ Occupations.prototype.init = function() {
 
 
   vis.svgWidth = 540;
-  vis.svgHeight = 520;
+  vis.svgHeight = 500;
 
   vis.svg = div.append("svg")
     .attr("width", vis.svgWidth)
