@@ -66,9 +66,9 @@ jcdickerman@wustl.edu, lainie.esralew@wustl.edu, l.florence@wustl.edu<br>
 
 <h2>Data Processing + Cleansing</h2>
 <p>We did a fair amount of data cleansing, as the datasets were web scraped, so they had some missing columns and information.
-  To map each candidate the dataset only had city and state, so we had to use an API (<a href="https://opencagedata.com">OpenCade Geocoding API</a>) to get the latitude and longitude coordinates for the candidates.
-  In addition, we have to manually collect the data for each contestant winner + bachelor for updated information about their marriage status + pictures of them.
-  Primarily, we had two files with different categories and different missing data elements, so we combined the two into a new dataset and had to cleanse and fill the missing columns. In addition, we had to create (<a href="https://www.recruiter.com/careers/">Source for Categories</a>) job categories for each job for the bubble chart.</p>
+  To map each candidate the dataset only had city and state, so we had to use an API (<a href="https://opencagedata.com">OpenCage Geocoding API</a>) to get the latitude and longitude coordinates for the candidates.
+  In addition, we had to manually collect the data for each contestant winner + bachelor for updated information about their marriage status + pictures of them.
+  Primarily, we had two files with different categories and different missing data elements, so we combined the two into a new dataset and had to cleanse the existing data and fill the missing columns. In addition, we had to create (<a href="https://www.recruiter.com/careers/">Source for Categories</a>) job categories for each job for the bubble chart.</p>
 <hr/>
 <h2>Design Evolution + Implementation</h2>
 <h3>Initial Sketches + Ideas</h3>
@@ -79,8 +79,8 @@ jcdickerman@wustl.edu, lainie.esralew@wustl.edu, l.florence@wustl.edu<br>
 <img src="Picture5.png" alt="Picture 5" height="250" width="250">
 <p>We initially sketched out a season outcome tree, several variations of US location-based visualizations for home states as well as visualizations for occupation + outcome and the weirdest occupations.
 As we progressed through the milestones, we stayed true to the insights we wanted to show, but we shifted some specific design aspects to better suit the data and the insights we wanted the users to derive.
-As you'll see, we stuck with the map, a season chart, and occupations graph, but we chose to shift away from d3 trees for season outcome because multiple candidates did not necessarily compete 1 vs. 1 until the final round. For the map, we chose to use leaflet as it has a lot of functionality with popups, layers and custom icons rather than using shapes in just d3.
-For the occupations visualization, we chose to use d3 bubble charts because it would allow us to visualize multi-dimensional data while breaking out of the norm of a bar chart as first visualized. For the weirdest jobs, we chose to show you the best and worst ranked jobs, so you can deduce trends for yourself next time you see a weird job.
+As you'll see, we stuck with the map, a season chart, and occupations graph, but we chose to shift away from D3 trees for season outcome because multiple candidates did not necessarily compete 1 vs. 1 until the final round. For the map, we chose to use leaflet as it has a lot of functionality with popups, layers and custom icons rather than using shapes in just D3.
+For the occupations visualization, we chose to use D3 bubble charts because it would allow us to visualize multi-dimensional data while breaking out of the norm of a bar chart as first visualized. For the weirdest jobs, we chose to show you the best and worst ranked jobs, so you can deduce trends for yourself next time you see a weird job.
 </p>
 
 <h3>Refined Sketches</h3>
@@ -106,8 +106,8 @@ hometown. Another benefit of Leaflet is interactive functionality that allows us
 <img src="Screen Shot 2019-04-15 at 11.27.53 PM.png" alt="Picture 7" height="275" width="400">
 <p>Our second milestone submission includes three visualizations. </p>
 <ul>
-    <li>The "Season Outcomes" displays the week-to-week outcomes of each season on a rose, a well-known symbol of the Bachelor,
-        Each row represents a group of contestants that were eliminated each week, with the winner appearing in the flower. Spawned by user feedback, we decided for the next iteration to adding a supporting visualization so a user could see the final candidate and bachelor and see their current relationship status as we felt that it would help the user to understand the logic behind a winner. As described more in-depth below as a result of the show the winning candidate + the bachelor get engaged but rarely stay engaged so it's important when predicting winners for a bracket that a user considers how the candidate's short term qualities fit to what the bachelor is looking for.
+    <li>The "Season Outcomes" displays the week-to-week outcomes of each season on a rose, a well-known symbol of the Bachelor.
+        Each row represents a group of contestants that were eliminated each week, with the winner appearing in the flower. Spawned by user feedback, we decided for the next iteration to add a supporting visualization so a user could see the final candidate and bachelor and see their current relationship status as we felt that it would help the user to understand the logic behind a winner. As a result of the show, the winning candidate + the bachelor get engaged but rarely stay engaged so it's important when predicting winners for a bracket that a user considers how the candidate's short term qualities fit to what the bachelor is looking for.
     </li>
     <li>
         The "Contestant Hometowns" was improved from Milestone 1 with the markers being color-coded to indicate the
