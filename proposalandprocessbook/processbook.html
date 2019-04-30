@@ -54,21 +54,21 @@ jcdickerman@wustl.edu, lainie.esralew@wustl.edu, l.florence@wustl.edu<br>
 <li>Which hometown or home state has had the most success?</li>
 <li>What characteristics make a contestant likely to be the next Bachelor?</li>
 </ul>
-<p>Our visualization will allow the users to make more accurate bets and predictions on the shows's contestant outcomes. It will be an interactive, entertaining platform for fans to explore the show's history and statistics. </p>
+<p>Our visualization will allow the users to make more accurate bets and predictions on the show's contestant outcomes. It will be an interactive, entertaining platform for fans to explore the show's history and statistics. </p>
 <hr/>
 <h2>Data</h2>
 <a href="https://data.world/amandanovak/bachelor-contestants-with-instagram-follower-count/workspace/data-dictionary">Data Source 1</a>
 <p>We got this from data.world which is an innovative platform with open source datasets and was published on 8/28/2017. Two files are given, one in an xlsx and one given in a csv. We will manipulate, append, and combine both of those into another csv file, which we will combine and then serve using a python server for our data analysis.</p>
 <a href="https://www.kaggle.com/brianbgonz/the-bachelorette-contestants#bachelors.csv">Data Source 2</a>
-<p>We also have additional information on the bachelor for each individual season from Kaggle, so we can compare the bachelor’s characteristics with that of the candidates.</p>
+<p>We also have additional information on the bachelor for each season from Kaggle, so we can compare the bachelor’s characteristics with that of the candidates.</p>
 <a href="https://github.com/scdoshi/us-geojson">Data Source 3</a>
 <p>We also have GeoJson data for US regions for the Leaflet visualization.</p>
 
 <h2>Data Processing + Cleansing</h2>
 <p>We did a fair amount of data cleansing, as the datasets were web scraped, so they had some missing columns and information.
-  To map each candidate the dataset only had city and state so we had to use an API (<a href="https://opencagedata.com">OpenCade Geocoding API</a>) to get the latitude and longitude coordinates for the candidates.
+  To map each candidate the dataset only had city and state, so we had to use an API (<a href="https://opencagedata.com">OpenCade Geocoding API</a>) to get the latitude and longitude coordinates for the candidates.
   In addition, we have to manually collect the data for each contestant winner + bachelor for updated information about their marriage status + pictures of them.
-  Primarily, we had two files with different categories and different missing data elements, so we combine the two into a new dataset and had to cleanse and fill the missing columns. In addition, we had to create (<a href="https://www.recruiter.com/careers/">Source for Categories</a>) job categories for each job for the bubble chart.</p>
+  Primarily, we had two files with different categories and different missing data elements, so we combined the two into a new dataset and had to cleanse and fill the missing columns. In addition, we had to create (<a href="https://www.recruiter.com/careers/">Source for Categories</a>) job categories for each job for the bubble chart.</p>
 <hr/>
 <h2>Design Evolution + Implementation</h2>
 <h3>Initial Sketches + Ideas</h3>
@@ -96,7 +96,7 @@ For the occupations visualization, we chose to use d3 bubble charts because it w
 <p>The first visualization is the map as sketched in the above visualizations but uses Leaflet, which allows for a marker for each contestant in their
 hometown. Another benefit of Leaflet is interactive functionality that allows users to zoom in on selected areas. Clicking on the marker shows more information about that contestant. <br/>After this stage, we decided to color code the visualization by contestant outcomes (winner, eliminated in the first half of the season, eliminated in the second half of the season). We decided that a supporting visualization was needed to make insights on the aggregate level as well as region layers for the Leaflet map.</p>
 
-<p>The second visualization is the occupations bubble chart which displays the main job categories of the contestants. The size of the bubble indicates frequency while the color indicates the average elimination week. We decided to improve this visualization by making it more interactive with the ability to zoom in on a bubble and see more information. We improved the overall appearance of the visualization (wrapping text within bubbles, improved color scale, etc) to make it easier for the user to derive insights about which categories and jobs performed better and which performed worse.</p>
+<p>The second visualization is the occupations bubble chart which displays the main job categories of the contestants. The size of the bubble indicates frequency while the color indicates the average elimination week. We decided to improve this visualization by making it more interactive with the ability to zoom in on a bubble and see more information. We improved the overall appearance of the visualization (wrapping text within bubbles, improved color scale, etc.) to make it easier for the user to derive insights about which categories and jobs performed better and which performed worse.</p>
 
 
 
@@ -107,17 +107,17 @@ hometown. Another benefit of Leaflet is interactive functionality that allows us
 <p>Our second milestone submission includes three visualizations. </p>
 <ul>
     <li>The "Season Outcomes" displays the week-to-week outcomes of each season on a rose, a well-known symbol of the Bachelor,
-        Each row represents a group of contestants that was eliminated each week, with the winner appearing in the flower. Spawned by user feedback, we decided for the next iteration to adding a supporting visualization so a user could see the final candidate and bachelor and see their current relationship status as we felt that it would help the user to understand the logic behind a winner. As described more in depth below as a result of the show the winning candidate + the bachelor get engaged but rarely stay engaged so its important when predicting winners for a bracket that a user considers how the candidate's short term qualtiies fit to what the bachelor is looking for.
+        Each row represents a group of contestants that were eliminated each week, with the winner appearing in the flower. Spawned by user feedback, we decided for the next iteration to adding a supporting visualization so a user could see the final candidate and bachelor and see their current relationship status as we felt that it would help the user to understand the logic behind a winner. As described more in-depth below as a result of the show the winning candidate + the bachelor get engaged but rarely stay engaged so it's important when predicting winners for a bracket that a user considers how the candidate's short term qualities fit to what the bachelor is looking for.
     </li>
     <li>
-        The "Contestant Hometowns" was improved from Milestone 1 with the markers being color coded to indicate the
+        The "Contestant Hometowns" was improved from Milestone 1 with the markers being color-coded to indicate the
         contestants' progress. It is also interactive and more informative since the markers can be filtered by layer. The accompanying
-        bar graph provides a different visualization of the same data for greater understanding of the aggregate level of contestants and performance by state. We decided we needed to improve the speed of leaflet map loading for the next iteration so we spent a lot of time pre-loading what data we could and maximizing the parallelization of tasks.
+        bar graph provides a different visualization of the same data for a greater understanding of the aggregate level of contestants and performance by state. We decided we needed to improve the speed of leaflet map loading for the next iteration so we spent a lot of time pre-loading what data we could and maximizing the parallelization of tasks.
     </li>
     <li>
         The "Contestant Occupations" was improved from Milestone 1 as clicking on a job category bubble zooms into
-        that category and shows an bubble chart of the most common job titles. This provides more information and understanding
-        about each job category. We decided to further improve this visualization refining the hover so that users can see the job titles more clearly
+        that category and shows a bubble chart of the most common job titles. This provides more information and understanding
+        about each job category. We decided to improve this visualization further refining the hover so that users can see the job titles more clearly
         and add the supporting visualization about the best and worst weird jobs.
     </li>
 </ul>
@@ -125,7 +125,7 @@ hometown. Another benefit of Leaflet is interactive functionality that allows us
 
 
 <h3>Evaluation - User Studies</h3>
-<p> After Milestone 2, We had four users who had not previously seen our visualization test it and provide feedback. First,
+<p> After Milestone 2, We had four users who had not previously seen our visualization test it and provided feedback. First,
     they used our website while talking us through their initial thoughts. Then, we had them perform three tasks.
     Lastly, we asked questions about their experience using our website.
 </p>
@@ -140,10 +140,10 @@ hometown. Another benefit of Leaflet is interactive functionality that allows us
         website. This left us with feedback that was mostly centered around clarifying the
         purpose of our visualizations. We improved upon this by explaining why we created each visualization
         and where appropriate, adding supporting visualizations to make our findings even clearer.</li>
-    <li>User 4 had heard of The Bachelor but was unfamiliar with how the show worked, and wanted some clarification
+    <li>User 4 had heard of The Bachelor but was unfamiliar with how the show worked and wanted some clarification
       on how contestants were eliminated and how the season progressed. This user also wanted to know more about the winner,
        which inspired us to create a winner's bio. User 4 also wanted us to clarify the color schema for the bubble chart, which
-       drove us to add supporting descriptions for all of our visualizations to help clarify coloration and functionality etc. for the users.</li>
+       drove us to add supporting descriptions for all of our visualizations to help clarify coloration and functionality, etc. for the users.</li>
 </ol>
 <p>All four users were able to complete the tasks that we prepared:</p>
 <ol>
@@ -170,8 +170,8 @@ hometown. Another benefit of Leaflet is interactive functionality that allows us
     <p>The season tree visualization is a great tool for catching up on past seasons. It is useful for viewing not only
       information about when each contestant was eliminated, but also how the final couple is doing today. For example,
       we noticed that the only couple that is still currently married is Sean and Catherine from season 17. This is an extremely
-      important insight especially when predicting future candidates as the candidate with best long term fit is not neccesarily picked.
-      It is very frequently the candidate with the best short term qualities whether that be occupation, age, personality traits etc.
+      important insight especially when predicting future candidates as the candidate with best long term fit is not necessarily picked.
+      It is very frequently the candidate with the best short term qualities whether that be occupation, age, personality traits, etc.
        We also noticed that it is much more common in the recent seasons for the bachelor to propose on the show,
        while in the earlier seasons, most couples never were engaged. We also learned that season 11 was the only
        season in which no winner was chosen when the bachelor rejected both the final 2 contestants.</p>
