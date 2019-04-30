@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" />
     <title>CSE457 Process Book</title>
 </head>
 
@@ -39,135 +40,112 @@ jcdickerman@wustl.edu, lainie.esralew@wustl.edu, l.florence@wustl.edu<br>
     border-radius: 10px;
     background-color: rgba(225,75,108,0);
     color:  black;">Back to the Site</button></a>
-<h1>Project Proposal</h1>
 
-<h2>Background and Motivation</h2>
+<h2>Overview and Motivation</h2>
 <p>As avid fans of reality TV, we are fascinated by the phenomenon that is the Bachelor/Bachelorette universe. Each season, millions of people create brackets and even bet money on the contestants and their outcomes. Using previous years’ Bachelor data, we hope to give people actionable insights and trends for their brackets and gossip among friends. Although on the surface analyzing reality TV may seem purely trivial, we hope to use this data to provide insights to help win your bracket or find your next lover in real life.</p>
 
-<h2>Project Objectives</h2>
-<p>We would like to create a visualization based on the outcome data from previous seasons to determine how certain characteristics correlate with contestant outcomes. We can answer questions like: </p>
+<h2>Related Work</h2>
+<p>We took inspiration from previous bracket-based analyses and visualizations for March Madness, but we wanted to make ours more qualitative and fun than purely quantitative like many other bracket analysis tools.</p>
+
+<h2>Objectives + Questions To Answer:</h2>
+<p>We created this visualization based on the outcome data from previous seasons to determine how certain characteristics correlate with contestant outcomes. We are trying to answer questions like these: </p>
 <ul>
 <li>Which occupations get sent home the earliest?</li>
 <li>Which hometown or home state has had the most success?</li>
-<li>What is the threshold of age that you need to win?</li>
-<li>What characteristics make a contestant likely to be the next Bachelor/Bachelorette?</li>
+<li>What characteristics make a contestant likely to be the next Bachelor?</li>
 </ul>
-<p>Our visualization will allow the show's viewers to make more accurate bets and predictions on the contestant outcomes. It will be an interactive, entertaining platform for fans to explore the show's history and statistics. </p>
-
+<p>Our visualization will allow the users to make more accurate bets and predictions on the shows's contestant outcomes. It will be an interactive, entertaining platform for fans to explore the show's history and statistics. </p>
+<hr/>
 <h2>Data</h2>
 <a href="https://data.world/amandanovak/bachelor-contestants-with-instagram-follower-count/workspace/data-dictionary">Data Source 1</a>
 <p>We got this from data.world which is an innovative platform with open source datasets and was published on 8/28/2017. Two files are given, one in an xlsx and one given in a csv. We will manipulate, append, and combine both of those into another csv file, which we will combine and then serve using a python server for our data analysis.</p>
 <a href="https://www.kaggle.com/brianbgonz/the-bachelorette-contestants#bachelors.csv">Data Source 2</a>
 <p>We also have additional information on the bachelor for each individual season from Kaggle, so we can compare the bachelor’s characteristics with that of the candidates.</p>
+<a href="https://github.com/scdoshi/us-geojson">Data Source 3</a>
+<p>We also have GeoJson data for US regions for the Leaflet visualization.</p>
 
-<h2>Data Processing</h2>
-<p>We expect some data cleanup. We have two files with different categories and different missing data elements, so we’ll combine the two into a new dataset and scrape the missing data.</p>
-
-<h2>Must-Have Features</h2>
-<ul>
-<li>Trees that show the week-by-week outcomes of each contestant in each season</li>
-<li>Charts comparing the outcomes by characteristics (ex. Home state, occupation industry)</li>
-</ul>
-
-<h2>Optional Features</h2>
-<ul>
-<li>List the features which you consider to be nice to have, but not critical.</li>
-<li>Map with home city and state</li>
-<li>Instagram follower count analysis</li>
-<li>Comparison of similarities between the bachelor and the contestants</li>
-</ul>
-
-<h2>Project Schedule</h2>
-<p>We plan to divide work by assigning each team member a visualization that will be incorporated into a cohesive web page. We will meet weekly to catch up on our progress, help each other improve our work, and integrate all of our parts.<br>
-Group Meeting - 3/25<br>
-Group Meeting - 4/1</p>
-<ul>
-    <li>Submit Milestone I - a functional project prototype (due Apr 1)</li>
-</ul>
-<p>Group Meeting - 4/8<br>
-Group Meeting - 4/15</p>
-<ul>
-<li>Submit Milestone II - a fully functional prototype (due Apr 15)</li>
-<li>Prepare for In-class user studies (Apr 18)</li>
-</ul>
-<p>Group Meeting - 4/22</p>
-<ul>
-<li>Prepare for Final project presentation (Apr 23 & 25)</li>
-</ul>
-<p>Group Meeting - 4/27, 4/28, or 4/29</p>
-<ul>
-<li>Submit Final project submission & peer evaluations (due Apr 29)</li></ul>
-<h2>Visualization Design</h2>
-<p>Design sketches for our visualization are shown below. The primary view will be an interactive tree depicting the week-by-week progress of contestants on a given season of The Bachelor. Users will then be able to choose amongst various characteristics to gain more information.  We are providing a map view to visualize the contestants' home towns as well as an occupation chart visualizing occupation popularity and success rate.</p>
-
-<h2>Ideas</h2>
+<h2>Data Processing + Cleansing</h2>
+<p>We did a fair amount of data cleansing, as the datasets were web scraped, so they had some missing columns and information.
+  To map each candidate the dataset only had city and state so we had to use an API (<a href="https://opencagedata.com">OpenCade Geocoding API</a>) to get the latitude and longitude coordinates for the candidates.
+  In addition, we have to manually collect the data for each contestant winner + bachelor for updated information about their marriage status + pictures of them.
+  Primarily, we had two files with different categories and different missing data elements, so we combine the two into a new dataset and had to cleanse and fill the missing columns. In addition, we had to create (<a href="https://www.recruiter.com/careers/">Source for Categories</a>) job categories for each job for the bubble chart.</p>
+<hr/>
+<h2>Design Evolution + Implementation</h2>
+<h3>Initial Sketches + Ideas</h3>
 <img src="Picture1.png" alt="Picture 1" height="250" width="250">
 <img src="Picture2.png" alt="Picture 2" height="250" width="250">
 <img src="Picture3.png" alt="Picture 3" height="250" width="250">
 <img src="Picture4.png" alt="Picture 4" height="250" width="250">
 <img src="Picture5.png" alt="Picture 5" height="250" width="250">
+<p>We initially sketched out a season outcome tree, several variations of US location-based visualizations for home states as well as visualizations for occupation + outcome and the weirdest occupations.
+As we progressed through the milestones, we stayed true to the insights we wanted to show, but we shifted some specific design aspects to better suit the data and the insights we wanted the users to derive.
+As you'll see, we stuck with the map, a season chart, and occupations graph, but we chose to shift away from d3 trees for season outcome because multiple candidates did not necessarily compete 1 vs. 1 until the final round. For the map, we chose to use leaflet as it has a lot of functionality with popups, layers and custom icons rather than using shapes in just d3.
+For the occupations visualization, we chose to use d3 bubble charts because it would allow us to visualize multi-dimensional data while breaking out of the norm of a bar chart as first visualized. For the weirdest jobs, we chose to show you the best and worst ranked jobs, so you can deduce trends for yourself next time you see a weird job.
+</p>
 
-<h2>Final Designs</h2>
+<h3>Refined Sketches</h3>
+<p>As shown below here are some of our refined sketches based on what was mentioned above:</p>
+<img src="Scan Apr 1, 2019 at 8.35 PM page 1.jpg" alt="Picture 1" height="550" width="625">
+<img src="Scan Apr 1, 2019 at 8.35 PM page 2.jpg" alt="Picture 2" height="550" width="625">
 
-<img src="Scan Apr 1, 2019 at 8.35 PM page 1.jpg" alt="Picture 1" height="1000" width="750">
-<img src="Scan Apr 1, 2019 at 8.35 PM page 2.jpg" alt="Picture 2" height="550" width="750">
+<h3>Milestone 1</h3>
+<img src="Screen Shot 2019-04-01 at 8.08.32 PM.png" alt="Picture 4" height="650" width="1200">
+  <p>Our first milestone submission includes two visualizations of characteristics of the
+    Bachelor contestants.</p>
 
-<h1>Milestone 1</h1>
-<p>Our first milestone submission includes two visualizations of characteristics of the
-Bachelor contestants. </p>
+<p>The first visualization is the map as sketched in the above visualizations but uses Leaflet, which allows for a marker for each contestant in their
+hometown. Another benefit of Leaflet is interactive functionality that allows users to zoom in on selected areas. Clicking on the marker shows more information about that contestant. <br/>After this stage, we decided to color code the visualization by contestant outcomes (winner, eliminated in the first half of the season, eliminated in the second half of the season). We decided that a supporting visualization was needed to make insights on the aggregate level as well as region layers for the Leaflet map.</p>
 
-<p>The map visualization has a marker for each contestant in their
-hometown. Clicking on the marker shows more information about that contestant. We plan on color coding the visualization by contestant outcomes (elimination weeks). We also
-would like to add an interactive feature for users to zoom in on selected regions.</p>
+<p>The second visualization is the occupations bubble chart which displays the main job categories of the contestants. The size of the bubble indicates frequency while the color indicates the average elimination week. We decided to improve this visualization by making it more interactive with the ability to zoom in on a bubble and see more information. We improved the overall appearance of the visualization (wrapping text within bubbles, improved color scale, etc) to make it easier for the user to derive insights about which categories and jobs performed better and which performed worse.</p>
 
-<p>The occupations bubble chart displays the main job categories of the contestants. The size of the bubble indicates frequency while the color indicates average elimination week. The next step to improving this visualization is making it more interactive with the ability to zoom in on a bubble and see more information. We also plan on improving the overall appearance of the visualization (wrapping text within bubbles, improved color scale, etc). </p>
 
-<br><h3>Milestone 1 Website</h3><br>
 
-<img src="Screen Shot 2019-04-01 at 8.08.32 PM.png" alt="Picture 4" height="550" width="1000">
-
-<h1>Milestone 2</h1>
-<p>Our second milestone submission includes three visualizations. </p>
-<ul>
-    <li>The "Season Outcomes" displays the week-to-week outcomes of each season on a rose, a well-known symbol of the Bachelor,
-        Each row represents a group of contestants that was eliminated each week, with the winner appearing in the flower.
-    </li>
-    <li>
-        The "Contestant Hometowns" has been improved from Milestone 1 as the markers are now color coded to indicate the
-        contestants' progress. It is also interactive and more informative since the markers can be filtered. The accompanying
-        bar graph provides a different visualization of the same data for greater understanding of the number of contestants
-        from each state.
-    </li>
-    <li>
-        The "Contestant Occupations" has been improved from Milestone 1 as clicking on a job category bubble zooms into
-        that category and shows an bubble chart of the most common job titles. This provides more information and understanding
-        about each job category. This visualization will be further improved for the final submission by adding a tooltip so that
-        one can see the frequency and average elimination week of the jobs.
-    </li>
-</ul>
-
+<h3>Milestone 2</h3>
 <img src="Screen Shot 2019-04-15 at 11.26.51 PM.png" alt="Picture 5" height="275" width="400">
 <img src="Screen Shot 2019-04-15 at 11.33.56 PM.png" alt="Picture 6" height="275" width="400">
 <img src="Screen Shot 2019-04-15 at 11.27.53 PM.png" alt="Picture 7" height="275" width="400">
+<p>Our second milestone submission includes three visualizations. </p>
+<ul>
+    <li>The "Season Outcomes" displays the week-to-week outcomes of each season on a rose, a well-known symbol of the Bachelor,
+        Each row represents a group of contestants that was eliminated each week, with the winner appearing in the flower. Spawned by user feedback, we decided for the next iteration to adding a supporting visualization so a user could see the final candidate and bachelor and see their current relationship status as we felt that it would help the user to understand the logic behind a winner. As described more in depth below as a result of the show the winning candidate + the bachelor get engaged but rarely stay engaged so its important when predicting winners for a bracket that a user considers how the candidate's short term qualtiies fit to what the bachelor is looking for.
+    </li>
+    <li>
+        The "Contestant Hometowns" was improved from Milestone 1 with the markers being color coded to indicate the
+        contestants' progress. It is also interactive and more informative since the markers can be filtered by layer. The accompanying
+        bar graph provides a different visualization of the same data for greater understanding of the aggregate level of contestants and performance by state. We decided we needed to improve the speed of leaflet map loading for the next iteration so we spent a lot of time pre-loading what data we could and maximizing the parallelization of tasks.
+    </li>
+    <li>
+        The "Contestant Occupations" was improved from Milestone 1 as clicking on a job category bubble zooms into
+        that category and shows an bubble chart of the most common job titles. This provides more information and understanding
+        about each job category. We decided to further improve this visualization refining the hover so that users can see the job titles more clearly
+        and add the supporting visualization about the best and worst weird jobs.
+    </li>
+</ul>
 
-<h1>User Studies</h1>
-<p>We had three users who had not previously seen our visualization test it and provide feedback. First,
+
+
+<h3>Evaluation - User Studies</h3>
+<p> After Milestone 2, We had four users who had not previously seen our visualization test it and provide feedback. First,
     they used our website while talking us through their initial thoughts. Then, we had them perform three tasks.
     Lastly, we asked questions about their experience using our website.
 </p>
 <ol>
     <li>User 1 was unsure of some of the functions available on our website, for instance, whether
-        he would need to hover for a tooltips or click for more information. Based on this feedback,
-        we provided more information on functionality and meanings of our visualizations in the instructions. </li>
-    <li>User 2 mentioned that he did not understand the "flow" of our website. This lead us to place more detailed
+        he would need to hover for  tooltips or click for more information. Based on this feedback,
+        we provided more information on the functionality and meanings of our visualizations in the instructions. </li>
+    <li>User 2 mentioned that he did not understand the "flow" of our website. This led us to place more detailed
         instructions at the top of the website. He also asked for more clarifying details in each visualization, such as
         each rose on the map representing one contestant.</li>
-    <li>User 3 had not heard of The Bachelor, and was therefore unfamiliar with the content of our
+    <li>User 3 had not heard of The Bachelor and was therefore unfamiliar with the content of our
         website. This left us with feedback that was mostly centered around clarifying the
         purpose of our visualizations. We improved upon this by explaining why we created each visualization
         and where appropriate, adding supporting visualizations to make our findings even clearer.</li>
+    <li>User 4 had heard of The Bachelor but was unfamiliar with how the show worked, and wanted some clarification
+      on how contestants were eliminated and how the season progressed. This user also wanted to know more about the winner,
+       which inspired us to create a winner's bio. User 4 also wanted us to clarify the color schema for the bubble chart, which
+       drove us to add supporting descriptions for all of our visualizations to help clarify coloration and functionality etc. for the users.</li>
 </ol>
-<p>All three users were able to complete the tasks that we prepared:</p>
+<p>All four users were able to complete the tasks that we prepared:</p>
 <ol>
     <li>Who won in Season 21? What hometown were they from? (Vanessa, Quebec)</li>
     <li>How many contestants were from the state of California in Season 15? (3) </li>
@@ -177,42 +155,53 @@ would like to add an interactive feature for users to zoom in on selected region
     to our website.</p>
 
 
-<h1>The Final Visualization</h1>
+<h3>The Final Visualization</h3>
+<img src="Screen Shot 2019-04-29 at 7.25.54 PM.png" alt="Picture 8" height="275" width="400">
+<img src="Screen Shot 2019-04-29 at 7.26.17 PM.png" alt="Picture 9" height="275" width="400">
+<img src="Screen Shot 2019-04-29 at 7.26.55 PM.png" alt="Picture 10" height="275" width="400">
 <p>Our visualization answers the main questions that we were determined to answer at the beginning of the project,
-    including what occupations and hometowns, two things that are often emphasized throughout the TV show, have
+    including what occupations and hometowns are the most successful, which are two things that are often emphasized throughout the TV show, and have
     resulted in the greatest success in the competition. We also created a visualization that allows the show's fans
     to browse the show's history, allowing them to reminisce on the seasons they enjoyed watching, as well as gain insights
     on contestant characteristics for when they watch the show in the future. Below, we'll discuss our findings and challenges
     discovered in creating each visualization.
 </p>
-<h2>Season Outcomes</h2>
-    <p>The season tree visualization is a great tool for catching up on past seasons.  It is useful for viewing not only information about when each contestant was eliminated, but also how the final couple is doing today.  For example, we noticed that the only couple that is still currently married is Sean and Catherine from season 17.  We also noticed that it is much more common in the recent seasons for the bachelor to propose on the show, while in the earlier seasons, most couples never were engaged.  We also learned that season 11 was the only season in which no winner was chosen when the bachelor rejected both the final 2 contestants.</p>
-<h2>Contestant Hometowns</h2>
+<h4>Season Outcomes</h4>
+    <p>The season tree visualization is a great tool for catching up on past seasons. It is useful for viewing not only
+      information about when each contestant was eliminated, but also how the final couple is doing today. For example,
+      we noticed that the only couple that is still currently married is Sean and Catherine from season 17. This is an extremely
+      important insight especially when predicting future candidates as the candidate with best long term fit is not neccesarily picked.
+      It is very frequently the candidate with the best short term qualities whether that be occupation, age, personality traits etc.
+       We also noticed that it is much more common in the recent seasons for the bachelor to propose on the show,
+       while in the earlier seasons, most couples never were engaged. We also learned that season 11 was the only
+       season in which no winner was chosen when the bachelor rejected both the final 2 contestants.</p>
+<h4>Contestant Hometowns</h4>
     <p>The hometowns visualization has led us to the conclusion that the Bachelor casting team is very purposeful with
-        their selections to ensure a wide variety of locations. When breaking it down by each season, there is practically
-        a uniform distribution, with one contestant hailing from each of the most populated states in the US, and then a few
-        outliers that may be from less populated states or other countries.
+        their selections to ensure a wide variety of locations. When breaking it down by each season, there is relatively
+        even distribution (aside from California, Florida, and Texas), with one contestant hailing from each of the most
+        populated states in the US, and then a few outliers that may be from less populated states or other countries.
     </p>
-<h2>Contestant Occupations</h2>
+<h4>Contestant Occupations</h4>
     <p>This visualization resulted in interesting findings that may be different from fans' expectations. Fans are familiar
         with the typical models and social media influencers in each season, but when looking at how they actually fared in the
         competition, it is clear that contestants working in the Human Services and Health segments have historically been more
         successful. This includes common job titles like Nanny, Hairstylist, and Nurse. We can infer from this that since people
         with human-focused jobs tend to be more personable, caring, and helpful, they are more suitable contestants on the show.
     </p>
-<h2>Insights Across Visualizations</h2>
+<hr/>
+<h3>Insights Across Visualizations</h3>
     <p>Our three visualizations also work together to provide more insights. For instance, we can see on the map that
         there have been many contestants from the most populous states, such as California and Florida, that are sent
         home before the halfway point of the show. This may be due to the fact that people from these states are
         associated with jobs that tend not to perform as well, including models, aspiring actresses, and even dolphin trainers.
     </p>
-    <p>We hope that these insights are useful to Bachelor fans, because they will be able to keep these patterns in mind
+    <p>We hope that these insights are useful to Bachelor fans because they will be able to keep these patterns in mind
         when watching the show and will be able to more confidently predict which contestants will be more
         successful. Our visualization should also be useful to future Bachelors, as they can browse the typical group of
         contestants that appears on each season, and also future contestants so that they can predict their own
         success and figure out which traits are best for them to emphasize.
     </p>
-<h2>Further Development</h2>
+<h3>Further Development</h3>
     <p>This project could be further developed to provide more insights. We did not have data for the bachelors on each season,
         but it would have been interesting to see how the Bachelor's characteristics correlate to his choices of contestants.
     </p>

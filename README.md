@@ -1,11 +1,11 @@
-# 457A-bachelorproject
+# CSE 457A Final Project - The Bachelor: What Makes the Perfect Bachelor Contestant?
 Changing the world one bachelor at a time.
 
 - Our code for the actual Bachelor site is in the projectcode folder which has the main index.html file and 4 sub-folders (**bower_components**, **data**, **fonts**, and **public**).
-  - **bower_components** contains all of the libraries used (d3,d3-tip).
+  - **bower_components** contains all of the libraries used (d3, d3-tip).
   - **data** contains all the web scraped data we used from data.world and Kaggle (more information in the proposal and process book).
   - **fonts** contains the fonts we used.
-  - **public** contains the relevant js and css files used to create the site. Each visualization is a prototype with init, loadData, and update methods. These prototypes are instantiated and their methods are called from the main.js class in the js folder.
+  - **public** contains two folders (js, css), which holds the relevant js and css files used to create the site. Each visualization is a prototype with init, loadData, and update methods. These prototypes are instantiated and their methods are called from the main.js class in the js folder. Code is commented as well if you are looking for more detail about our implementaion.
 - Our code (images + html files) for our proposal and process book are in the proposalandprocessbook folder. 
 
 ## Here's our site! Take a look:

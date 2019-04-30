@@ -1,4 +1,5 @@
 //used some help from stackoverflow so I could write data to a file rather than repeated api calls
+//https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
 
 /*d3.json("data/updatedcontestantdata.json",function(data1){
   var newdata = [];
